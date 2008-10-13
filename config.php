@@ -1,0 +1,87 @@
+<?php
+//Configurações do OTServ
+$cfg['dirdata'] = 'C:/Darghos/Old8.11/data/';
+$cfg['house_file'] = 'world/test-house.xml';
+
+$global_cfg['ipnet'] = "ot.darghos.com";
+$global_cfg['ipport'] = 7171;
+
+$maxsize = (512*10000); //Maxsize for guild images.
+$guildimgdir = "images/"; //guild img dir
+$screendir = "screenshots/"; //guild img dir
+$imagedir = "images/"; //images
+
+//Buttons
+////////////////////////////////////////////////
+$vote_button = ''.$imagedir.'vote.gif';
+$back_button = ''.$imagedir.'back.gif';
+$changeSex_button = ''.$imagedir.'changesex.gif';
+////////////////////////////////////////////////
+
+//Conectores SQL
+////////////////////////////////////////////////
+$userdb = array(
+    'host' => 'localhost',
+    'user' => 'root',
+    'port' => '3306',
+    'database' => 'newot',
+	'password' => ''
+);
+
+if(!@mysql_connect($userdb['host'], $userdb['user'], $userdb['password']))
+{
+	$errorDefault['title'] = "Banco de dados em manutenção.";
+	$errorDefault['details'] = "Tente novamente mais tarde...";
+	include("manutention.php");
+	die();
+}
+
+if(!@mysql_select_db($userdb['database']))
+{
+	$errorDefault['title'] = "Banco de dados em manutenção.";
+	$errorDefault['details'] = "Tente novamente mais tarde...";
+	include("manutention.php");
+	die();
+}
+
+/////////////////////////////////////////////////
+
+/*  DEFINITIONS  */
+
+// GROUPS
+define('GROUP_PLAYER', 1);
+define('GROUP_TUTOR', 2);
+define('GROUP_SENATOR', 3);
+define('GROUP_GAMEMASTER', 4);
+define('GROUP_COMMUNITYMANAGER', 5);
+define('GROUP_GOD', 6);
+
+define('ENCRYPT_TYPE', 'md5');
+
+define('GLOBAL_URL', 'http://ot.darghos.com');
+define('STATUS_UPDATE', 60);
+define('SCHEDULER_EMAILCHANGER', 5);
+/* END DEFINITIONS */
+
+include "classes/engine.php";
+include "classes/admin.php";
+include "toolbox.php";
+
+$engine = Engine::getInstance();
+
+$DB = $engine->loadClass("database");
+
+include "serverInfo.php";
+
+if($_SESSION['lang'] == "")
+{
+	include('lang/pt-br/global.php');
+}	
+else
+{
+	if($_SESSION['lang'] == 'pt_br')
+		include('lang/pt-br/global.php');
+	else
+		include('lang/en-us/global.php');
+}
+?>
