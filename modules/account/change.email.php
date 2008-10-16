@@ -24,7 +24,7 @@ if($engine->loggedIn())
 			$condition['title'] = 'Sintaxes reservadas';
 			$condition['details'] = "O seu formulario contem o uso de sintaxes reservadas ao sistema interno. Por favor tente novamente com outros valores.";
 		}
-		if(!$engine->isEmailFormat($_POST['email']))
+		elseif(!$engine->isEmailFormat($_POST['email']))
 		{
 			$condition['title'] = "E-mail invalido!";
 			$condition['details'] = "Este não é um endereço de e-mail valido, por favor, tente novamente com outro endereço e-mail.";
@@ -55,8 +55,8 @@ Equipe UltraxSoft.';
 	
 			if (!mailex($account->getData('email'), 'Agendamento de mudança de e-mail.', $body))
 			{		
-				$condition['title'] = 'Problema ao enviar e-mail';
-				$condition['details'] = "Ouve um problema ao enviar o email de confirmação ao atual e-mail. O agendamento da mudança foi cancelado. Por favor tente novamente mais tarde.";		
+				$condition['title'] = "Falha ao enviar email!";
+				$condition['details'] = "Ouve uma falha em nosso servidor de emails que impossibilitou o envio do seu email. A ultima operação foi anulada. Tente novamente mais tarde.";		
 			}
 			else
 			{

@@ -97,56 +97,36 @@ echo '
 </table>
 
 <br>';
-$DB->query("SELECT status, players FROM site.servers_status WHERE server_id = 1");	
-$fetch = $DB->fetch();
-
-if($fetch->status == 1)
-	$tenerianStatus = $fetch->players;
-else
-	$tenerianStatus = '<font color=red>Offline</font>';
-
-/*#####ONLINE VISITORS#####
-// The ip-adress from the visitor
-$ip_addr = $_SERVER['REMOTE_ADDR']; 
-
-// The file where the information is written to
-$file = 'online.dat';
-
-// if the file doesn't excist, it will create one
-if (!file_exists($file)) {
- $fp = fopen($file, 'a');
- fclose($fp);
-}
-
-// the information that must be created or must been read
-$online = file_get_contents($file); 
-$online = unserialize($online); 
-
-// updating the file with the information from the visitor
-$online['visitors'][$ip_addr] = time(); 
-
-// this si the time after the visitor is show as useless visitor
-$timeout = 300; // 300 seconds = 5 minutes 
-
-foreach($online['visitors'] as $key => $val) { 
-    if($val < (time() - $timeout)) { 
-        unset($online['visitors'][$key]); 
-    } 
-} 
-
-// showing the visitors online at this moment
-$total_visitors = count($online['visitors']); 
-
-// edits if needed the file
-if($total_visitors > $get_status1->visitors_record) 
-{ 
-	mysql_query("UPDATE status SET visitors_record = '$total_visitors', visitors_time = '".time()."'") or die(mysql_error());
-} 		
-
-// Write the new information back to the file
-$handle = fopen($file, 'w'); 
-fwrite($handle, serialize($online)); 
-fclose($handle); */
+$DB->query("SELECT status, players, server_ip, server_port, server_id, server_name FROM site.servers_status");	
+while($fetch = $DB->fetch())
+{
+	$i++;
+	
+	if($fetch->status == 1)
+		$players = $fetch->players;
+	else
+		$players = '<font color=red>Offline</font>';
+		
+	if($fetch->server_name != "Test Server" OR SHOW_TESTSERVER == 1)	
+	{
+		$serversstatus .= '
+			Nome: <b>'.$fetch->server_name.'</b><br>
+			IP: <b><font size="1">'.$fetch->server_ip.'</font></b><br>
+			Versão: <b>8.11</b><br>
+			Porta: <b>'.$fetch->server_port.'</b><br><br>	
+				
+			<table class=status2 width="90%" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td width="60%" align="right">
+						Jogadores...</a>
+					</td>
+					<td align="left">
+						<b>'.$players.'</b>
+					</td>
+				</tr>
+			</table><br>';
+	}	
+}	
 
 $statusContent = '
 <table border="0" cellpadding="0" cellspacing="0" width="183px">
@@ -162,20 +142,9 @@ $statusContent = '
 	<tr>
 		<td class=menu2Center>
 			<center>
-			IP: <b>ot.darghos.com</b><br>
-			Versão: <b>8.11</b><br>
-			'.$lang['porta'].': <b>7171</b><br><br>	
-			
+			'.$serversstatus.'
 			<table class=status2 width="80%" border="0" cellspacing="0" cellpadding="0">
-				<tr>
-					<td align="left">
-						Jogadores Online:</a>
-					</td>
-					<td align="right">
-						<b>'.$tenerianStatus.'</b>
-					</td>
-				</tr> 	
-				<tr>
+				<td>
 					<td align="center" colspan="2">
 						<a href="?page=community.whoIsOnline">Who Is Online?</a>
 					</td>	
@@ -299,6 +268,9 @@ if(Account::getType($account) >= 4)
 		<td class=menuCenter><a href="?page=admin.premiumToAll"><b>Premium to All</b></a></td>
 	</tr>	
 	<tr>
+		<td class=menuCenter><a href="?page=admin.updateAllAccounts"><b>Update Accounts</b></a></td>
+	</tr>		
+	<tr>
 		<td class=menuCenter><a href="?page=admin.logs.siteActions"><b>Logs</b></a></td>
 	</tr>
 	<tr>
@@ -347,7 +319,7 @@ $accountCountent = '
 					<td><input class="login" name="password" type="password" size="13"/></td>
 				</tr>
 			</table>	
-			<a href="?page=account.lost"><font size=1>'.$lang['forgot_account'].'</font></a>
+			<a href="?page=lostInterface"><font size=1>'.$lang['forgot_account'].'</font></a>
 			<br><br>
 			<input class="login" type="submit" name="Submit" value="'.$lang['login'].'!" /><br>
 			<font size=1>'.$lang['not_have_account'].'<a href="?page=account.register">'.$lang['clicking_here'].'</b></font></a>!

@@ -15,6 +15,8 @@ class Accounts
 		'email' => null,
 		'date' => null,
 	);
+	
+	private $questions = array();	
 
 	public function __construct()
 	{	
@@ -103,6 +105,8 @@ class Accounts
 		if($fields != "default")
 		{
 			$infoCount = count($fields);
+				
+			$i = 0;
 			
 			foreach($fields as $info)
 			{
@@ -110,9 +114,9 @@ class Accounts
 				$select .= "$info";
 				
 				if($i == $infoCount)
-					$select .= " ";
+					$select .= "";
 				else
-					$select .= ", ";
+					$select .= ",";
 			}	
 			
 			$this->DB->query("SELECT id, $select FROM accounts WHERE id = $value");	
@@ -172,6 +176,63 @@ class Accounts
 		}	
 		else	
 			return false;
+	}
+	
+	function loadQuestions()
+	{	
+		$this->DB->query("SELECT site.account_questions.`question`,site.account_questions.`answer` FROM site.account_questions INNER JOIN `accounts` ON site.account_questions.`account_id` = accounts.`id` WHERE accounts.`id` = '".$this->data['id']."'");
+	
+		if($this->DB->num_rows() != 0)
+		{
+			
+			$questions = array();
+			$i = 0;
+			while($fetch = $this->DB->fetch())
+			{
+				$i++;
+				
+				$questions[$i]['question'] = $fetch->question;
+				$questions[$i]['answer'] = $fetch->answer;	
+			}
+			
+			return $questions;
+		}	
+		else	
+			return false;
+	}	
+	
+	function loadChangePasswordKey()
+	{
+		$this->DB->query("SELECT key FROM site.account_changepasswordkeys WHERE account_id = ".$this->data['id']."");
+		
+		if($this->DB->num_rows() != 0)
+		{
+			$fetch = $this->DB->fetch();
+			
+			return $fetch->key;
+		}
+		else
+			return false;
+	}
+	
+	function addChangePasswordKey($key)
+	{
+		$this->DB->query("INSERT INTO site.account_changepasswordkeys (`key`,`date`,`account_id`) values ('".$key."', '".time()."', ".$this->data['id'].")");
+	}	
+	
+	function ereaseChangePasswordKeys()
+	{
+		$this->DB->query("DELETE FROM site.account_changepasswordkeys WHERE account_id = ".$this->data['id']."");
+	}
+	
+	function ereaseQuestions()
+	{
+		$this->DB->query("DELETE FROM site.account_questions WHERE account_id = ".$this->data['id']."");
+	}	
+	
+	function addQuestion($question, $answer)
+	{
+		$this->DB->query("INSERT INTO site.account_questions (`question`,`answer`,`account_id`) values ('".$question."', '".$answer."', ".$this->data['id'].")");
 	}
 	
 	function schedulerNewEmailIn($email, $date)

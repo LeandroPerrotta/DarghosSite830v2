@@ -38,8 +38,15 @@ echo'<center>
 	echo '<br><table width="95%" BORDER="0" CELLSPACING="1" CELLPADDING="4">';
 	echo '<tr id="newsticker" class="rank2"><td>News Ticker</td></tr>';
 	echo ''.$tickers_to_add.'';
-	echo '</table><br><a href="?page=contribute.beneficts"><img border=0 src="images/others/premium.gif"></a>';
+	echo '</table><br>';
 	
+	$bannerChance = rand(1, 200000);
+	
+	if($bannerChance < 15000)
+		echo '<a href="?page=contribute.beneficts"><img border=0 src="images/others/premium.gif"></a>';
+	else	
+		echo '<a href="?page=account.getTickets"><img border=0 src="images/others/tickets.gif"></a>';
+		
 	$sql = mysql_query("SELECT * FROM `news` ORDER by post_data DESC LIMIT 2");
 	while($post_fetch = mysql_fetch_object($sql))
 	{

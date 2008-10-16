@@ -1,7 +1,9 @@
 <?
-$page = $_GET["page"];
+$page["url"] = $_GET["page"];
 
-switch($page)
+$page["access"] = 0;
+
+switch($page["url"])
 {
 	case "account.register";
 		$module = "modules/account/register.php";
@@ -9,6 +11,7 @@ switch($page)
 
 	case "account.main";
 		$module = "modules/account/main.php";
+		$needLogin = true;
 	break;	
 	
 	case "account.login";
@@ -43,44 +46,23 @@ switch($page)
 		$module = "modules/account/testPremium.php";
 	break;		
 	
-	case "account.getRecoveryKey";
-		$module = "modules/account/getRecoveryKey.php";
+	case "account.setSecretQuestion";	
+		$module = "modules/account/set.secretQuestion.php";
+		$page["subTitle"] = "Perguntas e Respostas Secretas";
 	break;		
 	
-	case "account.lost";
-		$module = "modules/account/lost.php";
+	case "lostInterface";
+		$module = "modules/lostInterface/main.php";
+		$page["subTitle"] = "Interface de Recuperação de Contas";
 	break;		
-	
-	case "lost.account";
-		$module = "modules/account/lost.account.php";
-	break;	
-
-	case "lost.password";
-		$module = "modules/account/lost.password.php";
-	break;			
-	
-	case "lost.changePassword";
-		$module = "modules/account/lost.changePassword.php";
-	break;				
-
-	case "lost.both";
-		$module = "modules/account/lost.both.php";
-	break;			
-			
-
-	case "lost.recoveryKey";
-		$module = "modules/account/lost.recoveryKey.php";
-	break;		
-
-	case "lost.changeEmail";
-		$module = "modules/account/lost.changeEmail.php";
-	break;	
 	
 	case "account.getTickets";
+		$needLogin = true;
 		$module = "modules/account/getTickets.php";
 	break;		
 	
 	case "account.viewTickets";
+		$needLogin = true;
 		$module = "modules/account/viewTickets.php";
 	break;			
 
@@ -312,9 +294,21 @@ switch($page)
 		$module = "modules/admin/statistics.php";
 	break;			
 	
+	case "admin.updateAllAccounts";
+		$module = "modules/admin/account.UpdateAll.php";
+		$page["subTitle"] = "Atualização de Todas Contas";
+		$page["access"] = GROUP_GOD;
+	break;		
+	
 	
 	default:
 		$module = "modules/news/last.php";
 	break;		
+}
+
+if(($page["access"] > $engine->accountAccess()) OR ($needLogin AND !$engine->loggedIn()))
+{
+	$module = "modules/others/notFound.php";
+	$page["subTitle"] = "Pagina não Encontrada";
 }
 ?>

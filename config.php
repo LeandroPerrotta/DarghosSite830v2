@@ -3,13 +3,13 @@
 $cfg['dirdata'] = 'C:/Darghos/Old8.11/data/';
 $cfg['house_file'] = 'world/test-house.xml';
 
-$global_cfg['ipnet'] = "ot.darghos.com";
-$global_cfg['ipport'] = 7171;
-
 $maxsize = (512*10000); //Maxsize for guild images.
 $guildimgdir = "images/"; //guild img dir
 $screendir = "screenshots/"; //guild img dir
 $imagedir = "images/"; //images
+
+//Cidades
+$city['quendor'] = array('id' => '1', 'x' => '2020', 'y' => '1903', 'z' => '7');
 
 //Buttons
 ////////////////////////////////////////////////
@@ -56,7 +56,11 @@ define('GROUP_GAMEMASTER', 4);
 define('GROUP_COMMUNITYMANAGER', 5);
 define('GROUP_GOD', 6);
 
+define('SHOW_TESTSERVER', 1);
 define('ENCRYPT_TYPE', 'md5');
+define('RECOMENDED_CHANGEPASS_PERIOD', '30');
+define('USE_QUESTION_TRIES', '3');
+define('SUSPEND_QUESTION_TIME', 60 * 60 * 24);
 
 define('GLOBAL_URL', 'http://ot.darghos.com');
 define('STATUS_UPDATE', 60);
