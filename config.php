@@ -57,6 +57,8 @@ define('GROUP_COMMUNITYMANAGER', 5);
 define('GROUP_GOD', 6);
 
 define('SHOW_TESTSERVER', 1);
+define('SHOW_TICKETS', 1);
+
 define('ENCRYPT_TYPE', 'md5');
 define('RECOMENDED_CHANGEPASS_PERIOD', '30');
 define('USE_QUESTION_TRIES', '3');

@@ -196,10 +196,14 @@ if(Account::isPremium($account))
 	$accountCountent .= '
 	<tr>
 		<td class=menuCenter><a href="?page=screenshot.post"><b>'.$lang['post_screenshot'].'</b></a></td>
-	</tr>
-	<tr>
-		<td class=menuCenter><a href="?page=account.viewTickets"><b>Meus Bilhetes</b></a></td>
-	</tr>	';
+	</tr>';
+	
+	if(SHOW_TICKETS == 1)
+	{
+		$accountCountent .= '<tr>
+			<td class=menuCenter><a href="?page=account.viewTickets"><b>Meus Bilhetes</b></a></td>
+		</tr>';
+	}
 }	
 
 	$accountCountent .= '
