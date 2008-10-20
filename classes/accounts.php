@@ -203,7 +203,7 @@ class Accounts
 	
 	function loadChangePasswordKey()
 	{
-		$this->DB->query("SELECT key FROM site.account_changepasswordkeys WHERE account_id = ".$this->data['id']."");
+		$this->DB->query("SELECT `key` FROM site.account_changepasswordkeys WHERE account_id = '".$this->data['id']."'");
 		
 		if($this->DB->num_rows() != 0)
 		{

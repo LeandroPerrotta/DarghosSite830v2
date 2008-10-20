@@ -8,13 +8,13 @@ if($engine->loggedIn())
 	{
 		$screenid = filtreString($_POST['screen_id'],0);
 		$screen = 'screen';
-		if(!POLL::userVoted($acc,$screenid,0))
+		if(!POLL::userVoted($_SESSION['account'],$screenid,0))
 		{
 			$stat = 'Erro';
 			$msg = 'Você ja votou em uma screenshot!';
 		}
 		
-		elseif(!POLL::permission($acc,10))
+		elseif(!POLL::permission($_SESSION['account'],10))
 		{
 			$stat = 'Erro';
 			$msg = 'Você precisa ter ao menos 1 personagem com level 10 ou superior para poder votar!';			
@@ -26,7 +26,7 @@ if($engine->loggedIn())
 			$option = $fetch['votes'];
 			$vote = $option+1;
 			mysql_query("UPDATE `player_screenshots` SET votes = '$vote' WHERE (`id` = '$screenid')") or die(mysql_error());
-			mysql_query("INSERT INTO votes_screen(screen_id, account_id) values('$screenid','$acc')");
+			mysql_query("INSERT INTO votes_screen(screen_id, account_id) values('$screenid','".$_SESSION['account']."')");
 			$stat = 'Voto feito com exito!';
 			$msg = 'Seu voto foi efetuado com exito!<br>Obrigado por votar, sua opinião vale muito para nós!';				
 		}
