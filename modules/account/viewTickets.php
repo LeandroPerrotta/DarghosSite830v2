@@ -40,8 +40,11 @@ if(SHOW_TICKETS == 1)
 	}
 		
 	echo '</table>
-	<br>
-	<a href="?page=account.getTickets"><img src="images/getTicket.gif" border="0"></a>
-	<br>';	
+	<br>';
+	if(SHOW_BUYTICKET == 1)
+	{
+		echo '<a href="?page=account.getTickets"><img src="images/getTicket.gif" border="0"></a>
+		<br>';	
+	}
 }
 ?>

@@ -6,6 +6,7 @@ $page["access"] = 0;
 switch($page["url"])
 {
 	case "account.register";
+		$page["subTitle"] = "Criação de nova Conta";
 		$module = "modules/account/register.php";
 	break;
 
@@ -68,12 +69,10 @@ switch($page["url"])
 
 	//MODULO PERSONAGENS
 	
-	case "character.newForm";
-		$module = "modules/characters/newCharForm.php";
-	break;		
-	
 	case "character.create";
+		$needLogin = true;
 		$module = "modules/characters/create.php";
+		$page["subTitle"] = "Criar novo Personagem";
 	break;		
 	
 	case "character.details";

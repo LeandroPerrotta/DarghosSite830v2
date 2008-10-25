@@ -1,348 +1,280 @@
 <?
-if($engine->loggedIn())
+echo '<tr><td class=newbar><center><b>:: '.$page['subTitle'].' ::</td></tr>
+<tr><td class=newtext><br>';	
+
+$account = $engine->loadClass('Accounts');
+$account->loadByNumber($_SESSION['account']);	
+
+if($_REQUEST['step'] == 2)
 {
-	if ($_SERVER['REQUEST_METHOD'] == "POST")
+	echo '
+	<center>
+	<table border="0" width="95%" CELLSPACING="1" CELLPADDING="2">
+	Nesta etapa você iremos cofigurar as caracteristicas de seu novo personagem.<br>
+	<br>
+	Escolha um nome para seu personagem, note que o nome deste personagem deve seguir as regras de nomes rigorosamente ou será impossivel criar um novo personagem.<br>
+	<br>
+	Após escolher o nome você deverá escolher se seu personagem será do genero Masculino ou Feminino. Após isto irá selecionar a vocação e a cidade na qual você deseja iniciar sua jornada. Após isto basta selecionar o servidor na qual será criado o seu novo personagem e clique em Submit (de preferencia a servidores localizados perto de você pois isto aumenta a perfomance e rapidez na comunicação).
+	</table>
+	<br>';	
+
+	if($_POST['start_mode'] == 'rookgaard')
 	{
-		$namein = $_POST['name'];
-		$prefixo = $_POST['prefixo'];
-		$hidden = $_POST['hidden'];
-		$server = 1;
-		$group_id = 1;
-
-		if(Account::getType($account) == 4)
-			$prefixo = 'GM';
-		elseif(Account::getType($account) == 5)
-			$prefixo = 'CM';				
-		elseif(Account::getType($account) == 6)
-			$prefixo = $_POST['prefixo'];		
-
-		if(!isset($_POST['pvp']))
-			$pvpmode = 0;
+		$vocations = '<select name="vocation"><option value="none">Sem vocação</option></select>';
+		$residence = '<select name="residence"><option value="rookgaard">Rookgaard</option></select>';
+	}	
+	else
+	{
+		$vocations = '<select name="vocation"><option value="sorcerer">Sorcerer</option><option value="druid">Druid</option><option value="paladin">Paladin</option><option value="knight">Knight</option></select>';
+		
+		if($account->getData('premdays') == 0)
+			$residence = '<select name="residence"><option value="quendor">Quendor</option><option value="thorn">Thorn</option></select>';
 		else
-			$pvpmode = $_POST['pvp'];		
-
-		switch($_POST['sex'])
-		{	
-			case "male";
-				$sexin = 1;
-			break;
-			
-			case "female";
-				$sexin = 0;
-			break;	
-
-			default;
-				$sexin = 1;
-			break;				
-		}	
-
-		$gmType = false;	
-		$rookguard = false;
-
-		if(isset($_POST['voc']) and isset($_POST['res']))
-		{
-			switch($_POST['voc'])
-			{	
-				case "sorcerer";
-					$voc = 1;
-				break;
-				
-				case "druid";
-					$voc = 2;
-				break;
-				
-				case "paladin";
-					$voc = 3;
-				break;	
-
-				case "knight";
-					$voc = 4;
-				break;	
-
-				default;
-					$voc = 1;
-				break;	
-			}
-			
-			if(Account::isPremium($account))
-			{
-				switch($_POST['res'])
-				{	
-					case "quendor";
-						$res = 1;
-					break;
-					
-					case "aracura";
-						$res = 2;
-					break;
-					
-					case "thorn";
-						$res = 4;
-					break;	
-
-					case "salazart";
-						$res = 5;
-					break;		
-
-					case "norhrend";
-						$res = 7;
-					break;	
-
-					default;
-						$res = 1;
-					break;				
-				}	
-			}
-			else	
-			{
-				switch($_POST['res'])
-				{	
-					case "quendor";
-						$res = 1;
-					break;
-					
-					case "thorn";
-						$res = 4;
-					break;	
-
-					default;
-						$res = 1;
-					break;				
-				}
-			}	
-		}
-		else
-		{
-			$res = 3;
-			$voc = 0;	
-			$rookguard = true;
-		}
-
-		$lookbody = 116;
-		$lookfeet = 116;
-		$lookhead = 116;
-		$looklegs = 116;
-
-		if($sexin == 0)
-			$looktype = 136;	
-		elseif($sexin == 1)
-			$looktype = 128;
-
-		if(Account::isGM($account) or Account::isCM($account) or Account::isAdmin($account))
-		{
-			if($hidden == 1)
-				$namein = ''.$prefixo.' '.$namein.'';
-
-			$lookbody = 91;
-			$lookfeet = 91;
-			$lookhead = 91;
-			$looklegs = 91;	
-			$gmType = true;	
-		}
-
-		if($gmType == true)
-		{
-			if($prefixo == 'GM')
-			{
-				$group_id = 4;
-				$looktype = 75;
-			}	
-					
-			if($prefixo == 'CM')
-			{
-				$group_id = 5;		
-				$looktype = 266;
-			}	
-			if($prefixo == 'GOD')
-			{
-				$group_id = 6;		
-				$looktype = 266;
-			}			
-		}
-
-		$check = mysql_query("SELECT * FROM players WHERE name = '".addslashes($namein)."' LIMIT 1") or die(mysql_error());
-		$playerOfAccount = mysql_query("SELECT * FROM players WHERE account_id = '$account'") or die(mysql_error());
-		$GMOfAccount = mysql_query("SELECT * FROM players WHERE account_id = '$account' and group_id > '1'") or die(mysql_error());
-
-		$temp = strspn("$namein", "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM -");
-			echo '<tr><td class=newbar><center><b>:: Make a new Character ::</td></tr>
-		<tr><td class=newtext>';
-
-		$button = '<br><a href="?page=character.newForm"><img src="images/back.gif" border="0"></a>';
-		if (!preg_match("/^[a-zA-Z][a-zA-Z ]*$/", $namein))  
-		{
-			$condition = 'Não foi possivel criar seu personagem.';
-			$error = 'Este nome contem carateres ilegais.';
-		}
-		elseif (filtreString($namein,1) == 0)
-		{
-			$condition = 'Não foi possivel criar seu personagem.';
-			$error = 'Este nick contem sintaxes especiais.';	
-		}
-		elseif ($temp != strlen($namein))
-		{
-			$condition = 'Incorrect name';
-			$error = 'Your character\'s name is not valid. Keep in mind that only letters and blankspaces are permitted. Please choose another one';			
-		}
-		elseif (strlen($namein) < 3 || strlen($namein) > 29)
-		{
-			$condition = 'Wrong length';
-			$error = 'Your character\'s name is not valid. You must use a name with at least 2 letters and at most 20 letters. Please choose another one.';		
-		}	
-		elseif ($server == '')
-		{
-			$condition = 'Game Server';
-			$error = 'Please select a Game Server.';	
-		}	
-		elseif (Account::isPlayer($account) and reservedNames($namein) == 0)
-		{
-			$condition = 'Não foi possivel criar seu personagem.';
-			$error = 'Este nick contem sintaxes reservadas.';		
-		}
-		elseif(mysql_num_rows($check) == 1) 
-		{ 
-			$condition = 'Não foi possivel criar seu personagem.';
-			$error = 'Este nick já esta em uso no jogo.';	
-		}
-		elseif(!Account::isAdmin($account) and mysql_num_rows($playerOfAccount) > 10 or Account::isGM($account) and mysql_num_rows($GMOfAccount) > 1 or Account::isCM($account) and mysql_num_rows($GMOfAccount) > 1) 
-		{ 
-			$condition = 'Não foi possivel criar seu personagem.';
-			$error = 'Sua conta já esta com o numero maximo possivel de personagens criados.';	
-		}	
-		else
-		{
-			if($rookguard == true)
-			{
-				$level = 1;
-				$experience = 0;
-				$magic = 0;
-				$health = 150;
-				$mana = 0;
-				$cap = 400;		
-			}
-			elseif($gmType == true)
-			{
-				$level = 20;
-				$experience = 0;
-				$magic = 0;
-				$health = 1;
-				$mana = 1;
-				$cap = 1;		
-			}
-			else
-			{
-				$level = 8;
-				$experience = 4200;
-				$magic = 0;
-				$health = 185;
-				$mana = 35;
-				$cap = 470;
-			}
-			
-			mysql_query("INSERT INTO players (name, account_id, group_id, sex, vocation, experience, level, maglevel, health, healthmax, mana, manamax, lookbody, lookfeet, lookhead, looklegs, looktype, cap, town_id, server, pvpmode, created) values ('$namein','$account','$group_id','$sexin','$voc','$experience','$level','$magic','$health','$health','$mana','$mana','$lookbody','$lookfeet','$lookhead','$looklegs','$looktype','$cap','$res','$server','$pvpmode', '".time()."')") or die(mysql_error());
-
-			$get_id = mysql_query("SELECT * FROM players WHERE (name = '$namein')") or die(mysql_error());
-			$fetch_get_id = mysql_fetch_object($get_id);
-			$playerid = $fetch_get_id->id;
-			
-			mysql_query("INSERT INTO player_skills(player_id, skillid, value, count) values('$playerid','0','10','0')") or die(mysql_error());
-			mysql_query("INSERT INTO player_skills(player_id, skillid, value, count) values('$playerid','1','10','0')") or die(mysql_error());
-			mysql_query("INSERT INTO player_skills(player_id, skillid, value, count) values('$playerid','2','10','0')") or die(mysql_error());
-			mysql_query("INSERT INTO player_skills(player_id, skillid, value, count) values('$playerid','3','10','0')") or die(mysql_error());
-			mysql_query("INSERT INTO player_skills(player_id, skillid, value, count) values('$playerid','4','10','0')") or die(mysql_error());
-			mysql_query("INSERT INTO player_skills(player_id, skillid, value, count) values('$playerid','5','10','0')") or die(mysql_error());
-			mysql_query("INSERT INTO player_skills(player_id, skillid, value, count) values('$playerid','6','10','0')") or die(mysql_error());
-			
-			if($gmType == true) // GM Char
-			{
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','101','3','1988','1','')") or die(mysql_error());
-				//backpack inside
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','102','101','2554','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','103','101','2120','1','')") or die(mysql_error());
-				//end backpack			
-			}			
-			elseif($voc == 0)  // No-Voc
-			{
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','101','3','1987','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','102','4','2467','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','103','6','2382','1','')") or die(mysql_error());
-				//backpack inside
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','104','101','2666','2','')") or die(mysql_error());
-				//end backpack			
-			}			
-			elseif($voc == 1)  // Sorcerer
-			{
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','101','1','2480','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','102','3','1988','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','103','4','2464','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','104','5','2530','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','105','6','2190','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','106','7','2468','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','107','8','2643','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','108','10','2120','1','')") or die(mysql_error());
-				//backpack inside
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','109','102','2666','2','')") or die(mysql_error());
-				//end backpack			
-			}	
-			elseif($voc == 2) //Druid
-			{
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','101','1','2480','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','102','3','1988','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','103','4','2464','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','104','5','2530','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','105','6','2182','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','106','7','2468','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','107','8','2643','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','108','10','2120','1','')") or die(mysql_error());
-				//backpack inside
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','109','102','2666','2','')") or die(mysql_error());
-				//end backpack	
-			}		
-			elseif($voc == 3) //Paladin
-			{
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','101','1','2480','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','102','3','1988','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','103','4','2464','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','104','5','2530','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','105','6','2389','5','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','106','7','2468','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','107','8','2643','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','108','10','2120','1','')") or die(mysql_error());
-				//backpack inside
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','109','102','2666','2','')") or die(mysql_error());
-				//end backpack	
-			}	
-			elseif($voc == 4) //Knight
-			{
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','101','1','2480','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','102','3','1988','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','103','4','2464','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','104','5','2530','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','105','6','2412','5','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','106','7','2468','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','107','8','2643','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','108','10','2120','1','')") or die(mysql_error());
-				//backpack inside
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','109','102','2666','2','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','110','102','2388','1','')") or die(mysql_error());
-				mysql_query("INSERT INTO player_items(player_id, sid, pid, itemtype, count, attributes) values('$playerid','111','102','2398','1','')") or die(mysql_error());
-				//end backpack		
-			}
-			
-			$condition = 'Personagem criado com sucesso!';
-			$error = '<br>Caso não tenha feito o download do jogo, fassa-o agora clicando <a href="http://www.darghos.com/download/installer.exe">aqui</a>.</b>
-		<br>Em seu primeiro login mude o seu outfit para o de sua preferencia.
-		<br>Nos vemos no Darghos!';	
-			$button = '<br><a href="?page=account.main"><img src="images/back.gif" border="0"></a>';	
-		}
-
-		echo '<br><center><table width="95%" bgcolor="black" BORDER="0" CELLSPACING="1" CELLPADDING="4">';
-		echo '<tr><td class=rank2>'.$condition.'</td></tr>';
-		echo '</table>';
-		echo '<center><table border="0" width="95%" bgcolor="black" CELLSPACING="1" CELLPADDING="2">';
-		echo '<tr><td class=rank1>'.$error.'';
-		echo '</table>';
-		echo ''.$button.'';	
+			$residence = '<select name="residence"><option value="quendor">Quendor</option><option value="thorn">Thorn</option><option value="aracura">Aracura</option><option value="salazart">Salazart</option><option value="northrend">Northrend</option></select>';
 	}
-}		
+	
+	echo '<form method="POST" action="?page=character.create&step=3">
+	<table width="95%" BORDER="0" CELLSPACING="1" CELLPADDING="4">
+		<tr>
+			<td class="rank2" colspan="2">Caracteristicas do Personagem</td>
+		</tr>
+		<tr>
+			<td colspan="2" class="rank3">
+				<table width="95%" BORDER="0" CELLSPACING="0" CELLPADDING="4">
+					<tr>
+						<td width="30%" class="rank3">Nome do Personagem:</td> <td class="rank3"><input name="character_name" type="text" value="" class="login"/></td>
+					</tr>
+				</table>	
+			</td>
+		</tr>
+		<tr>
+			<td class="rank3" width="25%">Gênero:</td><td class="rank3"><select name="genre"><option value="male">Masculino</option><option value="female">Feminino</option></select></td>
+		</tr>	
+		<tr>
+			<td class="rank3" width="25%">Vocação:</td><td class="rank3">'.$vocations.'</td>
+		</tr>	
+		<tr>
+			<td class="rank3" width="25%">Residencia:</td><td class="rank3">'.$residence.'</td>
+		</tr>						
+	</table><br>
+	<a href="?page=character.create"><img src="images/back.gif" border="0"></a>	
+	<input type="image" value="Entrar" src="images/submit.gif"/> 
+	</form>	 
+	';		
+}
+elseif($_REQUEST['step'] == 3)
+{
+	$player = $engine->loadClass("Players");
+	$success = false;
+
+	if(!$_POST['character_name'])
+	{
+		$condition['title'] = 'Campos vazios';
+		$condition['details'] = "Para prosseguir é necessario preencher todos campos corretamente.";			
+	}
+	elseif(!$engine->filtreString($_POST['character_name']))
+	{
+		$condition['title'] = 'Sintaxes reservadas';
+		$condition['details'] = "O seu formulario contem o uso de sintaxes reservadas ao sistema interno. Por favor tente novamente com outros valores.";
+	}		
+	elseif(!$engine->canUseName($_POST['character_name']))
+	{
+		$condition['title'] = 'Formato de nome Invalido';
+		$condition['details'] = "O nome escolhido para seu personagem possui um modelo de formatação não permitida, tente novamente seguindo estas regras:<br><br> 
+					<li>Seu nome não pode começar ou terminar com um 'espaço'.</li>
+					<li>Não use mais de um 'espaços' entre as palavras.</li>
+					<li>Não é permitido mais que três palavras em seu nome.</li>
+					<li>Somente são permitidos os caracteres: a-z, A-Z, espaço, hifen (-) e aspas simples.</li>
+					<li>O seu nome não deve possuir mais que 30 caracteres.</li>
+					<li>O seu nome não deve possuir menos que 3 caracteres.</li>
+					<li>A terceira palavra de seu nome não deve possuir menos que 3 caracteres.</li>
+					<li>A primeira letra da primeira palavra de seu nome deve ser maiuscula.</li>
+					<li>A primeira letra da terceira palavra de seu nome deve ser maiuscula.</li>";				
+	}
+	elseif($player->loadByName($_POST['character_name']))
+	{
+		$condition['title'] = 'Nome já em uso';
+		$condition['details'] = "Este nome já está em uso por outro personagem no jogo. Por favor tente novamente com um nome diferente.";		
+	}	
+	elseif($engine->isFromBlackList($_POST['character_name']))
+	{
+		$condition['title'] = 'Nome Irregular';
+		$condition['details'] = "Este nome é reservado para uso interno ou proibido. Por favor tente outro nome.";		
+	}
+	else
+	{
+		$success = true;
+	
+		if($_POST['vocation'] == "none")
+		{
+			$statusChar = array(
+				'level' => 1, 
+				'experience' => 0,
+				'cap' => 400,
+				'health' => 150,
+				'mana' => 0,
+			);
+			
+			$itemsChar = array(
+				//Inventario
+				array(SLOT_BACKPACK, 101, 1987, 1),
+				array(SLOT_ARMOR, 102, 2467, 1),
+				array(SLOT_LEFTHAND, 103, 2382, 1),
+				
+				//backpack
+				array(101, 102, 2666, 2),
+			);
+		}
+		else
+		{
+			if($_POST['vocation'] == "sorcerer")
+			{
+				$itemsChar = array(
+					//Inventario
+					array(SLOT_HEAD, 101, 2480, 1),
+					array(SLOT_BACKPACK, 102, 1988, 1),
+					array(SLOT_ARMOR, 103, 2464, 1),
+					array(SLOT_RIGHTHAND, 104, 2530, 1),
+					array(SLOT_LEFTHAND, 105, 2190, 1),
+					array(SLOT_LEGS, 106, 2468, 1),
+					array(SLOT_FEET, 107, 2643, 1),
+					array(SLOT_AMMO, 108, 2120, 1),
+					
+					//backpack
+					array(102, 109, 2666, 2),
+				);				
+			}
+			elseif($_POST['vocation'] == "druid")
+			{
+				$itemsChar = array(
+					//Inventario
+					array(SLOT_HEAD, 101, 2480, 1),
+					array(SLOT_BACKPACK, 102, 1988, 1),
+					array(SLOT_ARMOR, 103, 2464, 1),
+					array(SLOT_RIGHTHAND, 104, 2530, 1),
+					array(SLOT_LEFTHAND, 105, 2182, 1),
+					array(SLOT_LEGS, 106, 2468, 1),
+					array(SLOT_FEET, 107, 2643, 1),
+					array(SLOT_AMMO, 108, 2120, 1),
+					
+					//backpack
+					array(102, 109, 2666, 2),
+				);						
+			}
+			elseif($_POST['vocation'] == "paladin")
+			{
+				$itemsChar = array(
+					//Inventario
+					array(SLOT_HEAD, 101, 2480, 1),
+					array(SLOT_BACKPACK, 102, 1988, 1),
+					array(SLOT_ARMOR, 103, 2464, 1),
+					array(SLOT_RIGHTHAND, 104, 2530, 1),
+					array(SLOT_LEFTHAND, 105, 2389, 5),
+					array(SLOT_LEGS, 106, 2468, 1),
+					array(SLOT_FEET, 107, 2643, 1),
+					array(SLOT_AMMO, 108, 2120, 1),
+					
+					//backpack
+					array(102, 109, 2666, 2),
+				);						
+			}
+			elseif($_POST['vocation'] == "knight")
+			{
+				$itemsChar = array(
+					//Inventario
+					array(SLOT_HEAD, 101, 2480, 1),
+					array(SLOT_BACKPACK, 102, 1988, 1),
+					array(SLOT_ARMOR, 103, 2464, 1),
+					array(SLOT_RIGHTHAND, 104, 2530, 1),
+					array(SLOT_LEFTHAND, 105, 2412, 1),
+					array(SLOT_LEGS, 106, 2468, 1),
+					array(SLOT_FEET, 107, 2643, 1),
+					array(SLOT_AMMO, 108, 2120, 1),
+					
+					//backpack
+					array(102, 109, 2666, 2),
+					array(102, 110, 2388, 1),
+					array(102, 111, 2398, 1),
+				);					
+			}				
+			
+			$statusChar = array(
+				'level' => 8, 
+				'experience' => 4200,
+				'cap' => 470,
+				'health' => 185,
+				'mana' => 35,
+			);	
+		}
+		
+		$player->setData("name", $_POST['character_name']);
+		$player->setData("account_id", $_SESSION['account']);
+		$player->setData("sex", $g_genre[$_POST['genre']]);
+		$player->setData("vocation", $g_vocation[$_POST['vocation']]);
+		$player->setData("experience", $statusChar['experience']);
+		$player->setData("level", $statusChar['level']);
+		$player->setData("health", $statusChar['health']);
+		$player->setData("healthmax", $statusChar['health']);
+		$player->setData("mana", $statusChar['mana']);	
+		$player->setData("manamax", $statusChar['mana']);	
+		$player->setData("cap", $statusChar['cap']);
+		$player->setData("town_id", $g_residence[$_POST['residence']]);	
+		$player->setData("created", time());		
+		
+		$player->setLook("DEFAULT");
+		
+		$player->saveNew();
+	
+		foreach($itemsChar as $item)
+		{
+			$player->addItem($item[0], $item[1], $item[2], $item[3]);
+		}
+
+		$condition['title'] = 'Personagem criado com sucesso!';
+		$condition['details'] = "O personagem ".$_POST['character_name']." foi criado com sucesso! Você já pode acessa-lo no jogo e começar a se divertir! <br>
+		<br>
+		Boa diversão em sua jornada!<br>
+		Equipe UltraxSoft.";				
+	}
+	
+	echo '<center><table width="95%" BORDER="0" CELLSPACING="1" CELLPADDING="4">';
+	echo '<tr><td class=rank2>'.$condition['title'].'</td></tr>';
+	echo '<tr><td class=rank3>'.$condition['details'].'';
+	echo '</table><br>';
+
+	if($success)
+		echo '<a href="?page=account.main"><img src="images/back.gif" border="0"></a>';	
+	else
+		echo '<a href="?page=character.create"><img src="images/back.gif" border="0"></a>';				
+}
+else
+{
+	echo '
+	<center>
+	<table border="0" width="95%" CELLSPACING="1" CELLPADDING="2">
+	Bem vindo a interface de criação de novos personagens!<br>
+	<br>
+	Atrávez deste recurso você pode criar um novo personagem e começar a se divertir no Darghos, ou iniciar um novo personagem em sua conta.<br>
+	<br>
+	Neste passo você deverá escolher abaixo o modo como irá começar a sua jornada. Escolhendo Rookgaard você irá iniciar sua jornada em uma ilha isolada, desenvolvida para iniciantes, aonde o objetivo é ganhar o conhecimento basico do jogo atingindo nivel 8 e assim viajar para o continente principal. Escolhendo Main Land você já irá começar o jogo no continente principal, portanto "pulando" a ilha de Rookgaard. Esta opção é recomendavel aos que já possuem o conhecimento basico do funcionamento do jogo.
+	</table>
+	<br>
+	
+	<form method="POST" action="?page=character.create&step=2">
+	<table width="95%" BORDER="0" CELLSPACING="1" CELLPADDING="4">
+		<tr>
+			<td class="rank2" colspan="2">Modo de Inicio da Jornada</td>
+		</tr>
+		<tr>
+			<td class="rank3" width="25%"><input type="radio" name="start_mode" value="rookgaard"> Modo Rookgaard</td>
+		</tr>
+		<tr>
+			<td class="rank3" width="25%"><input type="radio" name="start_mode" value="mainland"> Modo MainLand</td>
+		</tr>			
+	</table><br>
+	<a href="?page=account.main"><img src="images/back.gif" border="0"></a>	
+	<input type="image" value="Entrar" src="images/submit.gif"/> 
+	</form>	 
+	';	
+}	
 ?>

@@ -230,7 +230,7 @@ while($sql2 = mysql_fetch_array($query2))
 	}
 	echo '</table>';	
 	echo '<center><table width="95%" BORDER="0" CELLSPACING="1" CELLPADDING="4">';	
-	echo '<tr><td colspan=3><a href="?page=character.newForm">'.$newchar.'</a>'.$deletebutton.''.$undelButton.'<br>'.$changeSex.' '.$changeName.''.$getTutor.'</td></tr>';	
+	echo '<tr><td colspan=3><a href="?page=character.create">'.$newchar.'</a>'.$deletebutton.''.$undelButton.'<br>'.$changeSex.' '.$changeName.''.$getTutor.'</td></tr>';	
 	echo '</table>';	
 	
 }                

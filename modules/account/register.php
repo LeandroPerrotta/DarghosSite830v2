@@ -1,112 +1,99 @@
 <?
-echo '<tr><td class=newbar><center><b>:: Criação de Conta ::</td></tr>
-<tr><td class=newtext>';
+echo '<tr><td class=newbar><center><b>:: '.$page['subTitle'].' ::</td></tr>
+<tr><td class=newtext><br>';	
 
 if ($_SERVER['REQUEST_METHOD'] == "POST")
 {
 	$success = false;
-	$email = $_POST['email'];
-	$acceptemail = $_POST['acceptemail'];
-	$privacidade = $_POST['privacidade'];
+	$account = $engine->loadClass('Accounts');
 
-	if($email == null or $email == "")
+	if(!$_POST['email'])
 	{
-		$condition['title'] = "Campos vazios!";
+		$condition['title'] = "Campos em brancos!";
 		$condition['details'] = "Os campos do formulario estão vazios, para criar sua conta é necessario preencher todos campos do formulario corretamente.";
 	}
-	elseif(filtreString($email,1) == 0)
+	elseif(!$engine->filtreString($_POST['email']))
 	{
 		$condition['title'] = "Caracteres reservados!";
 		$condition['details'] = "Este endereço de e-mail contem caracteres reservados ou proibidos, por favor, tente novamente com outro endereço e-mail.";
 	}	
-	else
+	elseif(!$engine->isEmailFormat($_POST['email']))
 	{
-		$chkEmail = mysql_query("SELECT * FROM `accounts` WHERE (`email` = '".$email."')") or die(mysql_error());
-		
-		if( !preg_match('/^[a-z][\w\.+-]*[a-z0-9]@[a-z0-9][\w\.+-]*\.[a-z][a-z\.]*[a-z]$/i', $email) )
-		{
-			$condition['title'] = "E-mail invalido!";
-			$condition['details'] = "Este não é um endereço de e-mail valido, por favor, tente novamente com outro endereço e-mail.";
-		}		
-		elseif(mysql_num_rows($chkEmail) != 0)		
-		{
-			$condition['title'] = "E-mail já em uso!";
-			$condition['details'] = "Esteendereço de e-mail já está em uso por outra conta, por favor, tente novamente com outro endereço e-mail.";		
-		}	
-		
-		elseif(!emailExists($email))
-		{
-			$condition['title'] = "E-mail invalido!";
-			$condition['details'] = "Este endereço de e-mail não existe, por favor, tente novamente com outro endereço e-mail.";		
-		}	
-
-		elseif($privacidade != 1)		
-		{
-			$condition['title'] = "Termos não aceitos!";
-			$condition['details'] = "Somente oferecemos o Darghos a quem aceitar e concordar com todos termos e politicas de nosso trabalho.";			
-		}			
-		
-		else 
-		{
-			$pass = my_rand(6);	
-			$passMd5 = md5($pass);
-			$date = time();
-
-			$account = $engine->loadClass('Accounts');
-			$number = $account->getNumber();
-
-			$account->setData("password", $passMd5);
-			$account->setData("email", $email);
-			$account->setData("lastday", $date);
-			$account->setData("creation", $date);
-			
-			$body = 
-			'Dear  player of Darghos,
-Your account has been successfully created!
-			
-Below follows the details of your account:
-Your account is: '.$number.'
-Your password is: '.$pass.'
-				
-To create you character and start the game visit:
-http://ot.darghos.com/index.php?page=account.login
-			
-See you in World of Darghos!
-UltraxSoft Team.';
-			
-			if (!mailex($email, 'Account details!', $body))
-			{		
-				$condition['title'] = "Falha ao enviar email!";
-				$condition['details'] = "Ouve uma falha em nosso servidor de emails que impossibilitou o envio do seu email. A criação de sua conta foi anulada. Tente novamente mais tarde.";								
-			}				
-			else
-			{	
-				$sucess = true;
-				$account->saveNumber();
-				
-				$condition['title'] = "E-mail enviado com sucesso!";
-				$condition['details'] = "Parabens! Sua conta foi criada com sucesso!<br>
-				O numero de sua conta é: <font size=6><b>$number</b></font><br>
-				<br>
-				A senha para acesso de sua conta foi enviada email registrado: <b>$email</b><br>
-				Para sua segurança jamais entregue os dados de sua conta a ninguem!<br>
-				<br>
-				Tenha um bom jogo!<br>
-				Equipe UltraxSoft.";								
-			}				
-		}
+		$condition['title'] = "E-mail invalido!";
+		$condition['details'] = "Este não é um endereço de e-mail valido, por favor, tente novamente com outro endereço e-mail.";
+	}		
+	elseif($account->loadByEmail($_POST['email']))		
+	{
+		$condition['title'] = "E-mail já em uso!";
+		$condition['details'] = "Esteendereço de e-mail já está em uso por outra conta, por favor, tente novamente com outro endereço e-mail.";		
 	}	
+	elseif($_POST['privacidade'] != 1)		
+	{
+		$condition['title'] = "Termos não aceitos!";
+		$condition['details'] = "Somente oferecemos o Darghos a quem aceitar e concordar com todos termos e politicas de nosso trabalho.";			
+	}			
+	else 
+	{
+		$pass = $engine->random_key(8, 1);	
+
+		$account = $engine->loadClass('Accounts');
+		$number = $account->getNumber();
+
+		$account->setData("password", $engine->encript($pass));
+		$account->setData("email", $_POST['email']);
+		$account->setData("lastday", time());
+		$account->setData("creation", time());
+		
+		$body = 
+		'Caro jogador do Darghos,
+A sua conta foi criada com sucesso!
+
+Abaixo segue os detalhes da sua conta:
+Sua conta é: '.$number.'
+Sua senha é: '.$pass.'
+
+Para criar um personagem e começar a jogar visite:
+http://ot.darghos.com/index.php?page=account.login
+
+Nos vemos no Darghos!
+UltraxSoft Team.';
+		
+		if (!$engine->sendEmail($_POST['email'], 'Account details!', $body))
+		{		
+			$condition['title'] = "Falha ao enviar email!";
+			$condition['details'] = "Ouve uma falha em nosso servidor de emails que impossibilitou o envio do seu email. A criação de sua conta foi anulada. Tente novamente mais tarde.";								
+		}				
+		else
+		{	
+			$sucess = true;
+			$account->saveNumber();
+			
+			$condition['title'] = "E-mail enviado com sucesso!";
+			$condition['details'] = "Parabens! Sua conta foi criada com sucesso!<br>
+			O numero de sua conta é: <font size=6><b>$number</b></font><br>
+			<br>
+			A senha para acesso de sua conta foi enviada email registrado: <b>".$_POST['email']."</b><br>
+			Para sua segurança jamais entregue os dados de sua conta a ninguem!<br>
+			<br>
+			Tenha um bom jogo!<br>
+			Equipe UltraxSoft.";								
+		}				
+	}
 	
-	echo '<br><center><table width="95%" bgcolor="black" BORDER="0" CELLSPACING="1" CELLPADDING="4">';
+	echo '<center><table width="95%" BORDER="0" CELLSPACING="1" CELLPADDING="4">';
 	echo '<tr><td class=rank2>'.$condition['title'].'</td></tr>';
-	echo '<tr><td class=rank1>'.$condition['details'].'';
+	echo '<tr><td class=rank3>'.$condition['details'].'';
 	echo '</table><br>';
 	
 	if($sucess)
+	{
 		echo '<a href="?page=account.login"><img src="images/login.gif" border="0"></a>';	
+	}
 	else
+	{
 		echo '<a href="?page=account.register"><img src="images/back.gif" border="0"></a>';	
-}
+	}
+		}
 else 
 {
 	echo '
@@ -120,16 +107,13 @@ else
 	<center>
 	<table width="90%" BORDER="0" CELLSPACING="1" CELLPADDING="4">
 		<tr>
-			<td class=rank2>Crie uma conta no Darghos</td>
+			<td class="rank2">Crie uma conta no Darghos</td>
 		</tr>
-		<tr class=rank3>
-			<td>
-				Endereço de E-mail: <input class="login" name="email" type="text" value="" size="30"/>
-			</td>
+		<tr>
+			<td class="rank3">Endereço de E-mail: <input class="login" name="email" type="text" value="" size="30"/></td>
 		</tr>
-		<tr class=rank3>
-			<td><br>
-				<b>Termos de politica de privacidade</b>
+		<tr>
+			<td class="rank3"><br><b>Termos de politica de privacidade</b>
 		<center><textarea class="login" rows="7" wrap="physical" cols="55" readonly="true">Nosso compromisso em garantir a sua privacidade.
 
 	Nossa política de privacidade visa assegurar que nenhum dado pessoal dos usuários utilizado no registro de contas serão publicadas, fornecidas ou comercializadas em qualquer circunstância. O darghos obtém os dados dos usuários atravéz de três maneiras: Cookies, Sessões e Registro.
@@ -148,10 +132,8 @@ else
 
 	Assegurar a sua privacidade é mais um compromisso do Darghos com você!</textarea></center></td>
 		</tr>
-		<tr class=rank3>
-			<td>
-				<input type="checkbox" name="privacidade" value="1"> Eu concordo com os termos da politica de privacidade oferecidos pelo darghos.
-			</td>
+		<tr>
+			<td class="rank3"><input type="checkbox" name="privacidade" value="1"> Eu concordo com os termos da politica de privacidade oferecidos pelo darghos.</td>
 		</tr>
 	</table><br>
 	<input type="image" value="Entrar" src="images/newaccount.gif"/>

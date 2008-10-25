@@ -131,5 +131,136 @@ class Engine
 		else
 			return false;			
 	}
+	
+	function sendEmail($recipient, $subject, $content)
+	{
+		require("phpmailer/class.phpmailer.php");
+
+		$mailsend = false;
+
+		$mail = new PHPMailer();
+		$mail->IsSMTP();						
+		$mail->SMTPAuth   = true; 
+		$mail->Host       = SMTP_HOST;   
+		$mail->Port       = SMTP_PORT;  
+
+		$mail->FromName   = "Darghos Server";
+		$mail->Username   = SMTP_USER;
+		$mail->Password   = "***REMOVED***";
+
+		$mail->From = "Darghos";
+		$mail->AddAddress($recipient);
+
+		$mail->Subject = $subject;
+		$mail->Body    = $content;
+		
+		$result = $mail->Send();
+		
+		if($result)
+		{
+			$mailsend = true;
+		}	
+		
+		if($mailsend)
+		{
+			$this->DB->query("INSERT INTO site.sended_emails (`to`,`time`,`by`,`sucess`,`engine`) values('".$recipient."','".time()."','darghos.net@noip-smtp','1','open tibia')") or die(mysql_error());
+			return true;
+		}	
+		else
+		{
+			$this->DB->query("INSERT INTO site.sended_emails (`to`,`time`,`by`,`sucess`,`engine`,`error`) values('".$recipient."','".time()."','all','2','open tibia','".$mail->ErrorInfo."')") or die(mysql_error());
+			return false;
+		}	
+	}	
+	
+	function isFromBlackList($string)
+	{
+		$this->DB->query("SELECT * FROM site.`blackList_strings`");
+		
+		$isInBlackList = 0;
+		
+		while($fetch = $this->DB->fetch())
+		{
+			if(eregi($fetch->string, $string))
+				$isInBlackList++;
+		}
+		
+		if($isInBlackList == 0)
+			return false;
+		else
+			return true;		
+	}
+	
+	function canUseName($nameString)
+	{
+		if(trim($nameString) != $nameString)
+			return false;	
+		
+		$palavras = explode(" ", $nameString);
+		
+		if(count($palavras) > 3)
+			return false;
+		
+		if(ucfirst($palavras[0]) != $palavras[0])
+			return false;
+			
+		if(ucfirst($palavras[2]) != $palavras[2])
+			return false;			
+			
+		if(count($palavras) == 3)
+		{
+			if(strlen($palavras[0]) < 3)
+				return false;	
+				
+			if(strlen($palavras[2]) < 3)
+				return false;	
+		}
+		elseif(count($palavras) == 2)	
+		{
+			if(strlen($palavras[0]) < 3)
+				return false;	
+				
+			if(strlen($palavras[1]) < 3)
+				return false;			
+		}
+		elseif(count($palavras) == 1)	
+		{
+			if(strlen($palavras[0]) < 3)
+				return false;			
+		}		
+	
+		for($a = 0; $a != count($palavras); $a++)
+		{	
+			foreach(count_chars($palavras[$a], 1) as $letra => $quantidade)
+			{
+				if($quantidade > 4)
+					return false;				
+			}
+		}
+			
+		if(strlen($nameString) > 30)	
+			return false;
+			
+		$letras = str_split($nameString);	
+		$space = array();
+		
+		for($a = 0; $a != count($letras); $a++)
+		{
+			if($letras[$a] == " ")
+			{
+				if(count($space) != 0 and ($space[0] + 1) == $a)
+					return false;
+
+				$space[] = $a;
+			}				
+		}
+		
+		$temp = strspn("$nameString", "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM- ");
+		
+		if($temp != strlen($nameString))
+			return false;
+		
+		return true;
+	}		
 }
 ?>

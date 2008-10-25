@@ -64,10 +64,40 @@ define('RECOMENDED_CHANGEPASS_PERIOD', '30');
 define('USE_QUESTION_TRIES', '3');
 define('SUSPEND_QUESTION_TIME', 60 * 60 * 24);
 
+define('SMTP_HOST', 'smtp-auth.no-ip.com');
+define('SMTP_PORT', 587);
+define('SMTP_USER', 'darghos.net@noip-smtp');
+define('SMTP_PASS', '***REMOVED***');
+
 define('GLOBAL_URL', 'http://ot.darghos.com');
 define('STATUS_UPDATE', 60);
 define('SCHEDULER_EMAILCHANGER', 5);
+
+define('SLOT_HEAD', 1);
+define('SLOT_BACKPACK', 3);
+define('SLOT_ARMOR', 4);
+define('SLOT_RIGHTHAND', 5);
+define('SLOT_LEFTHAND', 6);
+define('SLOT_LEGS', 7);
+define('SLOT_FEET', 8);
+define('SLOT_AMMO', 10);
 /* END DEFINITIONS */
+
+$g_vocation['none'] = 0;
+$g_vocation['sorcerer'] = 1;
+$g_vocation['druid'] = 2;
+$g_vocation['paladin'] = 3;
+$g_vocation['knight'] = 4;
+
+$g_genre['female'] = 0;
+$g_genre['male'] = 1;
+
+$g_residence['quendor'] = 1;
+$g_residence['aracura'] = 2;
+$g_residence['rookgaard'] = 3;
+$g_residence['thorn'] = 4;
+$g_residence['salazart'] = 5;
+$g_residence['northrend'] = 7;
 
 include "classes/engine.php";
 include "classes/admin.php";

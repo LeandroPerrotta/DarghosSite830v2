@@ -139,7 +139,7 @@ class Accounts
 		}
 		else
 		{
-			$this->DB->query("SELECT id, password, email, real_name, location, url FROM accounts WHERE id = $value");
+			$this->DB->query("SELECT id, password, premdays, email, real_name, location, url FROM accounts WHERE id = $value");
 		
 			if($this->DB->num_rows() != 0)
 			{
@@ -147,6 +147,7 @@ class Accounts
 				
 				$this->data['id'] = $fetch->id;
 				$this->data['password'] = $fetch->password;
+				$this->data['premdays'] = $fetch->premdays;
 				$this->data['email'] = $fetch->email;
 				$this->data['real_name'] = $fetch->real_name;
 				$this->data['location'] = $fetch->location;
