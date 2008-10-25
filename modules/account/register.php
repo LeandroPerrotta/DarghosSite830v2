@@ -5,7 +5,7 @@ echo '<tr><td class=newbar><center><b>:: '.$page['subTitle'].' ::</td></tr>
 if ($_SERVER['REQUEST_METHOD'] == "POST")
 {
 	$success = false;
-	$account = $engine->loadClass('Accounts');
+	$chk_email = $engine->loadClass('Accounts');
 
 	if(!$_POST['email'])
 	{
@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 		$condition['title'] = "E-mail invalido!";
 		$condition['details'] = "Este não é um endereço de e-mail valido, por favor, tente novamente com outro endereço e-mail.";
 	}		
-	elseif($account->loadByEmail($_POST['email']))		
+	elseif($chk_email->loadByEmail($_POST['email']))		
 	{
 		$condition['title'] = "E-mail já em uso!";
 		$condition['details'] = "Esteendereço de e-mail já está em uso por outra conta, por favor, tente novamente com outro endereço e-mail.";		
@@ -35,11 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST")
 	else 
 	{
 		$pass = $engine->random_key(8, 1);	
-
+		
 		$account = $engine->loadClass('Accounts');
 		$number = $account->getNumber();
 
-		$account->setData("password", $engine->encript($pass));
+		$account->setData("password", $engine->encrypt($pass));
 		$account->setData("email", $_POST['email']);
 		$account->setData("lastday", time());
 		$account->setData("creation", time());
@@ -53,19 +53,19 @@ Sua conta é: '.$number.'
 Sua senha é: '.$pass.'
 
 Para criar um personagem e começar a jogar visite:
-http://ot.darghos.com/index.php?page=account.login
+'.GLOBAL_URL.'/index.php?page=account.login
 
 Nos vemos no Darghos!
 UltraxSoft Team.';
 		
-		if (!$engine->sendEmail($_POST['email'], 'Account details!', $body))
+		if(!$engine->sendEmail($_POST['email'], 'Detalhes da Conta!', $body))
 		{		
 			$condition['title'] = "Falha ao enviar email!";
 			$condition['details'] = "Ouve uma falha em nosso servidor de emails que impossibilitou o envio do seu email. A criação de sua conta foi anulada. Tente novamente mais tarde.";								
 		}				
 		else
 		{	
-			$sucess = true;
+			$success = true;
 			$account->saveNumber();
 			
 			$condition['title'] = "E-mail enviado com sucesso!";
@@ -85,7 +85,7 @@ UltraxSoft Team.';
 	echo '<tr><td class=rank3>'.$condition['details'].'';
 	echo '</table><br>';
 	
-	if($sucess)
+	if($success)
 	{
 		echo '<a href="?page=account.login"><img src="images/login.gif" border="0"></a>';	
 	}
@@ -93,7 +93,7 @@ UltraxSoft Team.';
 	{
 		echo '<a href="?page=account.register"><img src="images/back.gif" border="0"></a>';	
 	}
-		}
+}
 else 
 {
 	echo '

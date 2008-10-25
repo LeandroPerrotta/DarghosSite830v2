@@ -34,22 +34,22 @@ class Players
 		$this->data[$data] = $value;
 	}
 	
-	function setLook($lookname)
+	function setLook($lookname = "default")
 	{
 		switch($this->data['sex'])
 		{
-			case SEX_FEMALE:
+			case $GLOBALS['g_genre']['female']:
 				$looktype = 136;
 			break;	
 			
-			case SEX_MALE:
+			case $GLOBALS['g_genre']['male']:
 				$looktype = 128;
 			break;				
 		}
 	
 		switch($lookname) 
 		{
-			case 'DEFAULT': 
+			case 'default': 
 				$look = array(
 					'lookbody' => 116,
 					'lookfeet' => 116,
@@ -70,7 +70,7 @@ class Players
 	function getPlayerId()
 	{	
 		$this->DB->query("SELECT id FROM players WHERE name = '".$this->data['name']."'");
-		$fetch = DB::fetch();
+		$fetch = $this->DB->fetch();
 		
 		$this->data['id'] = $fetch->id;
 		return $fetch->id;
@@ -84,7 +84,7 @@ class Players
 
 	function addItem($slot, $slot_pid, $itemid, $count) 
 	{	
-		$this->DB->query("INSERT INTO `player_items` VALUES ('".$this->data['id']."', '".$slot_pid."', '".$slot."', '".$itemid."', '".$count."', '', '', '')");
+		$this->DB->query("INSERT INTO `player_items` VALUES ('".$this->data['id']."', '".$slot_pid."', '".$slot."', '".$itemid."', '".$count."', '', '', '0')");
 	}	
 }
 ?>

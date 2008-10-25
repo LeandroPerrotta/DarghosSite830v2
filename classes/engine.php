@@ -163,12 +163,12 @@ class Engine
 		
 		if($mailsend)
 		{
-			$this->DB->query("INSERT INTO site.sended_emails (`to`,`time`,`by`,`sucess`,`engine`) values('".$recipient."','".time()."','darghos.net@noip-smtp','1','open tibia')") or die(mysql_error());
+			$this->DB->query("INSERT INTO site.sended_emails (`to`,`time`,`by`,`sucess`,`engine`) values('".$recipient."','".time()."','darghos.net@noip-smtp','1','open tibia')");
 			return true;
 		}	
 		else
 		{
-			$this->DB->query("INSERT INTO site.sended_emails (`to`,`time`,`by`,`sucess`,`engine`,`error`) values('".$recipient."','".time()."','all','2','open tibia','".$mail->ErrorInfo."')") or die(mysql_error());
+			$this->DB->query("INSERT INTO site.sended_emails (`to`,`time`,`by`,`sucess`,`engine`,`error`) values('".$recipient."','".time()."','all','2','open tibia','".$mail->ErrorInfo."')");
 			return false;
 		}	
 	}	

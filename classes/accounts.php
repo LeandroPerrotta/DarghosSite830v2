@@ -62,7 +62,7 @@ class Accounts
 
 	function saveNumber()
 	{
-		$this->DB->query("INSERT INTO accounts (`id`,`password`,`email`,`creation`) values (".$this->data['id'].",'".$this->data['password']."','".$this->data['email']."',".$this->data['creation'].")");
+		$this->DB->query("INSERT INTO accounts (`id`,`password`,`email`,`creation`) values ('".$this->data['id']."','".$this->data['password']."','".$this->data['email']."','".$this->data['creation']."')");
 	}
 	
 	function update($value)
