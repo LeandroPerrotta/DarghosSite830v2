@@ -1,0 +1,17 @@
+---- Trabalhos a serem feitos quando o website for ao ar:
+
+Verificar os IPs, Usuarios e Senhas de todas conexões SQL.
+Verificar a função sendMail se está devidamente configurada.
+Verificar a função de criação de accounts se está enviado a account para todas DBs.
+Verificar a função de criação de personagens se está enviado as devidas DBs.
+
+
+---- Caracteristicas do novo Website
+
+Engine de funcionamento incial em programação orientada a objetos e programação estruturada.
+Sistema de conexção com multiplos bancos de dados para envio de informações aos GameServers e LoginServers
+Sistema de multiplas linguagens (BR & EN)
+
+Classe para manuseio de accounts:
+Funções de criação espelhada em todos bancos de dados;
+Funções para carregar objetos
