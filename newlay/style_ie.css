@@ -1,0 +1,247 @@
+body {
+	background-color: #010101;
+	font-family: Verdana;
+	font-size: 11px;
+	color: #4F2700;	
+}
+
+a {
+	color: #4F2700;	
+	text-decoration:none;
+}
+
+a {
+	color: #4F2700;	
+	text-decoration:none;
+}
+
+a:hover {
+	color: #4F2700;	
+	text-decoration:underline;
+}
+
+img { border: none; }
+
+.input {
+
+	background-color: #b09367;
+	border-top-width: 0px;
+	border-right-width: 0px;
+	border-bottom-width: 0px;
+	border-left-width: 0px;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	text-indent: 3px;
+	margin: 0px;
+	font-weight: bold;
+	padding: 2px;	
+	border:1px solid #000000;	
+}
+
+#background{
+  text-align: center;
+  background-position: top center;
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+}
+
+#copyrights{
+	text-align: center;
+	font-family: Verdana;
+	font-size: 9px;
+	color: white;	
+}
+
+.logotype{
+	width: 950px;
+	height: 200px;
+	background: url(images/header/banner.png) no-repeat left top; 
+}
+
+.langSelectUs{
+	width: 18px;
+	height: 12px;
+	background: url(images/general/us.png) no-repeat left bottom; 
+}
+
+#langSelectUs{
+	margin: 180px 0 0 850px;
+
+}
+
+.menuTopBackground{
+	width: 950px;
+	height: 42px;
+	background: url(images/background/menu_background.png) no-repeat left top; 
+}
+
+.topButtons{
+	margin: 2px 0 0 0;
+	background: url(images/buttons/topb_sample.png) no-repeat left top; 
+}
+
+.contBackground{
+	width: 950px;
+	background: url(images/background/cont_border.png) repeat left top; 
+}
+
+.borderBottom{
+	width: 950px;
+	height: 18px;
+	background: url(images/background/border_bottom.png) repeat left top; 
+}
+
+.contTop{
+	width: 550px;
+	height: 50px;
+	background: url(images/menu/cont_top.png) no-repeat left top; 
+}
+
+.cont{
+	width: 550px;
+	height: 100px;
+	padding: 12px;	
+	vertical-align: top;
+	text-align: left;
+	background: url(images/menu/cont.png) repeat left top; 
+}
+
+.contBottom{
+	width: 550px;
+	height: 50px;
+	background: url(images/menu/cont_bottom.png) no-repeat left top; 
+}
+
+#titlePage{
+	color: #c7b299;
+	margin: 5px 0 0 0;
+	font-weight: bold;
+	padding: 6px 4px 4px 4px;
+	background: url(images/menu/bar_cont.png) no-repeat top;
+	width: 530px;
+	height: 25px;		
+}
+
+.leftMenuTitle{
+	vertical-align: top;
+	width: 172px;
+	height: 38px;	
+}
+
+.leftMenuCont{
+	width: 144px;
+	height: 22px;	
+	padding-left: 18px;
+	background-image: url(images/menu/menu_link.png); 
+	background-repeat: repeat-y;
+	background-position: 18px 0;	
+}
+
+.leftMenuCont2{
+	width: 144px;
+	height: 22px;	
+	padding-left: 18px;
+	background-image: url(images/menu/menu_fund-over.png); 
+	background-repeat: repeat-y;
+	background-position: 18px 0;	
+}
+
+.leftMenuDown{
+	background: url(images/menu/menuEnd.png) repeat-y 27px top; 	
+	padding-left: 18px;	
+	background-position: 18px 0;		
+	width: 150px;
+	height: 16px;	
+}
+
+.leftSimpleMenuDown{
+	background: url(images/menu/simpleMenuEnd.png) repeat-y 27px top; 	
+	padding-left: 18px;	
+	background-position: 18px 0;			
+	width: 149px;
+	height: 11px;	
+}
+
+.rightMenuTitle{
+	vertical-align: top;
+	width: 172px;
+	height: 38px;	
+}
+
+.contasBox{
+	background: url(images/menu/box_accounts.png) no-repeat 22px top;
+	width: 172px;
+	height: 38px;	
+}
+
+.minhaContaBox{
+	background: url(images/menu/box_myaccount.png) no-repeat 22px top;
+	width: 172px;
+	height: 38px;	
+}
+
+.adminBox{
+	background: url(images/menu/box_admin.png) no-repeat 22px top;
+	width: 172px;
+	height: 38px;	
+}
+
+.rightMenuCont{
+	background: url(images/menu/menu_link.png) repeat-y 27px top; 	
+	width: 144px;
+	height: 22px;	
+}
+
+.rightMenuCont2{
+	background: url(images/menu/menu_fund-over.png) repeat-y 27px top; 	
+	width: 144px;
+	height: 22px;	
+}
+
+.rightMenuDown{
+	background: url(images/menu/menuEnd.png) repeat-y 27px top; 	
+	width: 150px;
+	height: 16px;	
+}
+
+.rightSimpleMenuDown{
+	background: url(images/menu/simpleMenuEnd.png) repeat-y 27px top; 	
+	width: 149px;
+	height: 11px;	
+}
+
+.rightMenu{
+	width: 200px;
+}
+
+.newTittle{
+	color: #c7b299;
+	background-color: #4c372b;	
+	padding: 4px;
+}
+
+.newContent{
+	padding: 4px;
+}
+
+.tableTop{
+	color: #c7b299;
+	background-color: #4c372b;	
+	padding: 4px;
+}
+
+.tableContLight{
+	color:#4F2700;
+    background-color:#b9a37e;
+	padding: 4px;
+}
+
+.button {
+	width: 125px;
+	height: 20px;		
+    background: url(images/buttons/button.png) no-repeat top; 	
+}
