@@ -130,6 +130,7 @@ img { border: none; }
 	vertical-align: top;
 	width: 172px;
 	height: 38px;	
+	background-image: url(images/menu/box_left.png);
 }
 
 .leftMenuCont{
@@ -170,6 +171,7 @@ img { border: none; }
 	vertical-align: top;
 	width: 172px;
 	height: 38px;	
+	background-image: url(images/menu/box_right.png)
 }
 
 .contasBox{

@@ -15,6 +15,7 @@ else
 	echo '<link href="'.$layoutDir.'/style_ff.css" rel="stylesheet" type="text/css">';
 }
 ?>
+
 <script language="JavaScript" type="text/javascript" src="functions.js"></script>
 </head>
 <body>
