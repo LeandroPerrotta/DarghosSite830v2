@@ -44,6 +44,8 @@ define('PGT_TIP_ONLINE', 1);
 define('PGT_COIN_BR', 0);
 define('PGT_COIN_US', 1);
 
+define('USE_QUESTION_TRIES', '3');
+
 define('PGT_STAT_TOACCEPT', 0);
 define('PGT_STAT_ACTIVED', 1);
 define('PGT_STAT_EXPIRED', 2);

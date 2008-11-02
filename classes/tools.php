@@ -14,7 +14,48 @@ class Tools
 		  $contador++; 
 	   }    
 	   return $return; 
+	}
+
+	public function randKey($tamanho, $separadores, $randTypeElement = "default") 
+	{ 
+		$options['upper'] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$options['lower'] = "abcdefghijklmnopqrstuvwxyz";
+		$options['number'] = "01234567890123456789";
+			
+		if($randTypeElement != "default")
+		{
+			$randTypeElement = explode("+", $randTypeElement);
+			
+			foreach($randTypeElement as $value)
+			{
+				$fullRand .= $options[$value];
+			}
+		}
+		else
+			$fullRand = $options['upper'].$options['lower'].$options['number'];
+			
+		$countChars = strlen($fullRand);
+	
+		$string = "";
+		$part = array();
+	
+		for($i = 0; $i < $separadores; $i++)
+		{
+			for($n = 0; $n < $tamanho; $n++)
+			{
+				$rand = mt_rand(1, $countChars);
+				$part[$i] .= $fullRand[$rand];	
+			}
+			
+			if($i == 0)
+				$string .= $part[$i];
+			else
+				$string .= "-".$part[$i];
+		}
+		
+		return $string;
 	}	
+	
 	
 	public function getTimeOfDay($dia, $mes)
 	{

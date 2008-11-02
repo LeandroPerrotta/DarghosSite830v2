@@ -5,6 +5,11 @@ $trans_topicPages = array(
 		'br' => 'Notícias',
 		'us' => 'News'
 	),
+	
+	'lostInterface' => array(
+		'br' => 'Recuperação de Conta',
+		'us' => 'Recovery Account'
+	),
 
 	'about' => array(
 		'br' => 'Sobre o Darghos',
@@ -63,6 +68,11 @@ $trans_subTopicPages = array(
 		'br' => 'Últimas Notícias',
 		'us' => 'Last News'
 	),
+	
+	'account.lost' => array(
+		'br' => 'Interface de Recuperação de Contas',
+		'us' => 'Interface Recovery Accounts'
+	),	
 
 	'newfiles' => array(
 		'br' => 'Arquivo de Notícias',
@@ -132,12 +142,7 @@ $trans_subTopicPages = array(
 	'account.cancelchangeemail' => array(
 		'br' => 'Cancelar mudança de E-mail',
 		'us' => 'Cancel change E-mail'
-	),		
-	
-	'account.lost' => array(
-		'br' => 'Conta Perdida',
-		'us' => 'Account Lost'
-	),		
+	),			
 	
 	'account.registration' => array(
 		'br' => 'Registrar Conta',
@@ -196,6 +201,21 @@ $trans_texts = array(
 		'br' => 'Criar Conta',
 		'us' => 'Account Create'
 	),
+	
+	'characterToRecover' => array(
+		'br' => 'Nome do personagem',
+		'us' => 'Character Name'
+	),	
+	
+	'lostSubTitle' => array(
+		'br' => 'Conta Perdida',
+		'us' => 'Account Lost'
+	),	
+	
+	'lostSubTitleChara' => array(
+		'br' => 'Personagem a recuperar a conta',
+		'us' => ''
+	),	
 	
 	'email_address' => array(
 		'br' => 'Endereço de E-mail',
@@ -272,6 +292,11 @@ $trans_texts = array(
 	'real_name' => array(
 		'br' => 'Nome Real',
 		'us' => 'Real Name'
+	),	
+
+	'key' => array(
+		'br' => 'Chave',
+		'us' => 'Key'
 	),		
 	
 	'location' => array(
@@ -708,26 +733,143 @@ $trans_texts = array(
 	'account_recovery' => array(
 		'br' => 'Recuperação de Conta',
 		'us' => 'Account Recovery',
-	),		
+	),	
 	
+	'account_recovery_option' => array(
+		'br' => 'Selecione abaixo uma opção',
+		'us' => 'Account Recovery',
+	),		
+
 	'recovery_my_password' => array(
-		'br' => 'Eu preciso recuperar a senha de minha conta.',
-		'us' => 'I need recovery the password to my account.',
+		'br' => 'Eu perdi a senha de minha conta, e solicito o envio de uma nova para meu e-mail.',
+		'us' => '',
 	),	
 
 	'recovery_my_account' => array(
-		'br' => 'Eu preciso recuperar o numero de minha conta.',
-		'us' => 'I need recovery the number of my account.',
+		'br' => 'Eu perdi o numero de minha conta, e solicito o envio da mesma para meu e-mail.',
+		'us' => '',
 	),		
 	
 	'recovery_my_account_and_password' => array(
-		'br' => 'Eu preciso recuperar o numero e a senha de minha conta.',
-		'us' => 'I need recovery the number and password of my account.',
+		'br' => 'Eu perdi o numero e a senha de minha conta, e desejo que envie-as para meu e-mail.',
+		'us' => '',
+	),	
+
+	'recovery_email_access' => array(
+		'br' => 'Eu perdi acesso ao e-mail registrado em minha conta e desejo modifica-lo.',
+		'us' => '',
+	),	
+	
+	'aswersSecrets' => array(
+		'br' => 'Respostas Secretas',
+		'us' => '',
+	),	
+	
+	'newEmail' => array(
+		'br' => 'Novo Email',
+		'us' => '',
+	),	
+	
+	'aswersNumber' => array(
+		'br' => 'Resposta a pergunta secreta numero',
+		'us' => '',
+	),	
+	
+	'Aswers1' => array(
+		'br' => 'Pergunta',
+		'us' => '',
+	),	
+	
+	'Aswers2' => array(
+		'br' => 'Resposta',
+		'us' => '',
+	),	
+	
+	'contVezes' => array(
+		'br' => 'vez(es)',
+		'us' => '',
+	),	
+	
+	'Importante' => array(
+		'br' => 'IMPORTANTE',
+		'us' => '',
+	),	
+	
+	'textCont1' => array(
+		'br' => 'tentativas sem sucesso desta operação por dia, portanto, caso você venha a errar as respostas das perguntas secretas',
+		'us' => '',
+	),	
+	
+	'textCont2' => array(
+		'br' => 'vezes este recurso será desabilitado para sua conta durante 24h por motivos de segurança.',
+		'us' => '',
+	),	
+
+	'recovery_mail_account' => array(
+		'br' => 'Caro jogador,
+				A recuperação do numero de sua conta foi efetuada com sucesso! Abaixo segue o número de sua conta:
+								
+				Número de conta: '.$sendemail.'
+									
+				Para acessar sua conta acesse:
+				'.GLOBAL_URL.'/index.php?page=account.login
+								
+				Nós vemos no Darghos!
+				Equipe UltraxSoft.',
+		'us' => '',
+	),	
+
+	'recovery_mail_both' => array(
+		'br' => 'Caro jogador,
+				A solicitação de recuperação do numero de sua conte e senha efetuada com sucesso! Abaixo segue o numero de sua conta. Para que seja gerada uma nova senha para sua conta basta acessar o endereço abaixo e preencher o formulario com a chave informada abaixo:
+						
+				Número da conta: '.$sendemail.'		
+				Chave para gerar nova senha: '.$key.'
+									
+				Endereço para gerar nova senha:					
+				'.GLOBAL_URL.'/index.php?page=lostInterface&step=confirmKey
+
+				Atenção: Está chave será auto-destruida em 24 horas. Após este periodo será necessario obter uma nova chave repetindo todo o processo percorrido até aqui.
+								
+				Nós vemos no Darghos!
+				Equipe UltraxSoft.',
+		'us' => '',
+	),	
+
+	'recovery_mail_password1' => array(
+		'br' => 'Caro jogador,
+				Todo o processo da Interface de Recuperação de Contas foi completado com sucesso e foi gerada uma nova senha para sua conta. Anote sua nova senha abaixo:
+									
+				Nova senha: '.$newpassword.'
+										
+				Para efetuar o login em sua conta acesse o endereço abaixo:						
+				'.GLOBAL_URL.'/index.php?page=account.login
+
+				Lembre-se que para manter sua conta sempre com maior nivel de segurança recomendamos que modifique a senha de acesso a cada '.RECOMENDED_CHANGEPASS_PERIOD.' dias.
+									
+				Nós vemos no Darghos!
+				Equipe UltraxSoft.',
+		'us' => '',
+	),	
+
+	'recovery_mail_password' => array(
+		'br' => 'Caro jogador,
+				A solicitação para gerar uma nova senha para sua conta foi efetuada com sucesso! Para que seja gerada uma nova senha para sua conta basta acessar o endereço abaixo e preencher o formulario com a chave informada abaixo:
+								
+				Chave para mudança de senha: '.$key.'
+									
+				'.GLOBAL_URL.'/index.php?page=lostInterface&step=confirmKey
+
+				Atenção: Está chave será auto-destruida em 24 horas. Após este periodo será necessario obter uma nova chave repetindo todo o processo percorrido até aqui.
+								
+				Nós vemos no Darghos!
+				Equipe UltraxSoft.',
+		'us' => '',
 	),		
 	
-	'informations_to_recovery' => array(
-		'br' => 'Informações para recuperação de conta perdida',
-		'us' => 'Informatins to recovery the lost account',
+	'change_aswers' => array(
+		'br' => 'Eu preciso modificar as perguntas e respostas de minha conta.',
+		'us' => '',
 	),		
 	
 	'my_character' => array(

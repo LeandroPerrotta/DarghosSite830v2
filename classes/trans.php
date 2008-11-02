@@ -40,6 +40,15 @@ class Trans
 				'title' => '',
 				'msg' => '')		
 		),		
+		
+		'geral.emailInvalido2' => array(
+			'br' => array(
+				'title' => 'E-mail invalido.',
+				'msg' => 'Este não é um endereço de e-mail valido, por favor, tente novamente com outro endereço e-mail.'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),		
 
 		'geral.emailFalhou' => array(
 			'br' => array(
@@ -57,7 +66,16 @@ class Trans
 			'us' => array(
 				'title' => '',
 				'msg' => '')		
-		),			
+		),	
+
+		'geral.sendEmailError' => array(
+			'br' => array(
+				'title' => 'Falha ao enviar email',
+				'msg' => 'Ouve uma falha em nosso servidor de emails que impossibilitou o envio do seu email. A ultima operação foi anulada. Tente novamente mais tarde.'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),				
 		
 		/*
 		/// AVISOS LOGIN
@@ -80,6 +98,15 @@ class Trans
 			'br' => array(
 				'title' => 'E-mail existente.',
 				'msg' => 'Este e-mail já existe em outra conta, por favor, tente novamente utilizando outro e-mail.'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),	
+		
+		'contas.emailChanged' => array(
+			'br' => array(
+				'title' => 'E-mail modificado com sucesso',
+				'msg' => 'O e-mail registrado em sua conta foi modificado com sucesso.'), 		
 			'us' => array(
 				'title' => '',
 				'msg' => '')		
@@ -170,7 +197,43 @@ class Trans
 			'us' => array(
 				'title' => '',
 				'msg' => '')		
-		),		
+		),	
+
+		'maxTriesBlocked' => array(
+			'br' => array(
+				'title' => 'Recurso bloqueado',
+				'msg' => 'Está conta recebeu três erros nas respostas secretas e por motivos de segurança este recurso foi bloqueado para está conta pelas proximas 24 horas.'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),	
+
+		'questionIncorrect' => array(
+			'br' => array(
+				'title' => 'Resposta incorreta',
+				'msg' => 'Uma ou mais de suas respostas estão incorretas. Este recurso será bloqueado por 24h caso você torne a errar as respostas mais'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),	
+
+		'questionRemoved' => array(
+			'br' => array(
+				'title' => 'Perguntas e Respostas removidas com sucesso',
+				'msg' => 'Todas as perguntas e respostas configuradas em sua conta foram removidas com sucesso! Para registrar novas perguntas e respostas agora basta acessar sua conta e clicar no botão "Set Questions" localizado abaixo das informações de segurança de sua conta.'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),	
+
+		'questionNonAccept' => array(
+			'br' => array(
+				'title' => 'Não possui este recurso',
+				'msg' => 'Está conta não possui perguntas e respostas configuradas corretamente, este recurso está inutilizavel por esta conta.'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),			
 
 		'recovery.bothSucesso' => array(
 			'br' => array(
@@ -357,7 +420,7 @@ class Trans
 			'us' => array(
 				'title' => '',
 				'msg' => '')		
-		),			
+		),		
 		
 		'changeemail.cancelSucesso' => array(
 			'br' => array(
@@ -440,12 +503,59 @@ class Trans
 			<br>
 			<i>Todas informações fornecidas neste formulario são expressamente confidenciais e reservadas apénas a um restrito grupo de administradores do Darghos responsaveis por este setor. Por favor leiam abaixo a nossa politica de compromisso com a privacidade de seus dados.*</i>',
 			'us' => ''),				
+		
+		'lostInterfaceStep2' => array(
+			'br' => 'Selecione a opção abaixo que mais se aproxima a solução de seu problema e então clique em "Submit"<br>
+					<br>
+					É importante dizer que a recuperação de numero de contas e senhas é efetuada atravez do envio de uma mensagem contendo as informações necessarias para recuperação da conta ao e-mail registrado na mesma.<br>
+					<br>
+					Caso você não possua mais acesso a este e-mail, é possivel modificar este e-mail para um outro e-mail que você possua acesso de forma instantanea respondendo corretamente a todas perguntas configuradas em sua conta.<br>
+					<br>
+					Caso você não possua mais acesso ao e-mail registrado em sua conta e não se recorde das respostas para as perguntas secretas (ou não tenha configurado as perguntas na conta, ainda quando tinha acesso a mesma) infelizmente, pelo motivo de falta de informações concretas nem a interface de recuperação de contas, nem mesmo a equipe, conseguirá recuperar está conta, que estará para sempre perdida.<br>
+				',
+			'us' => ''),	
 			
-		'account.lost' => array(
-			'br' => 'Caso você tenha perdido ou esquecido os dados de sua conta ou ainda se tiver sido "hackeado" você pode recuperar os dados de sua conta atravez deste recurso. Selecione a baixo qual o dado (conta ou senha) perdido para que o sistema o auxilie na recuperação dos dados de sua conta.
-			<br>
-			<br>
-			Lembrando que o sistema irá recuperar os dados de sua conta atraves do endereço de e-mail registrado nela, portanto para recuperar a conta é necessario alem de saber o endereço de email que está registrado ter acesso ao mesmo.',
+		'lostInterfaceStep3_1' => array(
+			'br' => 'Escreva abaixo o e-mail registrado na conta do personagem junto com a atual senha de acesso e clique no botão "Submit" e será lhe enviado uma mensagem ao endereço de e-mail contendo o numero de sua conta.',
+			'us' => ''),	
+			
+		'lostInterfaceStep3_2' => array(
+			'br' => 'Escreva abaixo o e-mail registrado na conta do personagem e clique no botão "Submit" e será lhe enviado uma mensagem ao endereço de e-mail contendo as informações para prosseguir na recuperação de sua conta.',
+			'us' => ''),	
+		
+		'lostInterfaceStep3_6' => array(
+			'br' => 'Escreva abaixo o e-mail registrado na conta do personagem e clique no botão "Submit" e será lhe enviado uma mensagem ao endereço de e-mail contendo as informações para prosseguir na recuperação de sua conta.',
+			'us' => ''),	
+			
+		'lostInterfaceStep3_3' => array(
+			'br' => 'Escreva abaixo a chave informada no e-mail da etapa passada junto com o numero da conta e clique no botão "Submit" e será lhe enviado uma mensagem ao endereço de e-mail contendo sua nova senha.',
+			'us' => ''),	
+
+		'lostInterfaceStep3_7' => array(
+			'br' => 'Preencha todos os campos do formulario abaixo para continuar o processo de modificação de e-mail registrado em sua conta instantâneamente.<br>
+	<br>',
+			'us' => ''),	
+			
+		'lostInterfaceStep3_4' => array(
+			'br' => 'Escreva abaixo o e-mail registrado na conta do personagem junto o numero da conta e clique no botão "Submit" e será lhe enviado uma mensagem ao endereço de e-mail contendo as informações do proximo passo para gerar uma nova senha para sua conta.',
+			'us' => ''),	
+			
+		'lostInterfaceStep3_5' => array(
+			'br' => 'Nesta etapa do processo de modificação das perguntas e respostas registradas em sua conta você terá de responder corretamente todas respostas as perguntas secretas na qual você configurou em sua conta.<br>',
+			'us' => ''),	
+			
+		'lostInterface' => array(
+			'br' => 'Caso você tenha esquecido ou perdido o acesso a sua conta de seu personagem você ainda pode recupera-la atravez deste sistema, a interface de recuperação de contas.<br>
+					<br>
+					<b>O sistema de Inteface de Recuperação pode lhe ajudar a:</b><br>
+					<br>
+					<li>Recuperar o numero de sua conta caso você tenha esquecido o mesmo.</li>
+					<li>Obter uma nova senha de acesso caso você tenha perdido a mesma.</li>
+					<li>Modificar o e-mail registrado em sua conta de forma instananêa respondendo as perguntas secretas de sua conta caso você tenha perdido o acesso ao mesmo.</li>
+					<li>Modificar as perguntas e respostas secretas registradas em sua conta.</li><br>
+					<br>
+					Para começar a recuperação de sua conta, preencha o formulario abaixo com o nome do personagem na qual você quer recuperar a conta e clique em "Submit" para que o sistema lhe auxilie no restante do processo de recuperação.
+					',
 			'us' => ''),			
 			
 		'recovery.password' => array(

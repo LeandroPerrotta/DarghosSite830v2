@@ -334,6 +334,67 @@ class Account
 	public function getRegistrarion($info)
 	{
 		return $this->registro[$info];
+	}
+	public function loadChangePasswordKey()
+	{
+		DB::query("SELECT `key` FROM account_changepasswordkeys WHERE account_id = '".$this->data['id']."'");
+		
+		if(DB::num_rows() != 0)
+		{
+			$fetch = DB::fetch();
+			
+			return $fetch->key;
+		}
+		else
+			return false;
+	}
+	
+	public function addChangePasswordKey($key)
+	{
+		DB::query("INSERT INTO account_changepasswordkeys (`key`,`date`,`account_id`) values ('".$key."', '".time()."', ".$this->data['id'].")");
 	}	
+	
+	public function ereaseChangePasswordKeys()
+	{
+		DB::query("DELETE FROM account_changepasswordkeys WHERE account_id = ".$this->data['id']."");
+	}
+
+	public function loadQuestions()
+	{	
+		DB::query("SELECT site.account_questions.`question`,site.account_questions.`answer` FROM site.account_questions INNER JOIN `accounts` ON account_questions.`account_id` = accounts.`id` WHERE accounts.`id` = '".$this->data['id']."'");
+	
+		if(DB::num_rows() != 0)
+		{
+			
+			$questions = array();
+			$i = 0;
+			while($fetch = DB::fetch())
+			{
+				$i++;
+				
+				$questions[$i]['question'] = $fetch->question;
+				$questions[$i]['answer'] = $fetch->answer;	
+			}
+			
+			return $questions;
+		}	
+		else	
+			return false;
+	}
+	public function ereaseQuestions()
+	{
+		DB::query("DELETE FROM account_questions WHERE account_id = ".$this->data['id']."");
+	}	
+	
+	public function addQuestion($question, $answer)
+	{
+		DB::query("INSERT INTO account_questions (`question`,`answer`,`account_id`) values ('".$question."', '".$answer."', ".$this->data['id'].")");
+	}
+	
+	public function schedulerNewEmailIn($email, $date)
+	{
+		DB::query("INSERT INTO scheduler_changeemails (`account_id`,`email`,`date`) values (".$this->data['id'].", '".$email."', ".$date.")");
+	}
+
 }
 ?>

@@ -7,31 +7,29 @@ class mySQL
 		(
 			'host' => 'localhost',
 			'user' => 'root',
-			'database' => 'newot_new',
-			'password' => '',
-			'prefix' => 'ws_',
+			'database' => 'site_new',
+			'password' => '99491074',
 		),
 		'serverI' => array
 		(
 			'host' => 'localhost',
-			'user' => 'root',
+			'user' => 'root1',
 			'database' => 'newot_new',
-			'password' => '',	
-			'prefix' => 'gs_'		
+			'password' => '99491074',	
 		),
 		'serverII' => array
 		(
-			'host' => '75.126.221.242:3309',
-			'user' => 'extern',
+			'host' => 'localhost',
+			'user' => 'root2',
 			'database' => 'newot',
-			'password' => '***REMOVED****'		
+			'password' => '99491074'		
 		),		
 		'loginserver' => array
 		(
 			'host' => 'localhost',
-			'user' => 'root',
+			'user' => 'root3',
 			'database' => 'ot_login',
-			'password' => ''		
+			'password' => '99491074'		
 		)		
 	);
 	

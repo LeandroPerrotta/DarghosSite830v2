@@ -191,10 +191,10 @@ session_start();
 				include "modules/account/registration.php";
 			break;				
 			
-			case "account.lost";	
-				$topic = $GLOBALS['trans_topicPages']['account'][$GLOBALS['g_language']];
+			case "lostInterface";	
+				$topic = $GLOBALS['trans_topicPages']['lostInterface'][$GLOBALS['g_language']];
 				$subtopic = $GLOBALS['trans_subTopicPages']['account.lost'][$GLOBALS['g_language']];
-				include "modules/account/lost.php";
+				include "modules/lostInterface/main.php";
 			break;		
 
 			case "recovery.password";	
