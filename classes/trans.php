@@ -243,6 +243,15 @@ class Trans
 				'title' => '',
 				'msg' => '')		
 		),	
+		
+		'beneficts_errorAgree' => array(
+			'br' => array(
+				'title' => 'Clausulas e Regras de Contribuição!',
+				'msg' => 'Infelizmente você só está permitido a efetuar uma contribuição com a UltraxSoft se aceitar nossas clausulas e regras para este serviço.'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),	
 
 		'recovery.newpasswordSucesso' => array(
 			'br' => array(
@@ -420,7 +429,16 @@ class Trans
 			'us' => array(
 				'title' => '',
 				'msg' => '')		
-		),		
+		),	
+
+		'beneficts_characterError' => array(
+			'br' => array(
+				'title' => 'Error',
+				'msg' => 'Character does not exist or uses syntaxes reserved.'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),			
 		
 		'changeemail.cancelSucesso' => array(
 			'br' => array(
@@ -518,9 +536,33 @@ class Trans
 		'lostInterfaceStep3_1' => array(
 			'br' => 'Escreva abaixo o e-mail registrado na conta do personagem junto com a atual senha de acesso e clique no botão "Submit" e será lhe enviado uma mensagem ao endereço de e-mail contendo o numero de sua conta.',
 			'us' => ''),	
+		
+		'lostInterfaceStep3_1' => array(
+			'br' => 'Escreva abaixo o e-mail registrado na conta do personagem junto com a atual senha de acesso e clique no botão "Submit" e será lhe enviado uma mensagem ao endereço de e-mail contendo o numero de sua conta.',
+			'us' => ''),	
+			
+		'beneficts_Step3Mod1' => array(
+		'br' => 'No Darghos você pode fazer uma contribuição e a recompensa ser ativa para você mesmo, ou para um outro jogador (um amigo por exemplo). Selecione abaixo para quem deve ser ativado a recomensa de sua doação.',
+		'us' => ''),	
+		
+		'beneficts_Step3Mod2' => array(
+		'br' => 'Selecione abaixo o método de pagamento. PagSeguro é para apenas residentes do Brasil, Caso resida fora do Brasil utilize o método da Paypal.',
+		'us' => ''),	
+		
+		'beneficts_Step3Mod3' => array(
+		'br' => 'Entre com a senha de sua conta, ela é necesaria para a autenticação. Depois selecione o modo de ativação, e por fim, selecione a duração de sua contribuição e clique no botão "Próximo".',
+		'us' => ''),	
+		
+		'beneficts_Step3Mod3_2' => array(
+		'br' => 'Leia atentamente os dados abaixos referentes a sua contribuição, caso tudo esteja correto, clique em "Confirm". Note que ao clicar no botão, o pagamento será processado imediatamente, portanto somente clique se tiver certeza que está tudo certo.',
+		'us' => ''),	
 			
 		'lostInterfaceStep3_2' => array(
 			'br' => 'Escreva abaixo o e-mail registrado na conta do personagem e clique no botão "Submit" e será lhe enviado uma mensagem ao endereço de e-mail contendo as informações para prosseguir na recuperação de sua conta.',
+			'us' => ''),	
+			
+		'beneficts_Step3Mod3_1' => array(
+			'br' => 'Preencha abaixo o seu nome real e um comentario, estes dados irão aparecer ao dono da conta quando esta premium account for ser ativada. Então selecione a duração que você desejar e clique em "Próximo".',
 			'us' => ''),	
 		
 		'lostInterfaceStep3_6' => array(
@@ -542,6 +584,18 @@ class Trans
 			
 		'lostInterfaceStep3_5' => array(
 			'br' => 'Nesta etapa do processo de modificação das perguntas e respostas registradas em sua conta você terá de responder corretamente todas respostas as perguntas secretas na qual você configurou em sua conta.<br>',
+			'us' => ''),	
+			
+		'benefictsStep1' => array(
+			'br' => 'O Darghos &eacute; um jogo gratuito, e voc&ecirc; pode joga-lo pelo tempo em que quiser, entretanto para manter um servidor com a qualidade do Darghos n&oacute;s temos muitas despezas com hospedagem, desenvolvimento e empregados dedicados somente ao Darghos&nbsp;entre outros. Para manter tudo isso n&oacute;s adotamos ao sistema na qual voc&ecirc; pode contribuir conosco com uma pequena quantia e ter recursos extras liberados por um tempo determinado.<br>',
+			'us' => ''),	
+			
+		'benefictsStep2' => array(
+			'br' => 'Aqui você pode contribuir com o Darghos. Quando você contribui, você recebe uma série de beneficios dentro e fora do jogo durante um periodo, para saber mais sobre os beneficios por favor visite a seção <a href="?page=contribute.beneficts">vantagens premium</a>.<br>',
+			'us' => ''),	
+			
+		'benefictsStep3_1' => array(
+			'br' => 'Antes de comprar sua premium account, é necessario ler, e aceitar as clausulas de serviço listadas abaixo:<br>',
 			'us' => ''),	
 			
 		'lostInterface' => array(

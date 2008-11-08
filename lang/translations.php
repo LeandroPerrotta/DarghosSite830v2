@@ -6,6 +6,7 @@ $trans_topicPages = array(
 		'us' => 'News'
 	),
 	
+	
 	'lostInterface' => array(
 		'br' => 'Recuperação de Conta',
 		'us' => 'Recovery Account'
@@ -30,6 +31,7 @@ $trans_topicPages = array(
 		'br' => 'Contato',
 		'us' => 'Contact'
 	),	
+	
 
 	'contributions' => array(
 		'br' => 'Contribuições',
@@ -65,6 +67,26 @@ $trans_topicPages = array(
 $trans_subTopicPages = array(
 
 	'lastnews' => array(
+		'br' => 'Últimas Notícias',
+		'us' => 'Last News'
+	),
+	
+	'beneficts_accountReceived' => array(
+		'br' => 'Conta a receber a Premium Account',
+		'us' => '',
+	),	
+	
+	'beneficts_infoContrib' => array(
+		'br' => 'Informações da Contribuição',
+		'us' => '',
+	),	
+	
+	'beneficts_paymentForm' => array(
+		'br' => 'Forma de Pagamento',
+		'us' => '',
+	),	
+	
+	'contributions' => array(
 		'br' => 'Últimas Notícias',
 		'us' => 'Last News'
 	),
@@ -876,6 +898,11 @@ $trans_texts = array(
 		'br' => 'Meu personagem',
 		'us' => 'My character',
 	),	
+	
+	'beneficts_form' => array(
+		'br' => 'Método',
+		'us' => 'Form',
+	),	
 
 	'selectOnBox' => array(
 		'br' => 'selecionar',
@@ -886,10 +913,45 @@ $trans_texts = array(
 		'br' => 'Primeiro Nome',
 		'us' => 'First Name',
 	),	
-
+	
 	'secondName' => array(
 		'br' => 'Segundo Nome',
 		'us' => 'Second Name',
+	),	
+	
+	'beneficts_destiny' => array(
+		'br' => 'Destino',
+		'us' => '',
+	),	
+	
+	'beneficts_priceTotal' => array(
+		'br' => 'Valor Total',
+		'us' => '',
+	),	
+	
+	'beneficts_activationType' => array(
+		'br' => 'Tipo de ativação',
+		'us' => '',
+	),	
+	
+	'beneficts_me' => array(
+		'br' => 'Eu quero adquirir a premium account para minha propria conta.',
+		'us' => '',
+	),	
+	
+	'beneficts_forMyAccount' => array(
+		'br' => 'Minha propria conta.',
+		'us' => '',
+	),	
+	
+	'beneficts_forOtherAccount' => array(
+		'br' => 'Conta do personagem',
+		'us' => '',
+	),	
+	
+	'beneficts_other' => array(
+		'br' => 'Eu quero adquirir a premium account para outro jogador.',
+		'us' => '',
 	),	
 
 	'street_address' => array(
@@ -940,6 +1002,178 @@ $trans_texts = array(
 	'password_recovery_key' => array(
 		'br' => 'Chave de Recuperação de Senha',
 		'us' => 'Password Recovery Key',
+	),	
+	
+	'beneficts_Time' => array(
+		'br' => 'Duração',
+		'us' => '',
+	),	
+	
+	'beneficts_yourNameReal' => array(
+		'br' => 'seu nome real',
+		'us' => '',
+	),	
+	
+	'beneficts_writeYourComment' => array(
+		'br' => 'escreva aqui seu comentario',
+		'us' => '',
+	),	
+	
+	'beneficts_nameReceive' => array(
+		'br' => 'nome do personagem que deve receber a premium account',
+		'us' => '',
 	),		
+
+	'beneficts_Activation' => array(
+		'br' => 'Ativação',
+		'us' => '',
+	),	
+	
+	'beneficts_readAndAccept' => array(
+		'br' => 'Eu li, e aceito as clausulas e regras de contribuições. ',
+		'us' => '',
+	),		
+	
+	'beneficts_contribfor' => array(
+		'br' => 'Contribuição para',
+		'us' => '',
+	),	
+
+	'beneficts_contribfor' => array(
+		'br' => 'Contribuição para',
+		'us' => '',
+	),
+
+	'beneficts_contribmonth' => array(
+		'br' => 'mês',
+		'us' => '',
+	),	
+
+	'beneficts_contribmonths' => array(
+		'br' => 'mêses',
+		'us' => '',
+	),	
+
+	'beneficts_contribyear' => array(
+		'br' => 'ano',
+		'us' => '',
+	),	
+	
+	'beneficts_Day' => array(
+		'br' => 'dia',
+		'us' => '',
+	),
+
+
+	'beneficts_Clausulas' => array(
+		'br' => 'Clausulas e Regras de Contribuição',
+		'us' => '',
+	),		
+	
+	'beneficts_acceptClausulas' => array(
+		'br' => 'Aceitando e(ou) efetuando a contribuição com o serviço você está de acordo que',
+		'us' => '',
+	),		
+
+	'beneficts_Days' => array(
+		'br' => 'dias',
+		'us' => '',
+	),	
+	
+	'beneficts_New' => array(
+		'br' => 'novo',
+		'us' => '',
+	),	
+	
+	'beneficts_Methods' => array(
+		'br' => '<font size=3><b>Metodos de Pagamentos</b></font>
+				<br><br>Nós processamos os pagamentos ultilizando o PagSeguros, esta é uma conceituada, segura e tradicional empresa no setor de pagamentos virtuais a anos, note que a PagSeguro é parte integrande do grupo UOL (Universo Online). Abaixo segue uma pequena instrução de cada método de pagamento (caso ainda tenha duvidas, o PagSeguro tambem possui uma lista de instruções).
+				<br><br><p><b>&bull; Boleto Bancário</b></p><br>
+				Este é o metodo mais simples, e não necessita de ter uma conta em banco. Você séra direcionado para o site do PagSeguro, aonde deve entrar com o sua conta do site deles. Caso você não possua uma conta no PagSeguro, você poderá criar uma na pagina direcionada deles, ou clicando aqui.<br>Então após completar seu pagamento, será gerado um boleto. É só imprimir-lo ou anotar a linha digitável e pagar em qualquer fila de caixa de banco ou lotérica (caixas eletronicos não são validos), ou ainda no site do seu banco. O pagamento será efetivado no proximo dia útil seguinte no metodo convencional.
+				<br><br><p><b>&bull; Transferencia Eletronica</b> - validação do pagamento online (instantânea)</p><br>
+				Na tela "Formas de Pagamento" selecione o banco em que você tem conta corrente, e clique em "continuar". O valor total de sua compra aparecerá em uma tela de confirmação, clique em continuar e você será redirecionado ao site do banco escolhido para finalizar o pagamento. Após entrar no banco com seus dados e senhas, ao concluir o processo a validação e autorização dos pagamentos através dos bancos é on-line e instantânea, ou seja, é realizada e liberada em tempo real.
+				<br><br><big><b><font color="red">Atenção:</font></b></big> Todo processo de contribuição deve ser feito seguindo rigorosamente as instruções do passo a passo (inclusive as instruções do site do PagSeguro). Nós não possuimos formas de pagamento convencionais, como <b><font color="red">deposito direto em conta</b></font>. O não cumprimento de qualquer etapa, ou qualquer tentativa de pagamento diferente das informadas acima resultará em <b><font color="red">não validação do pagamento</b></font>, <b><font color="red">sem opção de reembolso</b></font>. Em caso de qualquer sombra duvida entre em contato conosco ou solicite orientação de seu responsavel.
+				<br><br>Caso você possua alguma duvida, ainda pode tentar exclarece-la em nosso <a href="?page=faq">FAQ</a> ou ainda em nosso email de suporte sobre duvidas em contribuições <a href="mailto:premium@darghos.com">premium@darghos.com</a>.
+
+				<br><br>Caso você deseje prosseguir em sua contribuição, por favor clique em "Próximo" para avançar ao proximo passo (login necessario).',
+		'us' => '',
+	),	
+
+	'getBeneficts' => array(
+		'br' => '
+				<p><b>&Eacute; importante lembrar que:<br />
+				</b><span style="font-size: smaller">&bull; Voc&ecirc; pode obter 5 dias de premium gratuitos ao atingir level 100 como teste antes de efetuar a contribui&ccedil;&atilde;o definitiva, acessando sua conta e clicando no bot&atilde;o Get Free Premium.<br />
+				&bull; O Darghos n&atilde;o tem qualquer interesse&nbsp;financeiro, toda a renda obtida &eacute; re-aplicada com o fim de manter&nbsp;um servidor estavel, com qualidade&nbsp;e diferenciado.</span><br />
+				<br />
+				<i><b>Veja abaixo as vantagens em ser contribuidor:</b></i></p>
+				<p><span style="font-size: larger"><b>&bull; Acesso a todos lugares no mundo do Darghos</b></span><b><br />
+				</b>Voc&ecirc; pode ir a qualquer lugar sendo contribuidor, como areas de hunts em locais premium, cidades premium, quests premium e muito mais.</p>
+				<p><span style="font-size: larger"><strong>&bull; Acesso a toda Cidades</strong></span><strong><br />
+				</strong>Voc&ecirc; poder&aacute; acessar as cidades Aracura e Salazart, que s&atilde;o cidades exclusivas a jogadores contribuentes.<br />
+				<br />
+				<span style="font-size: larger"><strong>&bull; Comprar Promotion</strong></span><strong><br />
+				</strong>Voc&ecirc; poder&aacute; obter uma Promo&ccedil;&atilde;o com o NPC King Joseph em Aracura, ao se tornar um jogador promovido voc&ecirc; ganha uma s&eacute;rie de beneficios dentro do jogo como: titulo de voca&ccedil;&atilde;o&nbsp;diferenciado (ex: Knight passa a ser Elite Knight), pontos de mana e vida regeneram mais r&aacute;pidamente,&nbsp;penalidades na morte reduzidas a 4%, velocidade de ataque meele aumentado entre outros.<br />
+				<br />
+				<span style="font-size: larger">&nbsp;<strong>&bull; Outros metodos de Transporte</strong></span><strong><br />
+				</strong>Voc&ecirc; poder&aacute; usar outros metodos para se locomover no jogo, como o Barco ou o Tapete Magico, assim economizando um bom tempo entre longas distancias que levaria um grande tempo para percorrer andando.<br />
+				<br />
+				<span style="font-size: larger">&bull; <b>Sempre poder&aacute; se conectar ao jogo</b></span><b><br />
+				</b>Para manter um jogo estavel n&oacute;s temos que limitar a quantidade de jogadores online a 350 jogadores, se em algum momento essa quantidade for atingida sendo um contribuente voc&ecirc; ainda pode continuar conectando normalmente, jogadores contribuentes podem sempre conectar sem aguardar a fila de espera.<br />
+				<br />
+				<span style="font-size: larger"><strong>&bull; Magias exclusivas</strong></span><strong><br />
+				</strong>Sendo um jogador contribuente voc&ecirc; tem uma grande quantidade de novas magias disponiveis para ser utilizada em seu personagem.<br />
+				<br />
+				<span style="font-size: larger"><strong>&bull; Comprar Casas</strong></span><strong><br />
+				</strong>Um jogador contribuente pode ter a sua propria casa no jogo, aonde ele pode convidar os amigos, fazer festas, exibir seus itens conquistados, durmir em uma cama quando for sair do jogo e se regenerar entre outros.<br />
+				<br />
+				<span style="font-size: larger"><strong><span id="1214836981958S" style="display: none">&nbsp;</span>&bull; Criar Guildas<br />
+				</strong>Voc&ecirc; sendo contribuente pode criar uma guilda pelo nosso website e invitar amigos e tentar montar a guilda mais poderosa do jogo!<br />
+				<br />
+				</span><span style="font-size: larger"><span><strong>&bull; Maior espa&ccedil;o em seus Depots</strong></span></span><span style="font-size: larger"><strong><br />
+				</strong>Um jogador contribuente tem a capacidade de armazenamento de seus depots duplicada, ou seja, voc&ecirc; pode armazenar at&eacute; 2000 items em seus depots sendo um contribuente e nunca precisar&aacute; se desfazer de&nbsp;um item antigo&nbsp;para armazenar um novo item.<br />
+				<br />
+				<strong>&bull; Maior espa&ccedil;o na sua VIPList<br />
+				</strong>Voc&ecirc; tambem ter&aacute; o limite de amigos em sua VIPList aumentado de 25 para 100 jogadores! Assim nenhum amigo seu ir&aacute; ficar for&aacute; da sua lista!<br />
+				<br />
+				<strong>&bull; Maior participa&ccedil;&atilde;o em em Eventos<br />
+				</strong>Tambem poder&aacute; ter maior participa&ccedil;&otilde;es em alguns eventos da comunidade no jogo, como o sistema de postagem de screenshot quinzenal em nosso website.<br />
+				<br />
+				<strong>&bull; Sistema de Shopping<br />
+				</strong>Voc&ecirc; poder&aacute; acessar todos os sistemas de Shopping em nosso website e trocar alguns de seus premium days por beneficios como Mudan&ccedil;a de Nome, Mudan&ccedil;a de Sexo, Promotion, Blessings e ainda acessar o Item Shop e poder&aacute; trocar tambem por items incluindo alguns items de varios tipos, como Gold Coins, Addon Items, Equipamentos, Armas, Muni&ccedil;&otilde;es entre outros.</span></p>
+				<p><span style="font-size: larger">Estas s&atilde;o ap&eacute;nas algumas das vantagens em ser contribuente com o Darghos. Para saber como adquirir agora mesmo a sua premium account clique no bot&atilde;o abaixo &quot;Contribute&quot;.</span></p>',
+		'us' => '',
+	),	
+
+	'beneficts_Rules' => array(
+		'br' => 'Este é um documento informativo das clausulas e regras referente ao funcionamento, deveres e limitações entre outros referente aos jogadores contribuintes com o Darghos. Leia abaixo todas clausulas e regras atentamente e, somente no caso de aceitar e seguir respeitando todos os termos, assinalar a caixa "Eu li, e aceito as clausulas e regras de contribuições." e assim dar continuidade ao sistema de contribuição.
+
+	1. A estabilidade e mantimento do servidor no ar.
+	• A UltraxSoft e(ou) Darghos não tem a obrigação de manter o servidor sempre ligado, podendo o mesmo ser desligado a qualquer momento e por qualquer motivo, sem prévio aviso, devolução de quantias em dinheiro ou danos morais.
+
+	2. Conectividade.
+	• A UltraxSoft e(ou) Darghos não são responsáveis por qualquer problema de conectividade entre o jogador e o "game-server", tanto por parte do jogador, provedor de internet ou "datacenter" (empresa que hospeda o nosso game-server).
+
+	3. Seguir regras sem exceções.
+	• Caso você contribua com o serviço você estará sujeito a todas as regras do jogo, não possuindo nenhum direito ou vantagem extra dentro ou fora do jogo.
+
+	4. Vantagens da contribuição.
+	• Caso você contribua com o serviço, cabe a nós decidirmos sobre as vantagens recebidas, podendo as mesmas serem retiradas a qualquer momento sem prévio aviso nem devolução em dinheiro.
+
+	5. Direitos autorais.
+	• O Darghos não apóia a modificação de "softwares" sem autorização dos fabricantes, e não cobre nenhum tipo de dano a seu computador que os programas podem causar.
+
+	6. Recompensas dentro do jogo.
+	• Perdas de itens, contas, ou características de personagens somente serão devolvidos se o problema foi de causa interna em nossos "game-servers" e em forma de ponto de restauração (ação que efetua uma volta no tempo todo o servidor para um momento ou dia aonde a problemática não havia acontecido), e somente caso a UltraxSoft assim julgue necessário, perdas causadas por qualqueis outras causas (como problemas de conexão, desastres naturais, cuidados não eficientes com a sua conta (Hacking), entre outros) não são recompensados de maneira alguma.
+
+	7. Devoluções e troca de destino de contribuições.
+	• A devolução do dinheiro, ou mudança da conta na qual o contribuinte irá receber os benefícios, só é ocorrida enquanto o contribuinte não aceita a liberação do serviço. Caso algum dos recursos seja solicitado pelo contribuinte, a mudança de conta para contribuição tem um prazo de 5 a 30 dias após solicitada para ser concluída e a devolução do dinheiro em um prazo de 30 a 90 dias após solicitado. 
+
+	IMPORTANTE: Após aceitar o serviço, receber e começar a desfrutar dos beneficio em sua conta os recursos de mudança de conta e devolução do dinheiro não são mais possíveis em hipótese alguma.
+
+	A mudança deste documento pode ser efetuada sem aviso, ou prévio aviso, cabendo a você se manter atualizado às regras e ao contrato.',
+		'us' => '',
+	),		
+	
+	
 );	
 ?>
