@@ -15,9 +15,17 @@ else
 			<tr>
 				<td>'.$trans_texts['getBeneficts'][$g_language].'</td>
 			</tr>
-			<tr>
-				<td align="center"><BR />'.$eHTML->simpleButton('Next', '?act=contribute&step=2').'</td>
-			</tr>
+			<tr>';
+			if(!$_SESSION['account'])
+			{
+				$content .= '<td align="center"><BR />'.$eHTML->simpleButton('Login', '?act=account.login').'</td>';
+			}
+			else
+			{
+				$content .= '<td align="center"><BR />'.$eHTML->simpleButton('Next', '?act=contribute&step=2').'</td>';
+			}
+			
+			$content .= '</tr>
 		</table>';
 }
 ?>
