@@ -193,25 +193,25 @@ img { border: none; }
 }
 
 .rightMenuCont{
-	background: url(images/menu/menu_link.png) repeat-y 27px top; 	
+	background: url(images/menu/menu_link.png) repeat-y 11px top; 	
 	width: 144px;
 	height: 22px;	
 }
 
 .rightMenuCont2{
-	background: url(images/menu/menu_fund-over.png) repeat-y 27px top; 	
+	background: url(images/menu/menu_fund-over.png) repeat-y 11px top; 	
 	width: 144px;
 	height: 22px;	
 }
 
 .rightMenuDown{
-	background: url(images/menu/menuEnd.png) repeat-y 27px top; 	
+	background: url(images/menu/menuEnd.png) repeat-y 11px top; 	
 	width: 150px;
 	height: 16px;	
 }
 
 .rightSimpleMenuDown{
-	background: url(images/menu/simpleMenuEnd.png) repeat-y 27px top; 	
+	background: url(images/menu/simpleMenuEnd.png) repeat-y 11px top; 	
 	width: 149px;
 	height: 11px;	
 }

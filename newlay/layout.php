@@ -62,7 +62,8 @@ else
 						<td align="center" valign="top" width="200px">
 							<table style="margin: 10px 0 0 0;" border="0" cellpadding="0" cellspacing="0">
 								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_left.png) no-repeat top;">
-									<td class="leftMenuTitle" style="background: url(<? echo $layoutDir; ?>/images/menu/<? echo $g_language; ?>/box_news.png) no-repeat top;">
+									<td class="leftMenuTitle">
+										<img src="<? echo $layoutDir; ?>/images/menu/<? echo $g_language; ?>/box_news.png">
 									</td>
 								</tr>	
 								<tr>
@@ -82,7 +83,8 @@ else
 							</table>	
 							<table border="0" cellpadding="0" cellspacing="0">
 								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_left.png) no-repeat top;">
-									<td class="leftMenuTitle" style="background: url(<? echo $layoutDir; ?>/images/menu/<? echo $g_language; ?>/box_community.png) no-repeat top;">
+									<td class="leftMenuTitle">
+										<img src="<? echo $layoutDir; ?>/images/menu/<? echo $g_language; ?>/box_community.png">
 									</td>
 								</tr>	
 								<tr>
@@ -120,14 +122,15 @@ else
 							</table>
 						</td>
 						<td valign="top" width="200px">
+							<center>
 							<table style="margin: 10px 0 0 0;" border="0" cellpadding="0" cellspacing="0">
-								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_right.png) no-repeat 22px top;">
+								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_right.png) no-repeat right top;">
+									<td class="rightMenuTitle">
 									<? 
-									if(!$login->logged())
-									
-										echo '<td class="rightMenuTitle" style="background: url('.$layoutDir.'/images/menu/'.$g_language.'/box_accounts.png) no-repeat 22px top;">';
+									if(!$login->logged())				
+										echo '<img src="'.$layoutDir.'/images/menu/'.$g_language.'/box_accounts.png">';
 									else
-										echo '<td class="rightMenuTitle" style="background: url('.$layoutDir.'/images/menu/'.$g_language.'/box_myaccount.png) no-repeat 22px top;">';
+										echo '<img src="'.$layoutDir.'/images/menu/'.$g_language.'/box_myaccount.png">';
 									?>														
 									</td>
 								</tr>								
@@ -176,10 +179,10 @@ else
 							if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 							{
 							?>									
-								<table style="margin: 0 0 0 0;" border="0" cellpadding="0" cellspacing="0">
-								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_right.png) no-repeat 22px top;">
-									<td class="rightMenuTitle" style="background: url(<? echo $layoutDir; ?>/images/menu/<? echo $g_language; ?>/box_admin.png) no-repeat 22px top;">';
-
+							<table style="margin: 0 0 0 0;" border="0" cellpadding="0" cellspacing="0">
+								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_right.png) no-repeat top;">
+									<td class="rightMenuTitle">';
+										<img src="<? echo $layoutDir; ?>/images/menu/<? echo $g_language; ?>/box_admin.png">
 									</td>
 								</tr>		
 									<tr class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
