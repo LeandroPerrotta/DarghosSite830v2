@@ -9,8 +9,6 @@ if($_GET["step"] == "4")
 	
 	$account->load();
 	
-	$sendemail = $account->getInfo("id");
-	
 	if($account->getInfo("email") != $_POST['email'])
 	{
 		$warn = $lang->getWarning('recovery.emailIncorreto');
@@ -35,7 +33,12 @@ if($_GET["step"] == "4")
 	else
 	{
 
-	if(!$engine->sendMail($account->getInfo("email"), 'Recuperação de Conta', $trans_texts['recovery_mail_account'][$g_language]))
+	$acc_number = $account->getInfo("id");
+
+	$email = $lang->getEmailCount('recovery.account');				
+	$emailCont = $email[0].$acc_number.$email[1];		
+	
+	if(!$engine->sendMail($account->getInfo("email"), $emailCont, 'Recuperação de Conta'))
 	{
 		$warn = $lang->getWarning('geral.sendEmailError');
 		$condition = array

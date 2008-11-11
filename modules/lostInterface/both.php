@@ -9,8 +9,6 @@ if($_GET["step"] == "4")
 	
 	$account->load();
 	
-	$sendemail = $account->getInfo("id");
-	
 	if($account->getInfo("email") != $_POST['email'])
 	{
 		$warn = $lang->getWarning('recovery.emailIncorreto');
@@ -23,9 +21,13 @@ if($_GET["step"] == "4")
 	}
 	else
 	{
+		$acc_number = $account->getInfo("id");
 		$key = $tools->randKey(8, 2, "upper+number");
 		
-		if(!$engine->sendMail($account->getInfo("email"), 'Recuperação de Conta', $trans_texts['recovery_mail_both'][$g_language]))
+		$email = $lang->getEmailCount('recovery.both');				
+		$emailCont = $email[0].$acc_number.$email[1].$key.$email[2];			
+		
+		if(!$engine->sendMail($account->getInfo("email"), $emailCont, 'Recuperação de Conta'))
 		{
 			$warn = $lang->getWarning('geral.sendEmailError');
 			$condition = array
@@ -37,6 +39,7 @@ if($_GET["step"] == "4")
 		}
 		else
 		{
+			$account->addChangePasswordKey($key);
 			$warn = $lang->getWarning('recovery.bothSucesso');
 			$condition = array
 			(

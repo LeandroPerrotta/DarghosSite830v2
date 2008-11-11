@@ -180,8 +180,8 @@ else
 							{
 							?>									
 							<table style="margin: 0 0 0 0;" border="0" cellpadding="0" cellspacing="0">
-								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_right.png) no-repeat top;">
-									<td class="rightMenuTitle">';
+								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_right.png) no-repeat right top;">
+									<td class="rightMenuTitle">
 										<img src="<? echo $layoutDir; ?>/images/menu/<? echo $g_language; ?>/box_admin.png">
 									</td>
 								</tr>		

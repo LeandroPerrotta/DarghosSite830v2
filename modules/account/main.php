@@ -85,9 +85,9 @@ if($login->logged())
 			<td>
 				'.$eHTML->simpleButton("changePassword", "?act=account.changepassword").'';
 			if($account->getInfo('newEmail') == (null or ""))
-			{
-				$content .= ' '.$eHTML->simpleButton("changeEmail", "?act=account.changeemail");
-			}					
+				$content .= ' '.$eHTML->simpleButton("changeEmail", "?act=account.changeemail");		
+			if(!$account->loadQuestions())	
+				$content .= ' '.$eHTML->simpleButton("setQuestions", "?act=account.setQuestions");	
 			$content .= '</td>
 		</tr>
 	</table>';

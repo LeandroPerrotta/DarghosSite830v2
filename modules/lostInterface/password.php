@@ -3,7 +3,7 @@ if($_GET["step"] == "confirmKey")
 {
 	if ($_SERVER['REQUEST_METHOD'] == "POST")
 	{	
-		if(!$tools->checkSqlInjection($_POST['account']) OR !$tools->checkSqlInjection($_POST['key']))
+		if(!$tools->checkString($_POST['account']) OR !$tools->checkString($_POST['key']))
 		{
 			$warn = $lang->getWarning('geral.entradasReservadas');
 			$condition = array
@@ -40,7 +40,11 @@ if($_GET["step"] == "confirmKey")
 			else
 			{
 				$newpassword = $tools->randKey(8, 1);
-				if(!$engine->sendMail($account->getInfo("email"), 'Recuperação de Conta', $trans_texts['recovery_mail_password1'][$g_language]))
+				
+				$email = $lang->getEmailCount('recovery.newpassword');				
+				$emailCont = $email[0].$newpassword.$email[1];						
+				
+				if(!$engine->sendMail($account->getInfo("email"), 	$emailCont, 'Recuperação de Conta'))
 				{
 					$warn = $lang->getWarning('geral.sendEmailError');
 					$condition = array
@@ -137,28 +141,30 @@ elseif($_GET["step"] == "4")
 	{
 		$key = $tools->randKey(8, 2, "upper+number");	
 		
-			if(!$engine->sendMail($account->getInfo("email"), 'Recuperação de Conta', $trans_texts['recovery_mail_password1'][$g_language]))
-			{
-				$warn = $lang->getWarning('geral.sendEmailError');
-				$condition = array
-				(
-					"title" => $warn['title'],
-					"msg" => $warn['msg'],
-					"buttons" => $eHTML->simpleButton('back','?act=lostInterface&step=3')
-				);	
-			}
-			else
-			{
-				$account->addChangePasswordKey($key);
-				$warn = $lang->getWarning('recovery.newpasswordSucesso');
-				$condition = array
-				(
-					"title" => $warn['title'],
-					"msg" => $warn['msg'],
-					"buttons" => $eHTML->simpleButton('back','?act=lostInterface&step=3')
-				);
-			}
-			
+		$email = $lang->getEmailCount('recovery.password');				
+		$emailCont = $email[0].$key.$email[1];					
+	
+		if(!$engine->sendMail($account->getInfo("email"), $emailCont, 'Recuperação de Conta'))
+		{
+			$warn = $lang->getWarning('geral.sendEmailError');
+			$condition = array
+			(
+				"title" => $warn['title'],
+				"msg" => $warn['msg'],
+				"buttons" => $eHTML->simpleButton('back','?act=lostInterface&step=3')
+			);	
+		}
+		else
+		{
+			$account->addChangePasswordKey($key);
+			$warn = $lang->getWarning('recovery.newpasswordSucesso');
+			$condition = array
+			(
+				"title" => $warn['title'],
+				"msg" => $warn['msg'],
+				"buttons" => $eHTML->simpleButton('back','?act=lostInterface&step=3')
+			);
+		}		
 	}
 			$content .= $eHTML->conditionTable($condition);
 }

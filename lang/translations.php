@@ -166,6 +166,11 @@ $trans_subTopicPages = array(
 		'us' => 'Cancel change E-mail'
 	),			
 	
+	'account.setQuestions' => array(
+		'br' => 'Configurar Perguntas e Repostas Secretas',
+		'us' => 'Set Secret Questions and Answers'
+	),		
+	
 	'account.registration' => array(
 		'br' => 'Registrar Conta',
 		'us' => 'Account Registration'
@@ -825,68 +830,6 @@ $trans_texts = array(
 	'textCont2' => array(
 		'br' => 'vezes este recurso será desabilitado para sua conta durante 24h por motivos de segurança.',
 		'us' => '',
-	),	
-
-	'recovery_mail_account' => array(
-		'br' => 'Caro jogador,
-				A recuperação do numero de sua conta foi efetuada com sucesso! Abaixo segue o número de sua conta:
-								
-				Número de conta: '.$sendemail.'
-									
-				Para acessar sua conta acesse:
-				'.GLOBAL_URL.'/index.php?page=account.login
-								
-				Nós vemos no Darghos!
-				Equipe UltraxSoft.',
-		'us' => '',
-	),	
-
-	'recovery_mail_both' => array(
-		'br' => 'Caro jogador,
-				A solicitação de recuperação do numero de sua conte e senha efetuada com sucesso! Abaixo segue o numero de sua conta. Para que seja gerada uma nova senha para sua conta basta acessar o endereço abaixo e preencher o formulario com a chave informada abaixo:
-						
-				Número da conta: '.$sendemail.'		
-				Chave para gerar nova senha: '.$key.'
-									
-				Endereço para gerar nova senha:					
-				'.GLOBAL_URL.'/index.php?page=lostInterface&step=confirmKey
-
-				Atenção: Está chave será auto-destruida em 24 horas. Após este periodo será necessario obter uma nova chave repetindo todo o processo percorrido até aqui.
-								
-				Nós vemos no Darghos!
-				Equipe UltraxSoft.',
-		'us' => '',
-	),	
-
-	'recovery_mail_password1' => array(
-		'br' => 'Caro jogador,
-				Todo o processo da Interface de Recuperação de Contas foi completado com sucesso e foi gerada uma nova senha para sua conta. Anote sua nova senha abaixo:
-									
-				Nova senha: '.$newpassword.'
-										
-				Para efetuar o login em sua conta acesse o endereço abaixo:						
-				'.GLOBAL_URL.'/index.php?page=account.login
-
-				Lembre-se que para manter sua conta sempre com maior nivel de segurança recomendamos que modifique a senha de acesso a cada '.RECOMENDED_CHANGEPASS_PERIOD.' dias.
-									
-				Nós vemos no Darghos!
-				Equipe UltraxSoft.',
-		'us' => '',
-	),	
-
-	'recovery_mail_password' => array(
-		'br' => 'Caro jogador,
-				A solicitação para gerar uma nova senha para sua conta foi efetuada com sucesso! Para que seja gerada uma nova senha para sua conta basta acessar o endereço abaixo e preencher o formulario com a chave informada abaixo:
-								
-				Chave para mudança de senha: '.$key.'
-									
-				'.GLOBAL_URL.'/index.php?page=lostInterface&step=confirmKey
-
-				Atenção: Está chave será auto-destruida em 24 horas. Após este periodo será necessario obter uma nova chave repetindo todo o processo percorrido até aqui.
-								
-				Nós vemos no Darghos!
-				Equipe UltraxSoft.',
-		'us' => '',
 	),		
 	
 	'change_aswers' => array(
@@ -1172,7 +1115,54 @@ $trans_texts = array(
 
 	A mudança deste documento pode ser efetuada sem aviso, ou prévio aviso, cabendo a você se manter atualizado às regras e ao contrato.',
 		'us' => '',
+	),	
+	
+	'setQuestionsAndAnswer' => array(
+		'br' => 'Configuração de Perguntas e Respostas Secretas',
+		'us' => '',
 	),		
+	
+	'questionNumberOne' => array(
+		'br' => 'Questão numero um (obrigatoria)',
+		'us' => '',
+	),		
+	
+	'questionNumberTwo' => array(
+		'br' => 'Questão numero dois (recomendada)',
+		'us' => '',
+	),		
+	
+	'questionNumberTree' => array(
+		'br' => 'Questão numero três (opcional)',
+		'us' => '',
+	),		
+	
+	'question' => array(
+		'br' => 'Questão',
+		'us' => '',
+	),		
+	
+	'answer' => array(
+		'br' => 'Resposta',
+		'us' => '',
+	),	
+	
+	'passwordConfirmation' => array(
+		'br' => 'Confirmar Senha',
+		'us' => '',
+	),		
+	
+	'questionTerms' => array(
+		'br' => 'Termos e Politicas sobre Perguntas & Respostas',
+		'us' => '',
+	),		
+	
+	'questionTermDetails' => array(
+		'br' => '<b> Eu aceito que sou eu o unico responsavel em manter seguro os dados das perguntas e respostas informadas a acima, portanto eu compreendo e estou ciente que o compartilhamento, esquecimento, perda destas informações ou respostas simples poderá resultar em IMPOSSIBILITAR QUALQUER MANEIRA de recuperação de minha conta ou acesso de TERCEIROS a minha conta e consequentemente a perda ETERNA de todos personagens contidos nesta conta.',
+		'us' => '',
+	),		
+	
+	
 	
 	
 );	

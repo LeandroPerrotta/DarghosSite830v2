@@ -65,7 +65,7 @@ if($_GET["step"] == "5")
 			);	
 		}
 	}
-	elseif(!$tools->checkSqlInjection($_POST['email']))
+	elseif(!$tools->checkString($_POST['email']))
 	{
 		$warn = $lang->getWarning('geral.entradasReservadas');
 		$condition = array

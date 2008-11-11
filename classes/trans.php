@@ -130,6 +130,42 @@ class Trans
 				'title' => '',
 				'msg' => '')		
 		),
+		
+		'contas.termoQuestoes' => array(
+			'br' => array(
+				'title' => 'Termos não aceitos.',
+				'msg' => 'Para configurar as perguntas e respostas em sua conta é necessario aceitar com os termos de uso e segurança que você deve ter com estas informações.'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),		
+		
+		'contas.umaPergunta' => array(
+			'br' => array(
+				'title' => 'Quantidade de perguntas e respostas.',
+				'msg' => 'Para configurar as perguntas e respostas corretamente em sua conta é necessario preencher ao menos a primeira pergunta e resposta.'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),		
+		
+		'contas.caracteresPerguntas' => array(
+			'br' => array(
+				'title' => 'Quantidade de caracteres.',
+				'msg' => 'As perguntas e respostas devem possuir entre 5 e 35 caracteres.'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),	
+
+		'contas.perguntasRespostasSucesso' => array(
+			'br' => array(
+				'title' => 'Pergunta(s) e Resposta(s) configuradas com sucesso!',
+				'msg' => 'As perguntas e respostas foram configuradas corretamente de acordo com os dados informados. A partir de agora sua conta possui um grau de segurança maior.'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),		
 
 		/*
 		/// AVISOS RECUPERAÇÃO DE CONTA
@@ -508,6 +544,29 @@ class Trans
 		'account.cancelchangeemail' => array(
 			'br' => 'Atravez deste recurso você pode cancelar uma mudança de e-mail em até 15 dias antes da concretização da mudança. Note este cancelamento só estará disponivel até a concretização da mudança, e após concretizada a mudança é irreversivel.',
 			'us' => ''),		
+			
+		'account.setQuestions' => array(
+			'br' => 'Para aumentar a segurança de sua conta você pode configurar perguntas e respostas secretas e em sua conta. O modo de recuperação de conta por perguntas pessoais é a forma mais efetiva de recuperação, pois com elas é possivel modificar o e-mail registrado em sua conta de forma instantanea, e assim recuperar os dados de sua conta além de você tambem poder re-configurar novas perguntas em sua conta no futuro.<br>
+			<br>
+			Você pode configurar de uma a três perguntas e respostas, sendo que quanto mais perguntas e respostas forem configuradas, maior é o grau de segurança.<br>
+			<br>
+			<b>Recomendações de perguntas e respostas:</b><br>
+			<br>
+			Ultilize fatos importantes, que você jamais esqueceria, e procure fazer respostas objetivas e diretas, por exemplo:<br>
+			<br>
+			<i><b>P:</b> Qual é meu nome?</i><br>
+			<br>
+			<b>R:</b> <del>Meu nome é João.</del><br>
+			<font size="1">(não recomendado)</font><br>
+			<b>R:</b> João<br>
+			<font size="1">(recomendado)</font><br>
+			<br>
+			Recomendamos também que na hora de escolher a quantidade de perguntas e respostas você ultilize o famoso ditado "um é pouco, dois é bom, porem três pode ser de mais".<br>
+			<br>
+			<b><font color="red">Notas Importantes:</font></b><br>
+			<br>
+			O sistema é extremamente sensivel, portanto para recuperar sua conta pelas perguntas você terá de informar as respostas exatamente como as configurou.',
+			'us' => ''),			
 			
 		'account.registration' => array(
 			'br' => 'Atravez desta pagina você irá efetuar um registro em sua conta com todas as suas informações pessoais. Este registro é muito importante pois ele permite que você obtenha uma chave de recuperação para sua conta, que é o metodo mais eficaz de recuperação para casos de perda de acesso da conta no futuro (esquecimento, hacking, etc.).

@@ -43,7 +43,7 @@ class Engine
 		$mail->Port       = 25;
 
 		$mail->FromName   = "Darghos Server";
-		$mail->Username   = "auto-responder@darghos.com";
+		$mail->Username   = "no-reply@darghos.com";
 		$mail->Password   = "***REMOVED***"; 
 
 		$mail->From = $account[$accNum];;

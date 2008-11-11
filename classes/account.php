@@ -361,7 +361,7 @@ class Account
 
 	public function loadQuestions()
 	{	
-		DB::query("SELECT site.account_questions.`question`,site.account_questions.`answer` FROM site.account_questions INNER JOIN `accounts` ON account_questions.`account_id` = accounts.`id` WHERE accounts.`id` = '".$this->data['id']."'");
+		DB::query("SELECT account_questions.question, account_questions.answer FROM account_questions INNER JOIN accounts ON account_questions.account_id = accounts.id WHERE accounts.id = '".$this->data['id']."'");
 	
 		if(DB::num_rows() != 0)
 		{
