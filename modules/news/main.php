@@ -6,7 +6,7 @@ while($fetch = $DB->fetch())
 	<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center">
 		<tr>
 			<td class="newTittle">
-				'.$tools->datePt(1213997510).' - <b>'.$fetch->title.'</b>
+				'.$tools->datePt($fetch->date).' - <b>'.$fetch->title.'</b>
 			</td>
 		</tr>
 		<tr>
@@ -14,7 +14,7 @@ while($fetch = $DB->fetch())
 				'.$fetch->post.'
 			</td>
 		</tr>
-	</table>	
+	</table><br>	
 	';
 }
 ?>

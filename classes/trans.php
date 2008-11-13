@@ -946,12 +946,8 @@ Equipe UltraxSoft.</p>
 	{
 		$langCookie = $_COOKIE["lang"];
 		
-		if($langCookie != (null or ""))
-		{
+		if($langCookie)
 			$GLOBALS["g_language"] = $_COOKIE["lang"];
-		}
-		else
-			$GLOBALS["g_language"] = "us";
 	}
 }
 ?>

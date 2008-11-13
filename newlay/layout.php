@@ -24,7 +24,7 @@ else
 		<tr>
 			<td class="logotype">
 				<div id="langSelectUs">
-					<a href="?act=set&lang=us&redirect=<? $ex = explode("?", $_SERVER['REQUEST_URI']); echo '?'.$ex[1]; ?>"><img src="<? echo "$layoutDir"; ?>/images/general/us.png"></a>
+					<a href="#"><img src="<? echo "$layoutDir"; ?>/images/general/us.png"></a>
 					<a href="?act=set&lang=br&redirect=<? $ex = explode("?", $_SERVER['REQUEST_URI']); echo '?'.$ex[1]; ?>"><img src="<? echo "$layoutDir"; ?>/images/general/br.png"></a>
 				</div>
 			</td>
@@ -168,17 +168,16 @@ else
 											</td>
 										</tr>';						
 									}
-									?>
 											
-								<tr class="rightMenuDown">
-									<td>
-									</td>
-								</tr>										
-							</table>
-							<? 
 							if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 							{
-							?>									
+							?>	
+							<tr class="rightMenuDown">
+								<td>
+								</td>
+							</tr>										
+							</table>	
+							
 							<table style="margin: 0 0 0 0;" border="0" cellpadding="0" cellspacing="0">
 								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_right.png) no-repeat right top;">
 									<td class="rightMenuTitle">
@@ -187,12 +186,12 @@ else
 								</tr>		
 									<tr class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
 										<td>
-											<a href="?act=admin.news"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_newsadmin.png"></a>
+											<center><a href="?act=admin.news"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_newsadmin.png"></a>
 										</td>
 									</tr>
 									<tr>
 										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
-											<a href="?act=admin.payments"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_paymentsadmin.png"></a>							
+											<center><a href="?act=admin.payments"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_paymentsadmin.png"></a>							
 										</td>
 									</tr>	
 								<tr class="rightSimpleMenuDown">
@@ -202,7 +201,15 @@ else
 								</table>
 							<? 
 							}
-							?>								
+							else{?>
+							
+							<tr class="rightSimpleMenuDown">
+								<td>
+								</td>
+							</tr>										
+							</table>	
+								
+							<? } ?>								
 						</td>							
 					</tr>				
 				</table><br>			

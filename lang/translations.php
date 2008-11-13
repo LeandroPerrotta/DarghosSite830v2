@@ -196,6 +196,16 @@ $trans_subTopicPages = array(
 		'us' => 'News Management'
 	),		
 	
+	'admin.postNew' => array(
+		'br' => 'Postar nova Noticia',
+		'us' => 'Post New'
+	),		
+
+	'admin.postNew' => array(
+		'br' => 'Editar Noticia',
+		'us' => 'Edit New'
+	),				
+	
 	'admin.payments' => array(
 		'br' => 'Administração de Pagamentos',
 		'us' => 'Payments Management'
