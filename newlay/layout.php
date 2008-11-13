@@ -16,7 +16,11 @@ else
 }
 ?>
 
-<script language="JavaScript" type="text/javascript" src="functions.js"></script>
+<script language="JavaScript" type="text/javascript" src="<? echo "$layoutDir"; ?>/functions.js"></script>
+
+<!--[if lt IE 7]>
+        <script type="text/javascript" src="<? echo "$layoutDir"; ?>/unitpngfix.js"></script>
+<![endif]--> 
 </head>
 <body>
 <div id="background" style="background-image:url(<? echo "$layoutDir"; ?>/images/background/background.png);">
