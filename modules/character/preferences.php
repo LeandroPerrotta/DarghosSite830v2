@@ -4,7 +4,7 @@ if($login->logged())
 	$idEnc = $_GET['id'];
 
 	$player = $engine->loadObject('player');	
-	if(is_numeric($idEnc) && $player->loadById($idEnc, $enc = true))
+	if($tools->checkString($idEnc) && $player->loadById($idEnc, $enc = true))
 	{
 		if($player->getInfo('account_id') == $_SESSION['account'])
 		{
