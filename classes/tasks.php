@@ -39,8 +39,10 @@ class Tasks {
 							  	id = '{$this->id}'");
 		} else {
 			//insert..
-			$this->db->query("INSERT INTO tasks VALUES('', '{$this->name}', 
-													'{$this->eachTime}', '{$this->lastExecution}')");
+			$this->db->query("INSERT INTO tasks(name, 
+							each_time, last_execution) 
+							VALUES('{$this->name}', 
+							'{$this->eachTime}', '{$this->lastExecution}')");
 			$this->id = $this->db->last_insert_id();
 		}
 		return true;
