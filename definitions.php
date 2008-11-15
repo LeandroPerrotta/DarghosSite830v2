@@ -52,4 +52,6 @@ define('PGT_STAT_EXPIRED', 2);
 define('PGT_STAT_REJECTED', 3);
 
 define('CHANGE_EMAIL_TIMER', 60 * 60 * 24 * 15);
+
+define('PAGE_ABOUT', 1);
 ?>

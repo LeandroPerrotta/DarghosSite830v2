@@ -7,7 +7,7 @@ $g_world = array(
 		'onSince' => 'Fev/2008',
 		'population' => 'full',
 		'sqlResource' => 'serverI'
-	),
+	)/*,
 	array(
 		'name' => 'Uniterian',
 		'id' => '1',
@@ -15,7 +15,7 @@ $g_world = array(
 		'onSince' => 'Set/2008',
 		'population' => 'empty',
 		'sqlResource' => 'serverII'
-	),	
+	),	*/
 );	
 
 $g_skill = array(

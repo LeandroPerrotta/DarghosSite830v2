@@ -20,7 +20,7 @@ function task_highscores() {
 				$nRows = $db->num_rows() - 1;
 				$i = 0;
 				while($player = $db->fetch()) {
-					$strTmp .= "('{$worldId}', '{$player->name}', '{$player->level}', '{$player->experience}')";
+					$strTmp .= "('{$player->name}', '{$player->level}', '{$player->experience}', '{$worldId}')";
 					if($i < $nRows) {
 						$strTmp .= ", ";
 					} else {
@@ -41,7 +41,7 @@ function task_highscores() {
 				$nRows = $db->num_rows() - 1;
 				$i = 0;
 				while($player = $db->fetch()) {
-					$strTmp .= "('{$worldId}', '{$player->name}', '{$player->maglevel}')";
+					$strTmp .= "('{$player->name}', '{$player->maglevel}', '{$worldId}')";
 					if($i < $nRows) {
 						$strTmp .= ", ";
 					} else {
@@ -67,7 +67,7 @@ function task_highscores() {
 				$nRows = $db->num_rows() - 1;
 				$i = 0;
 				while($player = $db->fetch()) {
-					$strTmp .= "('{$worldId}', '{$player->name}', '{$player->value}')";
+					$strTmp .= "('{$player->name}', '{$player->value}', '{$worldId}')";
 					if($i < $nRows) {
 						$strTmp .= ", ";
 					} else {
