@@ -21,7 +21,7 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 	</table>	
 	';
 	
-	$DB->query("SELECT id FROM texts ORDER BY id DESC");
+	$DB->query("SELECT id, description FROM texts ORDER BY id DESC");
 	
 	while($fetch = $DB->fetch())
 	{
