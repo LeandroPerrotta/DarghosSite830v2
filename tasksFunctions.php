@@ -6,6 +6,7 @@ function task_highscores() {
 		$worldId = $GLOBALS['g_world'][$p]['id'];
 		$resource = $GLOBALS['g_world'][$p]['sqlResource'];
 		foreach($GLOBALS['g_skill'] as $s_p => $s_v) {
+			$db->query("DELETE FROM high_{$s_v} WHERE world_id = '{$worldId}'");
 			$strTmp = "";
 			if($s_v == "experience") { #Level
 				$db->query("SELECT 
