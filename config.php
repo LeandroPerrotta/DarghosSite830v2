@@ -163,7 +163,7 @@ $g_pgtStatus = array(
 	2 => 'contribution_expired',
 	3 => 'contribution_rejected',
 );
-
+//Tasks Map
 $g_tasksMap = array(
 	1 => array(
 		'name' => "highscores",

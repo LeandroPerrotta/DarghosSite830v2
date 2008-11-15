@@ -753,7 +753,7 @@ class Trans
 <p>Este é um email informativo contendo as informações de acesso para sua conta criada no <a href=\"http://ot.darghos.com\"><b>Darghos</b></a>.</p>
 
 <p>Conta: <b>','</b><br>
-Senha: <b>','$password</b></p>
+Senha: <b>','</b></p>
 
 <p>Você precisará destes dados para efetuar o login em nosso website e acessar a administração de sua conta e mudar para uma senha de sua preferencia alem de criar seu personagem e começar a se divertir alem de muitas outras ultilidades!</p>
 
