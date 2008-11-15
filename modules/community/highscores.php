@@ -1,5 +1,5 @@
 <?
-if(isset($_POST['world']))
+if(isset($_POST['world']) && $tools->checkString($_REQUEST['world']))
 {
 	if(isset($_POST['skill']))
 		$tools->redirect('?act=highscores&world='.$_POST['world'].'&skill='.$_POST['skill'].'');
@@ -7,11 +7,11 @@ if(isset($_POST['world']))
 		$tools->redirect('?act=highscores&world='.$_POST['world'].'');
 }
 
-if(isset($_REQUEST['world']))
+if(isset($_REQUEST['world']) && $tools->checkString($_REQUEST['world']))
 {		
 	$server = $_REQUEST['world'];
 	
-	if(isset($_REQUEST['skill']))
+	if(isset($_REQUEST['skill']) && $tools->checkString($_REQUEST['skill']))
 		$skill = $_REQUEST['skill'];
 	else
 		$skill = 7;

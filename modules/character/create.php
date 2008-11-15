@@ -181,7 +181,7 @@ if($login->logged())
 				"buttons" => $eHTML->simpleButton('back','?act=character.create&step=1')
 			);	
 		}	
-		elseif(!$tools->canUseName($nameString))
+		elseif(!$tools->canUseName($nameString) OR !$tools->checkString($nameString) OR !$tools->checkString($_POST['sex']) OR !$tools->checkString($_POST['city']) OR !$tools->checkString($_POST['vocation']))
 		{
 			$warn = $lang->getWarning('char.nomeInvalido');
 			$condition = array
