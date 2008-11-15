@@ -195,6 +195,11 @@ else
 									</tr>
 									<tr>
 										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
+											<center><a href="?act=admin.texts"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_texts.png"></a>							
+										</td>
+									</tr>	
+									<tr>
+										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
 											<center><a href="?act=admin.payments"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_paymentsadmin.png"></a>							
 										</td>
 									</tr>	
