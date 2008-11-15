@@ -40,5 +40,10 @@ class DB
 	{
 		return ($this->query_temp) ? @mysql_num_rows($this->query_temp) : false;
 	}		
+	
+	public function last_insert_id($link = 'site')
+	{
+		return ($this->query->temp) ? @mysql_insert_id($GLOBALS['g_linkResource'][$link]) : false;
+	}
 }
 ?>

@@ -63,9 +63,9 @@ if(isset($_REQUEST['world']))
 	$skillid = $g_skill[$skill];
 	
 	if($skillid == "experience")
-		$DB->query("SELECT name, level, experience FROM highscores WHERE world_id = ".$server." ORDER by level DESC LIMIT 100 ");
+		$DB->query("SELECT name, level, experience FROM high_{$skillid} WHERE world_id = ".$server." ORDER by experience DESC LIMIT 300 ");
 	else	
-		$DB->query("SELECT name, $skillid FROM highscores WHERE world_id = ".$server." ORDER by level DESC LIMIT 100 ");
+		$DB->query("SELECT name, level FROM high_{$skillid} WHERE world_id = ".$server." ORDER by level DESC LIMIT 300 ");
 	
 	if($skillid == "experience")
 	{
@@ -99,7 +99,7 @@ if(isset($_REQUEST['world']))
 		{
 			$content .= '			
 				<tr>
-					<td class="tableContLight">'.$count.'</td><td class="tableContLight"><a href="?act=character.details&name='.$fetch->name.'">'.$fetch->name.'</a></td><td class="tableContLight" colspan="2">'.$fetch->$skillid.'</td>
+					<td class="tableContLight">'.$count.'</td><td class="tableContLight"><a href="?act=character.details&name='.$fetch->name.'">'.$fetch->name.'</a></td><td class="tableContLight" colspan="2">'.$fetch->level.'</td>
 				</tr>
 			';				
 		}

@@ -6,6 +6,7 @@ $g_world = array(
 		'location' => 'BRA',
 		'onSince' => 'Fev/2008',
 		'population' => 'full',
+		'sqlResource' => 'serverI'
 	),
 	array(
 		'name' => 'Uniterian',
@@ -13,6 +14,7 @@ $g_world = array(
 		'location' => 'USA',
 		'onSince' => 'Set/2008',
 		'population' => 'empty',
+		'sqlResource' => 'serverII'
 	),	
 );	
 
@@ -160,6 +162,13 @@ $g_pgtStatus = array(
 	1 => 'contribution_actived',
 	2 => 'contribution_expired',
 	3 => 'contribution_rejected',
+);
+
+$g_tasksMap = array(
+	1 => array(
+		'name' => "highscores",
+		'eachTime' => 60 * 60 * 24
+	)
 );
 
 ?>

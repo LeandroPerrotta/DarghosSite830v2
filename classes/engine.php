@@ -46,7 +46,7 @@ class Engine
 		$mail->Username   = "no-reply@darghos.com";
 		$mail->Password   = "***REMOVED***"; 
 
-		$mail->From = $account[$accNum];;
+		$mail->From = $account[$accNum];
 		$mail->AddAddress($recipient);
 
 		$mail->Subject = $subject;

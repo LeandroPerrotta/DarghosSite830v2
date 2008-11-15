@@ -62,6 +62,14 @@ session_start();
 	$layoutDir = "newlay";
 	$eHTML->layoutDir = $layoutDir;
 	
+	
+/*
+//// Carrega e executa as tasks, se for a hora...
+ */	
+	$tasks = $engine->loadObject('tasks');
+	Tasks::PerformTasks($g_tasksMap);
+	
+	
 /*
 //// Carrega o os modulos de Links
 */
