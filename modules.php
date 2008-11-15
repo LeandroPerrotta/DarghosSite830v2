@@ -216,7 +216,25 @@ if($_REQUEST['act'] != "")
 			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
 			$subtopic = $GLOBALS['trans_subTopicPages']['admin.editNew'][$GLOBALS['g_language']];
 			include "modules/admin/new.edit.php";
-		break;			
+		break;	
+
+		case "admin.texts";	
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.texts'][$GLOBALS['g_language']];
+			include "modules/admin/texts.php";
+		break;		
+		
+		case "admin.postText";	
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.postText'][$GLOBALS['g_language']];
+			include "modules/admin/text.post.php";
+		break;		
+
+		case "admin.editText";	
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.editText'][$GLOBALS['g_language']];
+			include "modules/admin/text.edit.php";
+		break;
 
 		case "admin.payments";	
 			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];

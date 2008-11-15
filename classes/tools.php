@@ -323,6 +323,20 @@ class Tools
 			return false;
 		
 		return true;
-	}		
+	}	
+
+	public function getText($id) {
+		$db = DB::getInstance();
+		$db->query("SELECT * FROM texts WHERE id = '{$id}'");
+		if($db->num_rows() > 0) {
+			if($GLOBALS['g_language'] == "br" OR $GLOBALS['g_language'] == "pt") {
+				return $db->fetch()->pt;
+			} else {
+				return $db->fetch()->us;
+			}
+		} else {
+			return false;
+		}
+	}
 }
 ?>

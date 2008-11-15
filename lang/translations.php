@@ -201,10 +201,25 @@ $trans_subTopicPages = array(
 		'us' => 'Post New'
 	),		
 
-	'admin.postNew' => array(
+	'admin.editNew' => array(
 		'br' => 'Editar Noticia',
 		'us' => 'Edit New'
-	),				
+	),	
+
+	'admin.texts' => array(
+		'br' => 'Administração de Textos',
+		'us' => 'Text Management'
+	),		
+	
+	'admin.postText' => array(
+		'br' => 'Postar novo Texto',
+		'us' => 'Post Text'
+	),		
+
+	'admin.editText' => array(
+		'br' => 'Editar Texto',
+		'us' => 'Edit Text'
+	),	
 	
 	'admin.payments' => array(
 		'br' => 'Administração de Pagamentos',
