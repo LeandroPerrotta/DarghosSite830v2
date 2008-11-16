@@ -29,7 +29,7 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 	</table>	
 	';
 	
-	$DB->query("SELECT id, new_br FROM fastnew ORDER BY date DESC");
+	$DB->query("SELECT id, new_br FROM fastnews ORDER BY date DESC");
 	
 	while($fetch = $DB->fetch())
 	{
