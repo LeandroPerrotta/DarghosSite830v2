@@ -239,7 +239,7 @@ if($_REQUEST['act'] != "")
 		case "admin.faqs";	
 			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
 			$subtopic = $GLOBALS['trans_subTopicPages']['admin.faqs'][$GLOBALS['g_language']];
-			include "modules/admin/texts.php";
+			include "modules/admin/faqs.php";
 		break;		
 		
 		case "admin.postFaq";	
@@ -257,19 +257,19 @@ if($_REQUEST['act'] != "")
 		case "admin.fastnews";	
 			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
 			$subtopic = $GLOBALS['trans_subTopicPages']['admin.fastnews'][$GLOBALS['g_language']];
-			include "modules/admin/texts.php";
+			include "modules/admin/fastnews.php";
 		break;		
 		
 		case "admin.postFastnew";	
 			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
 			$subtopic = $GLOBALS['trans_subTopicPages']['admin.postFastnew'][$GLOBALS['g_language']];
-			include "modules/admin/faq.post.php";
+			include "modules/admin/fastnew.post.php";
 		break;		
 
 		case "admin.editFastnew";	
 			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
 			$subtopic = $GLOBALS['trans_subTopicPages']['admin.editFastnew'][$GLOBALS['g_language']];
-			include "modules/admin/faq.edit.php";
+			include "modules/admin/fastnew.edit.php";
 		break;
 
 		case "admin.payments";	
