@@ -20,9 +20,9 @@ if($_GET['type'] == "fastnews") {
 		$content .= '<tr>
 						<td class="'.(($i % 2 == 0) ? "tableContLight" : "tableContDark").'" 
 									onClick="newsTicker(\''.$i.'\');">
-							<img onclick="newsTicker(\''.$i.'\');" style="cursor:pointer;" id="fn_img_'.$i.'" src="'.$layoutDir.'/images/general/plus.gif" alt="" />
+							<img style="cursor:pointer;" id="fn_img_'.$i.'" src="'.$layoutDir.'/images/general/plus.gif" alt="" onClick="newsTicker(\''.$i.'\');" />
 							<b>'.$date.'</b> -
-							<div id="fn_sh_'.$i.'">'.$abrev.'</div>
+							<div id="fn_sh_'.$i.'" style="float:right;">'.$abrev.'</div>
 						</td>
 					</tr>';
 		$i++;
