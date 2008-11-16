@@ -15,7 +15,11 @@ else
 	echo '<link href="'.$layoutDir.'/style_ff.css" rel="stylesheet" type="text/css">';
 }
 ?>
-
+<script>
+<!--
+var LAYOUT_DIR = "<?php echo $layoutDir; ?>";
+//-->
+</script>
 <script language="JavaScript" type="text/javascript" src="<? echo "$layoutDir"; ?>/functions.js"></script>
 
 <!--[if lt IE 7]>
@@ -174,7 +178,7 @@ else
 									}
 											
 							if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
-							{
+							{ 
 							?>	
 							<tr class="rightMenuDown">
 								<td>
@@ -196,6 +200,16 @@ else
 									<tr>
 										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
 											<center><a href="?act=admin.texts"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_texts.png"></a>							
+										</td>
+									</tr>
+									<tr>
+										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
+											<center><a href="?act=admin.faqs"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_faqs.png"></a>							
+										</td>
+									</tr>
+									<tr>
+										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
+											<center><a href="?act=admin.fastnews"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_fastnews.png"></a>							
 										</td>
 									</tr>	
 									<tr>

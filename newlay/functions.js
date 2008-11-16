@@ -35,3 +35,24 @@ function MouseOutBigButton(source)
   source.firstChild.style.visibility = "hidden";
 }
 
+function _g(id)
+{
+	return document.getElementById(id);
+}
+
+function newsTicker(id)
+{
+	var showPlace = _g("fn_sh_" + id);
+	var abrevTxt = _g("fn_ab_" + id);
+	var completeTxt = _g("fn_cp_" + id);
+	var img = _g("fn_img_" + id);
+	
+	if(showPlace.innerHTML == abrevTxt.innerHTML) {
+		showPlace.innerHTML = completeTxt.innerHTML;
+		img.src = LAYOUT_DIR + "/images/general/minus.gif";
+	} else {
+		showPlace.innerHTML = abrevTxt.innerHTML;
+		img.src = LAYOUT_DIR + "/images/general/plus.gif";
+	}		
+}
+

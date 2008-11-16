@@ -6,6 +6,11 @@ $trans_topicPages = array(
 		'us' => 'News'
 	),
 	
+	'fastnews' => array(
+		'br' => 'Notícias Rápidas',
+		'us' => 'Fast News'
+	),
+	
 	
 	'lostInterface' => array(
 		'br' => 'Recuperação de Conta',
@@ -219,6 +224,36 @@ $trans_subTopicPages = array(
 	'admin.editText' => array(
 		'br' => 'Editar Texto',
 		'us' => 'Edit Text'
+	),	
+	
+	'admin.faqs' => array(
+		'br' => 'Administração de FAQs',
+		'us' => 'FAQs Management'
+	),		
+	
+	'admin.postFaq' => array(
+		'br' => 'Postar novo FAQ',
+		'us' => 'Post FAQ'
+	),		
+
+	'admin.editFaq' => array(
+		'br' => 'Editar FAQ',
+		'us' => 'Edit FAQ'
+	),	
+	
+	'admin.fastnews' => array(
+		'br' => 'Administração de Notícias rápidas',
+		'us' => 'Fast news Management'
+	),		
+	
+	'admin.postFastnew' => array(
+		'br' => 'Postar nova Notícia rápida',
+		'us' => 'Post Fast New'
+	),		
+
+	'admin.editFastnew' => array(
+		'br' => 'Editar Notícia rápida',
+		'us' => 'Edit Fast New'
 	),	
 	
 	'admin.payments' => array(

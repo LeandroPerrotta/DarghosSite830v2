@@ -235,6 +235,42 @@ if($_REQUEST['act'] != "")
 			$subtopic = $GLOBALS['trans_subTopicPages']['admin.editText'][$GLOBALS['g_language']];
 			include "modules/admin/text.edit.php";
 		break;
+		
+		case "admin.faqs";	
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.faqs'][$GLOBALS['g_language']];
+			include "modules/admin/texts.php";
+		break;		
+		
+		case "admin.postFaq";	
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.postFaq'][$GLOBALS['g_language']];
+			include "modules/admin/faq.post.php";
+		break;		
+
+		case "admin.editFaq";	
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.editFaq'][$GLOBALS['g_language']];
+			include "modules/admin/faq.edit.php";
+		break;
+		
+		case "admin.fastnews";	
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.fastnews'][$GLOBALS['g_language']];
+			include "modules/admin/texts.php";
+		break;		
+		
+		case "admin.postFastnew";	
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.postFastnew'][$GLOBALS['g_language']];
+			include "modules/admin/faq.post.php";
+		break;		
+
+		case "admin.editFastnew";	
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.editFastnew'][$GLOBALS['g_language']];
+			include "modules/admin/faq.edit.php";
+		break;
 
 		case "admin.payments";	
 			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];

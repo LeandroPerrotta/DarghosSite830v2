@@ -241,6 +241,12 @@ img { border: none; }
 	padding: 4px;
 }
 
+.tableContDark{
+	color:#4F2700;
+    background-color:#a38e6a;
+	padding: 4px;
+}
+
 .button {
 	width: 125px;
 	height: 20px;		

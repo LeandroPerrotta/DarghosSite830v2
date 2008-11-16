@@ -16,7 +16,7 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 	<br>
 	<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center">
 		<tr>
-			<td>'.$eHTML->simpleButton("admin.edit", "?act=admin.postText").'</a></td>
+			<td>'.$eHTML->simpleButton("next", "?act=admin.postText").'</a></td>
 		</tr>
 	</table>	
 	';

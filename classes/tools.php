@@ -182,50 +182,62 @@ class Tools
 		{
 			case "01";
 				$data['mes'] = "Janeiro";
+				$data['mesAbrev'] = "Jan";
 			break;	
 			
 			case "02";
 				$data['mes'] = "Fevereiro";
+				$data['mesAbrev'] = "Fev";
 			break;
 			
 			case "03";
 				$data['mes'] = "Março";
+				$data['mesAbrev'] = "Mar";
 			break;
 			
 			case "04";
 				$data['mes'] = "Abril";
+				$data['mesAbrev'] = "Abr";
 			break;
 			
 			case "05";
 				$data['mes'] = "Maio";
+				$data['mesAbrev'] = "Mai";
 			break;
 			
 			case "06";
 				$data['mes'] = "Junho";
+				$data['mesAbrev'] = "Jun";
 			break;
 			
 			case "07";
 				$data['mes'] = "Julho";
+				$data['mesAbrev'] = "Jul";
 			break;
 			
 			case "08";
 				$data['mes'] = "Agosto";
+				$data['mesAbrev'] = "Ago";
 			break;
 			
 			case "09";
 				$data['mes'] = "Setembro";
+				$data['mesAbrev'] = "Set";
 			break;
 			
 			case "10";
 				$data['mes'] = "Outubro";
+				$data['mesAbrev'] = "Out";
 			break;
 			
 			case "11";
 				$data['mes'] = "Novembro";
+				$data['mesAbrev'] = "Nov";
 			break;
 			
 			case "12";
 				$data['mes'] = "Dezembro";
+				$data['mesAbrev'] = "Dez";
 			break;			
 		}
 
@@ -241,6 +253,9 @@ class Tools
 				case "dd, mes, aa":
 					$dataFinal = ''.$data['diaMes'].' de '.$data['mes'].' de '.$data['ano'].'';
 				break;	
+				case "dd m aaaa":
+					$dataFinal = ''.$data['diaMes'].' '.$data['mesAbrev'].' '.$data['ano'].'';
+				break;
 			}
 		}
 		
@@ -337,6 +352,18 @@ class Tools
 		} else {
 			return false;
 		}
+	}
+	
+	public function getFormatNews($newsText) {
+		global $layoutDir;
+		
+		$firstChar = substr($newsText, 0, 1);
+		if(is_numeric($firstChar)) {
+			return $newsText;
+		}
+		$imgSrc = "{$layoutDir}/images/fonts/{$firstChar}.png";
+		$rest = substr($newsText, 1);
+		return "<img src=\"{$imgSrc}\" alt=\"{$firstChar}\" />{$rest}";
 	}
 }
 ?>
