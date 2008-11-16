@@ -35,7 +35,7 @@ if($_REQUEST['act'] != "")
 		case "faq";	
 			$topic = $GLOBALS['trans_topicPages']['faq'][$GLOBALS['g_language']];
 			$subtopic = $GLOBALS['trans_subTopicPages']['faq'][$GLOBALS['g_language']];
-			include "modules/general/about.php";
+			include "modules/general/faq.php";
 		break;	
 
 		case "downloads";	

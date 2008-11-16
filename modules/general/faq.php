@@ -12,8 +12,8 @@ while($fetch = $DB->fetch()) {
 				</td>
 			</tr>
 			<tr>
-				<td class="newContent" colspan=2>
-					'.$tools->getFormatNews($reply).'
+				<td class="newContent">
+					'.$reply.'
 				</td>
 			</tr>
 		</table><br>';

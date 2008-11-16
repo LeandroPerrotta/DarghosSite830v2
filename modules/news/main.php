@@ -24,7 +24,7 @@ while($fetch = $DB->fetch()) {
 					</tr>';
 	$i++;
 }
-$content .= '</table>';
+$content .= '</table><br>';
 
 $DB->query("SELECT * FROM site_new.news ORDER by date DESC LIMIT 3");
 while($fetch = $DB->fetch())

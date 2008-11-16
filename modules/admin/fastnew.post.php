@@ -17,7 +17,7 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 		{
 			$DB->query("INSERT INTO fastnews(new_br, new_us, account_poster, date) VALUES(
 											'".$_POST['new_br']."', '".$_POST['new_us']."',
-											'".$_SESSION['account_id']."', '".time()."')");
+											'".$_SESSION['account']."', '".time()."')");
 			
 			$condition = array
 			(
