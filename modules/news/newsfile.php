@@ -1,6 +1,6 @@
 <?php 
-$content .= '<a href="?act=newfiles&type=fastnews">'.$trans_topicPages['fastnews'][$g_language].'</a> -
-			 <a href="?act=newfiles">'.$trans_topicPages['news'][$g_language].'</a><br />';
+$content .= '<center><a href="?act=newfiles&type=fastnews">'.$trans_topicPages['fastnews'][$g_language].'</a> -
+			 <a href="?act=newfiles">'.$trans_topicPages['news'][$g_language].'</a></center><br />';
 if($_GET['type'] == "fastnews") {
 	$content .= '<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center">
 				<tr>
@@ -27,7 +27,7 @@ if($_GET['type'] == "fastnews") {
 					</tr>';
 		$i++;
 	}
-	$content .= '</table><br />';
+	$content .= '</table><br /><br />';
 	$content .= $eHTML->simpleButton('back', '?act=newfiles').'<br />';
 } else {
 	if($_GET['id'] != '' && $tools->checkString($_GET['id'])) {
@@ -65,7 +65,7 @@ if($_GET['type'] == "fastnews") {
 				<td class="" width="25%">
 					<center>'.$date.'</center>
 				</td>
-				<td class="newContent" colspan=2>
+				<td class="newContent">
 					<a href="?act=newfiles&id='.$fetch->id.'">'.$fetch->title.'</a>
 				</td>
 			</tr>	
