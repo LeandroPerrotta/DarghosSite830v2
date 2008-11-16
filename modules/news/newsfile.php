@@ -17,12 +17,9 @@ if($_GET['type'] == "fastnews") {
 		$abrev = substr($new, 0, 20).'...';
 		$content .= '<div id="fn_ab_'.$i.'" style="display:none;">'.$abrev.'</div>';
 		$content .= '<div id="fn_cp_'.$i.'" style="display:none;">'.$new.'</div>';
-		$content .= '<tr>
-						<td class="'.(($i % 2 == 0) ? "tableContLight" : "tableContDark").'" 
-									onClick="newsTicker(\''.$i.'\');">
-							<a href="" onClick="newsTicker(\''.$i.'\'); return false;">
-							<img id="fn_img_'.$i.'" src="'.$layoutDir.'/images/general/plus.gif" alt="" border="0" />
-							</a>
+		$content .= '<tr onClick="newsTicker(\''.$i.'\')">
+						<td class="'.(($i % 2 == 0) ? "tableContLight" : "tableContDark").'">
+							<img onClick="newsTicker(\''.$i.'\')" id="fn_img_'.$i.'" style="cursor:pointer;" src="'.$layoutDir.'/images/general/plus.gif" alt="" border="0" />
 							<b>'.$date.'</b> -
 							<span id="fn_sh_'.$i.'">'.$abrev.'</span>
 						</td>
