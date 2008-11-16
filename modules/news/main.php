@@ -17,9 +17,11 @@ while($fetch = $DB->fetch()) {
 		$content .= '<tr>
 						<td class="'.(($i % 2 == 0) ? "tableContLight" : "tableContDark").'" 
 									onClick="newsTicker(\''.$i.'\');">
-							<img style="cursor:pointer;" id="fn_img_'.$i.'" src="'.$layoutDir.'/images/general/plus.gif" alt="" onClick="newsTicker(\''.$i.'\');" />
+							<a href="" onClick="newsTicker(\''.$i.'\'); return false;">
+							<img id="fn_img_'.$i.'" src="'.$layoutDir.'/images/general/plus.gif" alt="" border="0" />
+							</a>
 							<b>'.$date.'</b> -
-							<div id="fn_sh_'.$i.'" style="float:right;">'.$abrev.'</div>
+							<span id="fn_sh_'.$i.'">'.$abrev.'</span>
 						</td>
 					</tr>';
 	$i++;
