@@ -1,4 +1,6 @@
 <?php
+$_TIME = time();
+
 $otNew = mysql_pconnect("localhost", "root", "secret");
 mysql_select_db("gameserver", $otNovo);
 
@@ -34,6 +36,100 @@ while($account = mysql_fetch_object($queryAccs)) {
 						'{$account->premdays}', '{$account->creation}', '{$account->warnings}',
 						'{$account->lastday}', '{$account->premdays}', '{$account->real_name}',
 						'{$account->location}', '{$account->url}', '0')", $webNew);
-	#TODO - The rest, mwahaha!
+	
+	$questQuery = mysql_query("SELECT * FROM account_questions WHERE account_id = '{$account->id}'", $webOld);
+	while($question = mysql_fetch_object($questQuery)) {
+		mysql_query("INSERT INTO accounts_question VALUES('{$question->question}', 
+						'{$question->answer}', '{$account->id}')", $webNew);
+	}
+	
+	$changeEmailQuery = mysql_query("SELECT * FROM scheduler_changeemails WHERE account_id = '{$account->id}'", $webOld);
+	$changeEmail = mysql_fetch_object($changeEmailQuery);
+	mysql_query("INSERT INTO change_emails(newEmail, changeDate, account_id 
+				 VALUES('{$changeEmail->email}', '{$changeEmail->date}', '{$changeEmail->account_id}')");
+	#TODO - Conferir se está completo...
+}
+
+// Bans
+$queryBans = mysql_query("SELECT * FROM bans", $otOld);
+while($ban = mysql_fetch_object($queryBans)) {
+	mysql_query("INSERT INTO bans VALUES(
+									'{$ban->type}', '{$ban->ip}', '{$ban->mask}',
+									'{$ban->player}', '{$ban->account}', '{$ban->time}',
+									'{$ban->reason_id}', '{$ban->action_id}', '{$ban->comment}',
+									'{$ban->banned_by}', '{$ban->id}')", $otNew);
+}
+
+// Groups
+$queryGroups = mysql_query("SELECT * FROM groups", $otOld);
+while($group = mysql_fetch_object($queryGroups)) {
+	mysql_query("INSERT INTO groups VALUES(
+									'{$ban->id}', '{$ban->name}', '{$ban->flags}','{$ban->access}', 
+									'{$ban->maxdepotitems}', '{$ban->maxviplist}')", $otNew);
+}
+
+// Guilds
+$queryGuilds = mysql_query("SELECT * FROM guilds", $otOld);
+while($guild = mysql_fetch_object($queryGuilds)) {
+	mysql_query("INSERT INTO guilds VALUES(
+									'{$guild->id}', '{$guild->name}', '{$guild->ownerid}',
+									'{$guild->creationdata}', '{$guild->guildstory}', '{$guild->motd}',
+									'{$guild->server}')", $otNew);
+}
+
+// Guild Ranks
+$queryGuildRank = mysql_query("SELECT * FROM guild_ranks", $otOld);
+while($guildRank = mysql_fetch_object($queryGuildRank)) {
+	mysql_query("INSERT INTO guild_rank VALUES(
+									'{$guildRank->id}', '{$guildRank->guild_id}', '{$guildRank->name}',
+									'{$guildRank->level}')", $otNew);
+}
+
+// Houses
+$queryHouses = mysql_query("SELECT * FROM houses", $otOld);
+while($house = mysql_fetch_object($queryHouses)) {
+	mysql_query("INSERT INTO houses VALUES('{$house->id}', '{$house->owner}', '{$house->paid}',
+										   '{$house->warnings}', '{$house->ownerAccount}')", $otNew);
+}
+
+// House Lists
+$queryHouseLists = mysql_query("SELECT * FROM house_lists", $otOld);
+while($houseList = mysql_fetch_object($queryHouseLists)) {
+	mysql_query("INSERT INTO house_lists VALUES('{$houseList->house_id}', '{$houseList->listid}',
+											    '{$houseList->list}')", $otNew);
+}
+
+// Players
+// Old: id, name, account_id, group_id, users, group, sex, vocation, experience, level, maglevel, health, healthmax, 
+//      mana, manamax, manaspent, soul, direction, lookbody, lookfeet, lookhead, looklegs, looktype, lookaddons, posx, 
+//      posy, posz, cap, lastlogin, lastip, save, conditions, redskulltime, redskull, guildnick, rank_id, town_id, 
+//      comment, hide, server, blessings, lastlogout, loss_experience, loss_mana, loss_skills, special_hide, online, 
+//      old_name, status, pvpmode, spoof, frags, deaths, flog_url, ip_addr, lastDay_experience, experience_difference, 
+//      tutor_time, created, nick_verify, hide_char, duplied_name, ping
+$queryPlayers = mysql_query("SELECT * FROM players", $otOld);
+while($player = mysql_fetch_object($queryPlayers)) {
+	mysql_query("INSERT INTO players VALUES(
+					'{$player->id}', '{$player->name}', '{$player->account_id}', '{$player->group_id}',
+					'{$player->sex}', '{$player->vocation}', '{$player->experience}', '{$player->level}', 
+					'{$player->maglevel}', '{$player->health}', 
+					'{$player->healthmax}', '{$player->mana}', '{$player->manamax}', '{$player->manaspent}', 
+					'{$player->soul}', '{$player->direction}', '{$player->lookbody}', '{$player->lookfeet}', 
+					'{$player->lookhead}', '{$player->looklegs}', '{$player->looktype}', '{$player->lookaddons}', 
+					'{$player->posx}', '{$player->posy}', '{$player->posz}', '{$player->cap}', '{$player->lastlogin}', 
+					'{$player->lastip}', '{$player->save}', '{$player->conditions}', '{$player->redskulltime}', 
+					'{$player->redskull}', '{$player->guildnick}', '{$player->rank_id}', '{$player->town_id}'
+					'{$player->blessings}', '{$player->lastlogout}', '{$player->loss_experience}', 
+					'{$player->loss_mana}', '{$player->loss_skills}', '{$player->online}', '{$player->ping}')", $otNew);
+	#Login Server		
+	mysql_query("INSERT INTO characterlist VALUES('{$player->id}', '{$player->name}', '0', 
+					'{$player->account_id}')", $loginServer);
+	#Web Site		
+	mysql_query("INSERT INTO characterlist VALUES(
+					'{$player->id}', '{$player->name}', '{$player->account_id}', '0', '{$player->level}', 
+					'{$player->experience}', '{$player->sex}', '{$player->vocation}', '{$player->maglevel}', 
+					'{$player->lastlogout}', '{$player->redskulltime}', '{$player->guildnick}', '{$player->rank_id}', 
+					'{$player->town_id}', '{$player->comment}', '{$player->hide}', '{$player->online}', 
+					'{$player->old_name}', '{$player->tutor_time}', '{$player->created}', '{$player->ping}', 
+					'{$_TIME}')", $webNew);
 }
 ?>
