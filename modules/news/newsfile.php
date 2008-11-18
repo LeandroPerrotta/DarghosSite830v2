@@ -1,6 +1,6 @@
 <?php 
-$content .= '<center><a href="?act=newfiles&type=fastnews">'.$trans_topicPages['fastnews'][$g_language].'</a> -
-			 <a href="?act=newfiles">'.$trans_topicPages['news'][$g_language].'</a></center><br />';
+$content .= '<center><a href="?act=newfiles">'.$trans_topicPages['news'][$g_language].'</a> -
+			 <a href="?act=newfiles&type=fastnews">'.$trans_topicPages['fastnews'][$g_language].'</a></center><br />';
 if($_GET['type'] == "fastnews") {
 	$content .= '<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center">
 				<tr>
@@ -60,7 +60,7 @@ if($_GET['type'] == "fastnews") {
 	{
 		$date = ($g_language == "br" OR $g_language == "pt") ? $tools->datePt($fetch->date, "dd m aaaa") : date("d M Y", $fetch->date);
 		$content .= '
-			<tr>
+			<tr class="'.(($i % 2 == 0) ? "tableContLight" : "tableContDark").'">
 				<td class="" width="25%">
 					<center>'.$date.'</center>
 				</td>
