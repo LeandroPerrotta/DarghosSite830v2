@@ -45,58 +45,8 @@ while($account = mysql_fetch_object($queryAccs)) {
 	
 	$changeEmailQuery = mysql_query("SELECT * FROM scheduler_changeemails WHERE account_id = '{$account->id}'", $webOld);
 	$changeEmail = mysql_fetch_object($changeEmailQuery);
-	mysql_query("INSERT INTO change_emails(newEmail, changeDate, account_id 
+	mysql_query("INSERT INTO change_emails(newEmail, changeDate, account_id)
 				 VALUES('{$changeEmail->email}', '{$changeEmail->date}', '{$changeEmail->account_id}')");
-	#TODO - Conferir se está completo...
-}
-
-// Bans
-$queryBans = mysql_query("SELECT * FROM bans", $otOld);
-while($ban = mysql_fetch_object($queryBans)) {
-	mysql_query("INSERT INTO bans VALUES(
-									'{$ban->type}', '{$ban->ip}', '{$ban->mask}',
-									'{$ban->player}', '{$ban->account}', '{$ban->time}',
-									'{$ban->reason_id}', '{$ban->action_id}', '{$ban->comment}',
-									'{$ban->banned_by}', '{$ban->id}')", $otNew);
-}
-
-// Groups
-$queryGroups = mysql_query("SELECT * FROM groups", $otOld);
-while($group = mysql_fetch_object($queryGroups)) {
-	mysql_query("INSERT INTO groups VALUES(
-									'{$ban->id}', '{$ban->name}', '{$ban->flags}','{$ban->access}', 
-									'{$ban->maxdepotitems}', '{$ban->maxviplist}')", $otNew);
-}
-
-// Guilds
-$queryGuilds = mysql_query("SELECT * FROM guilds", $otOld);
-while($guild = mysql_fetch_object($queryGuilds)) {
-	mysql_query("INSERT INTO guilds VALUES(
-									'{$guild->id}', '{$guild->name}', '{$guild->ownerid}',
-									'{$guild->creationdata}', '{$guild->guildstory}', '{$guild->motd}',
-									'{$guild->server}')", $otNew);
-}
-
-// Guild Ranks
-$queryGuildRank = mysql_query("SELECT * FROM guild_ranks", $otOld);
-while($guildRank = mysql_fetch_object($queryGuildRank)) {
-	mysql_query("INSERT INTO guild_rank VALUES(
-									'{$guildRank->id}', '{$guildRank->guild_id}', '{$guildRank->name}',
-									'{$guildRank->level}')", $otNew);
-}
-
-// Houses
-$queryHouses = mysql_query("SELECT * FROM houses", $otOld);
-while($house = mysql_fetch_object($queryHouses)) {
-	mysql_query("INSERT INTO houses VALUES('{$house->id}', '{$house->owner}', '{$house->paid}',
-										   '{$house->warnings}', '{$house->ownerAccount}')", $otNew);
-}
-
-// House Lists
-$queryHouseLists = mysql_query("SELECT * FROM house_lists", $otOld);
-while($houseList = mysql_fetch_object($queryHouseLists)) {
-	mysql_query("INSERT INTO house_lists VALUES('{$houseList->house_id}', '{$houseList->listid}',
-											    '{$houseList->list}')", $otNew);
 }
 
 // Players
@@ -131,5 +81,22 @@ while($player = mysql_fetch_object($queryPlayers)) {
 					'{$player->town_id}', '{$player->comment}', '{$player->hide}', '{$player->online}', 
 					'{$player->old_name}', '{$player->tutor_time}', '{$player->created}', '{$player->ping}', 
 					'{$_TIME}')", $webNew);
+}
+
+// News
+$queryNews = mysql_query("SELECT * FROM news", $otOld);
+while($new = mysql_fetch_object($queryNews)) {
+	$author = (is_numeric($new->autor)) ? $new->autor : "35415649";
+	mysql_query("INSERT INTO news VALUES(
+					'{$new->id}', '{$author}', '{$new->post_title}', 
+					'{$new->post}', '{$new->post_data}')", $webNew);
+}
+
+// New Ticker(Fast News)
+$queryNewTicker = mysql_query("SELECT * FROM news_tickers", $otOld);
+while($newTicker = mysql_fetch_object($queryNewTicker)) {
+	mysql_query("INSERT INTO fastnews VALUES(
+					'{$newTicker->id}', '{$newTicker->text}', '{$newTicker->text}',
+					'{$newTicker->date}', '{$newTicker->author}')", $webNew);
 }
 ?>
