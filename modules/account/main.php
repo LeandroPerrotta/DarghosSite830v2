@@ -187,7 +187,7 @@ if($login->logged())
 	$content .= '</table><br>
 	<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center">
 		<tr>
-			<td>'.$eHTML->simpleButton("contribute", "?act=payment.add").'</td>
+			<td>'.$eHTML->simpleButton("contribute", "?act=contribute").'</td>
 		</tr>
 	</table>
 	<br><br>';		
