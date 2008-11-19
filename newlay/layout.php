@@ -214,6 +214,11 @@ var LAYOUT_DIR = "<?php echo $layoutDir; ?>";
 									</tr>	
 									<tr>
 										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
+											<center><a href="?act=admin.blacklist"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_blacklist.png"></a>							
+										</td>
+									</tr>	
+									<tr>
+										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
 											<center><a href="?act=admin.payments"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_paymentsadmin.png"></a>							
 										</td>
 									</tr>	

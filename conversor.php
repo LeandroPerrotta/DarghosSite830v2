@@ -1,6 +1,7 @@
 <?php
 $_TIME = time();
 set_time_limit(60*25); 
+include("config.php");
 
 $otNew = mysql_pconnect("localhost:3309", "root", "987***REMOVED****");
 mysql_select_db("newot_new", $otNew);
@@ -135,5 +136,19 @@ while($newTicker = mysql_fetch_object($queryNewTicker)) {
 					'{$newTicker->date}', '{$newTicker->author}')", $webNew) or die (mysql_error($webNew));
 }
 echo "[feito]<br>";
-echo "Importação do banco concluida com exito.";
+
+echo "Importando premium accounts... ";
+
+// Payments
+// Old: account_id, premdays, date, premstatus, id
+$queryPremium = mysql_query("SELECT * FROM premium", $otOld) or die (mysql_error($otOld));
+while($premium = mysql_fetch_object($queryPremium)) {
+	mysql_query("INSERT INTO payments VALUES(
+					'{$premium->id}', '{$premium->premdays}', '{$premium->date}', 
+					'".$g_pgtPeriodCost[0][$premium->premdays]."', '0', '{$premium->account_id}',
+					'{$premium->premstatus}', '{$premium->date}', '0', '0', '0',
+					'".md5($premium->id)."')", $webNew) or die (mysql_error($webNew));
+}
+echo "[feito]<br>";
+echo "Importaï¿½ï¿½o do banco concluida com exito.";
 ?>

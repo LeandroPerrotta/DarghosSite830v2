@@ -264,7 +264,12 @@ $trans_subTopicPages = array(
 	'admin.paymentsnew' => array(
 		'br' => 'Ativar novo Pagamento',
 		'us' => 'Activate a new Payment'
-	),		
+	),	
+
+	'admin.blacklist' => array(
+		'br' => 'Administração de Blacklist',
+		'us' => 'Blacklist Management'
+	),
 	
 	'payment.details' => array(
 		'br' => 'Detalhes do Pagamento',
@@ -287,6 +292,31 @@ $trans_texts = array(
 	'account_create' => array(
 		'br' => 'Criar Conta',
 		'us' => 'Account Create'
+	),
+	
+	'since' => array(
+		'br' => 'Desde',
+		'us' => 'Since'
+	),
+	
+	'dateFormat' => array(
+		'br' => 'dia/mes/ano',
+		'us' => 'day/month/year'
+	),
+	
+	'newsType' => array(
+		'br' => 'Tipo de notícias',
+		'us' => 'News type'
+	),
+	
+	'news' => array(
+		'br' => 'Notícias',
+		'us' => 'News'
+	),
+	
+	'fastnews' => array(
+		'br' => 'Notícias rápidas',
+		'us' => 'Fast News'
 	),
 	
 	'characterToRecover' => array(

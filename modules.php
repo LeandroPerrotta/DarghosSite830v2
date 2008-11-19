@@ -283,6 +283,12 @@ if($_REQUEST['act'] != "")
 			$subtopic = $GLOBALS['trans_subTopicPages']['admin.paymentsnew'][$GLOBALS['g_language']];
 			include "modules/admin/payments.new.php";
 		break;	
+		
+		case "admin.blacklist";
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.blacklist'][$GLOBALS['g_language']];
+			include "modules/admin/blacklist.php";
+		break;
 
 /*
 //// Separação para inicialização de modulos PAGAMENTOS ////
