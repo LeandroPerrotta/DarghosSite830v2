@@ -268,12 +268,15 @@ class Tools
         exit;
 	}
 	
-	public function canUseName($nameString)
+	public function canUseName($nameString, $checkBlackList = true)
 	{
 		if(trim($nameString) != $nameString)
 			return false;	
 		
 		$palavras = explode(" ", $nameString);
+		
+		if($checkBlackList && $this->checkBlackList($nameString))
+			return false;
 		
 		if(count($palavras) > 3)
 			return false;
@@ -339,6 +342,23 @@ class Tools
 		
 		return true;
 	}	
+	
+	public function checkBlackList($string) {
+		$this->DB->query("SELECT * FROM blacklist_string");
+		
+		$isInBlackList = 0;
+		
+		while($fetch = $this->DB->fetch())
+		{
+			if(eregi($fetch->string, $string))
+				$isInBlackList++;
+		}
+		
+		if($isInBlackList == 0)
+			return false;
+		else
+			return true;		
+	}
 
 	public function getText($id) {
 		$db = DB::getInstance();
