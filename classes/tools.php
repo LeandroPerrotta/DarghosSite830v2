@@ -357,13 +357,15 @@ class Tools
 	public function getFormatNews($newsText) {
 		global $layoutDir;
 		
-		$firstChar = substr($newsText, 0, 1);
+		$string = str_split($newsText);
+		$firstChar = $string[3];
+		
 		if(is_numeric($firstChar)) {
 			return $newsText;
 		}
 		$imgSrc = "{$layoutDir}/images/fonts/{$firstChar}.png";
-		$rest = substr($newsText, 1);
-		return "<img src=\"{$imgSrc}\" alt=\"{$firstChar}\" />{$rest}";
+		$rest = substr($newsText, 4);
+		return '<img src="'.$imgSrc.'" alt="'.$firstChar.'" />'.$rest.'';
 	}
 }
 ?>
