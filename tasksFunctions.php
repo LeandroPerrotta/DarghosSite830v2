@@ -13,6 +13,8 @@ function task_highscores() {
 								name, level, experience 
 							FROM 
 								players
+							WHERE
+								group_id < '4'
 							ORDER BY
 								experience 
 							DESC 
@@ -34,6 +36,8 @@ function task_highscores() {
 								name, maglevel 
 							FROM 
 								players
+							WHERE
+								group_id < '4'
 							ORDER BY
 								maglevel
 							DESC 
@@ -59,7 +63,8 @@ function task_highscores() {
 								player_skills as skill
 							WHERE
 								player.id = skill.player_id AND
-								skill.skillid = '{$s_v}'
+								skill.skillid = '{$s_p}' AND
+								player.group_id < '4'
 							ORDER BY
 								skill.value
 							DESC 
