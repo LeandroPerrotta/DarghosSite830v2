@@ -42,6 +42,11 @@ $trans_topicPages = array(
 		'br' => 'Contribuições',
 		'us' => 'Contributions'
 	),	
+	
+	'server' => array(
+		'br' => 'Servidores',
+		'us' => 'Servers'
+	),		
 
 	'account' => array(
 		'br' => 'Conta',
@@ -280,6 +285,11 @@ $trans_subTopicPages = array(
 		'br' => 'Aceitar Pagamento',
 		'us' => 'Accept Payment'
 	),	
+	
+	'server.info' => array(
+		'br' => 'Informações do Servidor',
+		'us' => 'Server Informations'
+	),		
 
 	'community.highscores' => array(
 		'br' => 'Maiores Pontuadores',
@@ -456,7 +466,7 @@ $trans_texts = array(
 		'us' => 'Activated'
 	),		
 
-	'contribution_active' => array(
+	'contribution_expired' => array(
 		'br' => 'Expirada',
 		'us' => 'Expired'
 	),		

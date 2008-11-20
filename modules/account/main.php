@@ -161,12 +161,15 @@ if($login->logged())
 	$content .= '
 	<table cellspacing="1" cellpadding="0" border="0" width="95%" align="center">
 		<tr>
-			<td class="tableTop" colspan="4">'.$trans_texts['contributions'][$g_language].'</td>
+			<td class="tableTop" colspan="2">'.$trans_texts['contributions'][$g_language].'</td>
 		</tr>';
 		
 		if(count($account->getPayments()) == 0)
 		{
-			$content .= $trans_texts['no_contributions'][$g_language];
+			$content .= '
+				<tr>
+					<td class="tableContLight">'.$trans_texts['no_contributions'][$g_language].'</td>
+				</tr>';
 		}	
 		else
 		{		
@@ -176,10 +179,11 @@ if($login->logged())
 			{	
 				$payments->loadById($paymentId);
 				$payment_status = $g_pgtStatus[$payments->getInfo('status')];
+				$payment_identificator = ($payments->getInfo('auth') != 0) ? "?act=payment.details&auth=".md5($payments->getInfo('auth'))."" : "?act=payment.details&id=".md5($paymentId)."";
 				
 				$content .= '
 				<tr>
-					<td class="tableContLight">'.$trans_texts['contribution_info'][$g_language][0].''.$payments->getInfo('period').''.$trans_texts['contribution_info'][$g_language][1].''.$tools->datePt($payments->getInfo('activation'), "dd, mes, aa").''.$trans_texts['contribution_info'][$g_language][2].''.$trans_texts[$payment_status][$g_language].'.</td><td class="tableContLight"><center>'.$eHTML->simpleButton("details", "?act=payment.details&id=".md5($payments->getInfo('auth'))."").'</td>
+					<td class="tableContLight">'.$trans_texts['contribution_info'][$g_language][0].''.$payments->getInfo('period').''.$trans_texts['contribution_info'][$g_language][1].''.$tools->datePt($payments->getInfo('activation'), "dd, mes, aa").''.$trans_texts['contribution_info'][$g_language][2].''.$trans_texts[$payment_status][$g_language].'.</td><td class="tableContLight"><center>'.$eHTML->simpleButton("details", $payment_identificator).'</td>
 				</tr>';	
 			}	
 		}	

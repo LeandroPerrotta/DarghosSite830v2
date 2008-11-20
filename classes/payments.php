@@ -51,7 +51,7 @@ class Payments
 	
 	public function loadByIdEnc($IdEnc)
 	{
-		$this->DB->query("SELECT * FROM payments WHERE MD5(auth) = '".$IdEnc."'");
+		$this->DB->query("SELECT * FROM payments WHERE MD5(auth) = '".$IdEnc."' OR MD5(id) = '".$IdEnc."' AND auth = 0");
 		if($this->DB->num_rows() != 0)
 		{
 			$fetch = $this->DB->fetch();

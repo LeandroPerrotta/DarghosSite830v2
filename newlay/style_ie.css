@@ -56,6 +56,11 @@ img { border: none; }
 	color: white;	
 }
 
+#copyrights a{
+	font-weight: bold;
+	color: white;	
+}
+
 .logotype{
 	width: 950px;
 	height: 200px;
@@ -127,91 +132,78 @@ img { border: none; }
 }
 
 .leftMenuTitle{
-	vertical-align: top;
+	background: url(images/menu/box_left.png) no-repeat 14px top;
 	width: 172px;
 	height: 38px;	
-	background-image: url(images/menu/box_left.png);
 }
 
 .leftMenuCont{
+	background: url(images/menu/menu_link.png) repeat-y 33px top; 	
 	width: 144px;
 	height: 22px;	
-	padding-left: 18px;
-	background-image: url(images/menu/menu_link.png); 
-	background-repeat: repeat-y;
-	background-position: 18px 0;	
+}
+
+.leftMenuCont a{
+	margin-left: 33px;
 }
 
 .leftMenuCont2{
+	background: url(images/menu/menu_fund-over.png) repeat-y 33px top; 	
 	width: 144px;
 	height: 22px;	
-	padding-left: 18px;
-	background-image: url(images/menu/menu_fund-over.png); 
-	background-repeat: repeat-y;
-	background-position: 18px 0;	
+}
+
+.leftMenuCont2 a{
+	margin-left: 33px;
 }
 
 .leftMenuDown{
-	background: url(images/menu/menuEnd.png) repeat-y 27px top; 	
-	padding-left: 18px;	
-	background-position: 18px 0;		
+	background: url(images/menu/menuEnd.png) repeat-y 33px top; 	
 	width: 150px;
 	height: 16px;	
 }
 
 .leftSimpleMenuDown{
-	background: url(images/menu/simpleMenuEnd.png) repeat-y 27px top; 	
-	padding-left: 18px;	
-	background-position: 18px 0;			
+	background: url(images/menu/simpleMenuEnd.png) repeat-y 33px top; 	
 	width: 149px;
-	height: 11px;	
+	height: 11px;		
 }
 
 .rightMenuTitle{
-	vertical-align: top;
-	width: 172px;
-	height: 38px;	
-	background-image: url(images/menu/box_right.png)
-}
-
-.contasBox{
-	background: url(images/menu/box_accounts.png) no-repeat 22px top;
-	width: 172px;
-	height: 38px;	
-}
-
-.minhaContaBox{
-	background: url(images/menu/box_myaccount.png) no-repeat 22px top;
-	width: 172px;
-	height: 38px;	
-}
-
-.adminBox{
-	background: url(images/menu/box_admin.png) no-repeat 22px top;
+	background: url(images/menu/box_right.png) no-repeat 21px top;
 	width: 172px;
 	height: 38px;	
 }
 
 .rightMenuCont{
-	background: url(images/menu/menu_link.png) repeat-y 11px top; 	
+	background: url(images/menu/menu_link.png) repeat-y 26px top; 	
 	width: 144px;
 	height: 22px;	
+}
+
+.rightMenuCont a{
+	margin-left: 26px;
 }
 
 .rightMenuCont2{
-	background: url(images/menu/menu_fund-over.png) repeat-y 11px top; 	
+	background: url(images/menu/menu_fund-over.png) repeat-y 26px top; 	
 	width: 144px;
 	height: 22px;	
 }
 
+.rightMenuCont2 a{
+	margin-left: 26px;
+}
+
+
 .rightMenuDown{
-	background: url(images/menu/menuEnd.png) repeat-y 11px top; 	
+	background: url(images/menu/menuEnd.png) repeat-y 26px top; 	
 	width: 150px;
 	height: 16px;	
 }
 
 .rightSimpleMenuDown{
-	background: url(images/menu/simpleMenuEnd.png) repeat-y 11px top; 	
+	background: url(images/menu/simpleMenuEnd.png) repeat-y 26px top; 	
 	width: 149px;
 	height: 11px;	
 }

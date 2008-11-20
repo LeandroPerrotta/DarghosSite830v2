@@ -314,7 +314,17 @@ if($_REQUEST['act'] != "")
 			$topic = "Set";
 			$subtopic = "Set";
 			include "set.php";
-		break;				
+		break;			
+
+/*
+//// Separação para inicialização de modulos SERVERS ////
+*/			
+
+		case "servers";	
+			$topic = $GLOBALS['trans_topicPages']['server'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['server.info'][$GLOBALS['g_language']];
+			include "modules/general/server.php";
+		break;	
 	}
 }
 else
@@ -325,6 +335,6 @@ else
 
 	$topic = $GLOBALS['trans_topicPages']['home'][$GLOBALS['g_language']];
 	$subtopic = $GLOBALS['trans_subTopicPages']['lastnews'][$GLOBALS['g_language']];
-	include "modules/news/main.php";		
+	include "modules/news/main.php";	
 }
 ?>

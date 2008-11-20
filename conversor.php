@@ -32,6 +32,7 @@ mysql_query("TRUNCATE change_emails", $webNew)  or die (mysql_error());
 mysql_query("TRUNCATE news", $webNew)  or die (mysql_error());
 mysql_query("TRUNCATE fastnews", $webNew)  or die (mysql_error());
 mysql_query("TRUNCATE characterlist", $webNew)  or die (mysql_error());
+mysql_query("TRUNCATE payments", $webNew)  or die (mysql_error());
 
 mysql_query("TRUNCATE accounts", $loginServer)  or die (mysql_error());
 mysql_query("TRUNCATE characterlist", $loginServer)  or die (mysql_error());

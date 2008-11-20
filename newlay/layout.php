@@ -15,12 +15,6 @@ else
 	echo '<link href="'.$layoutDir.'/style_ff.css" rel="stylesheet" type="text/css">';
 }
 ?>
-<script>
-<!--
-var LAYOUT_DIR = "<?php echo $layoutDir; ?>";
-//-->
-</script>
-<script language="JavaScript" type="text/javascript" src="<? echo "$layoutDir"; ?>/functions.js"></script>
 
 <!--[if lt IE 7]>
         <script type="text/javascript" src="<? echo "$layoutDir"; ?>/unitpngfix.js"></script>
@@ -68,9 +62,9 @@ var LAYOUT_DIR = "<?php echo $layoutDir; ?>";
 				<table border="0" cellpadding="0" cellspacing="0">
 					<tr>
 						<td align="center" valign="top" width="200px">
-							<table style="margin: 10px 0 0 0;" border="0" cellpadding="0" cellspacing="0">
-								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_left.png) no-repeat top;">
-									<td class="leftMenuTitle">
+							<table style="margin: 10px 0 0 0;" width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr class="leftMenuTitle">
+									<td>
 										<img src="<? echo $layoutDir; ?>/images/menu/<? echo $g_language; ?>/box_news.png">
 									</td>
 								</tr>	
@@ -89,9 +83,60 @@ var LAYOUT_DIR = "<?php echo $layoutDir; ?>";
 									</td>
 								</tr>									
 							</table>	
-							<table border="0" cellpadding="0" cellspacing="0">
-								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_left.png) no-repeat top;">
-									<td class="leftMenuTitle">
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr class="leftMenuTitle">
+									<td>
+									<? 
+									if(!$login->logged())				
+										echo '<img src="'.$layoutDir.'/images/menu/'.$g_language.'/box_accounts.png">';
+									else
+										echo '<img src="'.$layoutDir.'/images/menu/'.$g_language.'/box_myaccount.png">';
+									?>														
+									</td>
+								</tr>								
+									<? 
+									if(!$login->logged())
+									{
+										echo '
+										<tr>
+											<td class="leftMenuCont" onMouseOver="LoadBG(this,\'leftMenuCont2\')" onMouseOut="LoadBG(this,\'leftMenuCont\')">
+												<a href="?act=account.register"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_register.png"></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="leftMenuCont" onMouseOver="LoadBG(this,\'leftMenuCont2\')" onMouseOut="LoadBG(this,\'leftMenuCont\')">
+												<a href="?act=account.login"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_login.png"></a>
+											</td>
+										</tr>
+										<tr>
+											<td class="leftMenuCont" onMouseOver="LoadBG(this,\'leftMenuCont2\')" onMouseOut="LoadBG(this,\'leftMenuCont\')">
+												<a href="?act=lostInterface"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_lostaccount.png"></a>
+											</td>
+										</tr>';
+									}
+									else
+									{
+										echo '
+										<tr>
+											<td class="leftMenuCont" onMouseOver="LoadBG(this,\'leftMenuCont2\')" onMouseOut="LoadBG(this,\'leftMenuCont\')">
+												<a href="?act=account.main"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_accountMain.png"></a>						
+											</td>
+										</tr>
+										<tr>
+											<td class="leftMenuCont" onMouseOver="LoadBG(this,\'leftMenuCont2\')" onMouseOut="LoadBG(this,\'leftMenuCont\')">
+												<a href="?act=account.logout"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_logout.png"></a>
+											</td>
+										</tr>';						
+									}
+							?>	
+							<tr class="leftMenuDown">
+								<td>
+								</td>
+							</tr>										
+							</table>							
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr class="leftMenuTitle">
+									<td>
 										<img src="<? echo $layoutDir; ?>/images/menu/<? echo $g_language; ?>/box_community.png">
 									</td>
 								</tr>	
@@ -111,7 +156,7 @@ var LAYOUT_DIR = "<?php echo $layoutDir; ?>";
 								</tr>									
 							</table>								
 						</td>
-						<td>
+						<td valign="top">
 							<table style="margin: 10px 0 0 0;" border="0" cellpadding="0" cellspacing="0">
 								<tr>
 									<td class="contTop">
@@ -130,53 +175,25 @@ var LAYOUT_DIR = "<?php echo $layoutDir; ?>";
 							</table>
 						</td>
 						<td valign="top" width="200px">
-							<center>
-							<table style="margin: 10px 0 0 0;" border="0" cellpadding="0" cellspacing="0">
-								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_right.png) no-repeat right top;">
-									<td class="rightMenuTitle">
-									<? 
-									if(!$login->logged())				
-										echo '<img src="'.$layoutDir.'/images/menu/'.$g_language.'/box_accounts.png">';
-									else
-										echo '<img src="'.$layoutDir.'/images/menu/'.$g_language.'/box_myaccount.png">';
-									?>														
+					
+							<table style="margin: 10px 0 0 0;" width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr class="rightMenuTitle">
+									<td>
+										<img src="<? echo $layoutDir; ?>/images/menu/<? echo $g_language; ?>/box_servers.png">
 									</td>
-								</tr>								
-									<? 
-									if(!$login->logged())
-									{
-										echo '
-										<tr>
-											<td class="rightMenuCont" onMouseOver="LoadBG(this,\'rightMenuCont2\')" onMouseOut="LoadBG(this,\'rightMenuCont\')">
-												<a href="?act=account.register"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_register.png"></a>
-											</td>
-										</tr>
-										<tr>
-											<td class="rightMenuCont" onMouseOver="LoadBG(this,\'rightMenuCont2\')" onMouseOut="LoadBG(this,\'rightMenuCont\')">
-												<a href="?act=account.login"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_login.png"></a>
-											</td>
-										</tr>
-										<tr>
-											<td class="rightMenuCont" onMouseOver="LoadBG(this,\'rightMenuCont2\')" onMouseOut="LoadBG(this,\'rightMenuCont\')">
-												<a href="?act=lostInterface"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_lostaccount.png"></a>
-											</td>
-										</tr>';
-									}
-									else
-									{
-										echo '
-										<tr>
-											<td class="rightMenuCont" onMouseOver="LoadBG(this,\'rightMenuCont2\')" onMouseOut="LoadBG(this,\'rightMenuCont\')">
-												<a href="?act=account.main"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_accountMain.png"></a>						
-											</td>
-										</tr>
-										<tr>
-											<td class="rightMenuCont" onMouseOver="LoadBG(this,\'rightMenuCont2\')" onMouseOut="LoadBG(this,\'rightMenuCont\')">
-												<a href="?act=account.logout"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_logout.png"></a>
-											</td>
-										</tr>';						
-									}
-											
+								</tr>	
+								<?
+								foreach($g_world as $world)
+								{
+									echo '
+									<tr>
+										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,\'rightMenuCont2\')" onMouseOut="LoadBG(this,\'rightMenuCont\')">
+											<a href="?act=servers&name='.$world['name'].'"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_'.$world['name'].'.online.png"></a>							
+										</td>
+									</tr>';
+								}								
+	
+				
 							if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 							{ 
 							?>	
@@ -186,40 +203,40 @@ var LAYOUT_DIR = "<?php echo $layoutDir; ?>";
 							</tr>										
 							</table>	
 							
-							<table style="margin: 0 0 0 0;" border="0" cellpadding="0" cellspacing="0">
-								<tr style="background: url(<? echo $layoutDir; ?>/images/menu/box_right.png) no-repeat right top;">
-									<td class="rightMenuTitle">
+							<table style="margin: 0 0 0 0;" width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr class="rightMenuTitle">
+									<td>
 										<img src="<? echo $layoutDir; ?>/images/menu/<? echo $g_language; ?>/box_admin.png">
 									</td>
 								</tr>		
-									<tr class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
-										<td>
-											<center><a href="?act=admin.news"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_newsadmin.png"></a>
+									<tr>
+										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
+											<a href="?act=admin.news"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_newsadmin.png"></a>
 										</td>
 									</tr>
 									<tr>
-										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
-											<center><a href="?act=admin.texts"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_texts.png"></a>							
+										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
+											<a href="?act=admin.texts"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_texts.png"></a>							
 										</td>
 									</tr>
 									<tr>
-										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
-											<center><a href="?act=admin.faqs"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_faqs.png"></a>							
+										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
+											<a href="?act=admin.faqs"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_faqs.png"></a>							
 										</td>
 									</tr>
 									<tr>
-										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
-											<center><a href="?act=admin.fastnews"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_fastnews.png"></a>							
+										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
+											<a href="?act=admin.fastnews"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_fastnews.png"></a>							
 										</td>
 									</tr>	
 									<tr>
-										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
-											<center><a href="?act=admin.blacklist"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_blacklist.png"></a>							
+										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
+											<a href="?act=admin.blacklist"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_blacklist.png"></a>							
 										</td>
 									</tr>	
 									<tr>
-										<td class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
-											<center><a href="?act=admin.payments"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_paymentsadmin.png"></a>							
+										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
+											<a href="?act=admin.payments"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_paymentsadmin.png"></a>							
 										</td>
 									</tr>	
 								<tr class="rightSimpleMenuDown">
@@ -255,6 +272,12 @@ var LAYOUT_DIR = "<?php echo $layoutDir; ?>";
 		</tr>			
 	</table>
 </div><br>
-<div id="copyrights">Desenvolvido por UltraxSoft (2005-2008) - Todos direitos Reservados.</div>
+<div id="copyrights">Desenvolvido por <a href="http://www.ultraxsoft.com">UltraxSoft</font></a> (2005-2008) - Todos direitos Reservados.</div>
+<script>
+<!--
+var LAYOUT_DIR = "<?php echo $layoutDir; ?>";
+//-->
+</script>
+<script language="JavaScript" type="text/javascript" src="<? echo "$layoutDir"; ?>/functions.js"></script>
 </body>
 </html>
