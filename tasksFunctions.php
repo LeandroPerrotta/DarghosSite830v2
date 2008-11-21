@@ -85,4 +85,60 @@ function task_highscores() {
 		}
 	}
 }
+// Worlds:
+// int id, string name, string ip, int port, int status, int players, int uptime, 
+// int record, int monsters, int recordIn, string version, int max, string location, 
+// int onSince, string sqlResource
+function task_worldsstatus() {
+	$db = DB::getInstance();
+	$db->query("SELECT * FROM worlds");
+	$queryes = array();
+	while($world = $db->fetch()) {
+		@$fp = fsockopen($world->ip, (int)$world->port, $errno, $errstr, 10) or die($errstr);
+		if($fp) {
+			fwrite($fp, chr(6).chr(0).chr(255).chr(255).'info');
+			$data = '';
+			do {
+   				$data .= fgets($fp, 2200);
+			} while(!feof($fp));
+			fclose($fp);
+			
+			$xml = simplexml_load_string($data);
+			$_record = $xml->players['peak'];
+			if($_record > $world->record) {
+				$record = $_record;
+				$recordIn = time();
+			} else {
+				$record = $world->record;
+				$recordIn = $world->recordIn;
+			}
+			$queryes[] = "UPDATE 
+							worlds 
+						  SET
+						  	status = '1',
+						  	players = '".$xml->players['online']."',
+						  	uptime = '".$xml->serverinfo['uptime']."',
+						  	monsters = '".$xml->monsters['total']."',
+						  	max = '".$xml->players['max']."',
+							record = '{$record}',
+							recordIn = '{$recordIn}'
+						  WHERE
+						  	id = '{$world->id}'";
+		} else {
+			$queryes[] = "UPDATE 
+							worlds 
+						  SET
+						  	status = '0',
+						  	players = '0',
+						  	uptime = '0',
+						  	monsters = '0',
+						  WHERE
+						  	id = '{$world->id}'";
+		}
+	}
+	
+	foreach($queryes as $p => $v) {
+		$db->query($queryes[$p]);
+	}
+}
 ?>

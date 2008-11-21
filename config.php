@@ -1,4 +1,5 @@
 <?
+/*
 $g_world = array(
 	array(
 		'name' => 'Tenerian',
@@ -7,7 +8,7 @@ $g_world = array(
 		'onSince' => 'Fev/2008',
 		'population' => 'full',
 		'sqlResource' => 'serverI'
-	)/*,
+	),
 	array(
 		'name' => 'Uniterian',
 		'id' => '1',
@@ -15,8 +16,10 @@ $g_world = array(
 		'onSince' => 'Set/2008',
 		'population' => 'empty',
 		'sqlResource' => 'serverII'
-	),	*/
+	)
 );	
+*/
+$g_world = array(); // To be implemented...
 
 $g_skill = array(
 	0 => 'fist',
@@ -168,6 +171,10 @@ $g_tasksMap = array(
 	1 => array(
 		'name' => "highscores",
 		'eachTime' => 60 * 60 * 24
+	), 
+	2 => array(
+		'name' => "worldsstatus",
+		'eachTime' => 60 * 10
 	)
 );
 

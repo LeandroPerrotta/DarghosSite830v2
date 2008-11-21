@@ -185,10 +185,11 @@ else
 								<?
 								foreach($g_world as $world)
 								{
+									$status = ((int)$world['status'] == 1) ? "online" : "offline";
 									echo '
 									<tr>
 										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,\'rightMenuCont2\')" onMouseOut="LoadBG(this,\'rightMenuCont\')">
-											<a href="?act=servers&name='.$world['name'].'"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_'.$world['name'].'.online.png"></a>							
+											<a href="?act=servers&name='.$world['name'].'"><img src="'.$layoutDir.'/images/menu/'.$g_language.'/label_'.$world['name'].'.'.$status.'.png"></a>							
 										</td>
 									</tr>';
 								}								

@@ -41,6 +41,16 @@ session_start();
 	
 	$DB = $engine->loadObject('DB');	
 
+	
+/*
+//// Carregar/implementar worlds
+*/
+	$DB->query("SELECT * FROM worlds");
+	
+	while($_world_ = $DB->fetchArray()) {
+		$g_world[] = $_world_;
+	}	
+	
 /*
 //// Carrega estrutura de ferramentas
 */	

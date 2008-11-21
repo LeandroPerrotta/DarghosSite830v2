@@ -36,6 +36,11 @@ class DB
 		return ($this->query_temp) ? @mysql_fetch_object($this->query_temp) : false;
 	}	
 	
+	public function fetchArray()
+	{
+		return ($this->query_temp) ? @mysql_fetch_array($this->query_temp) : false;
+	}
+	
 	public function num_rows()
 	{
 		return ($this->query_temp) ? @mysql_num_rows($this->query_temp) : false;
