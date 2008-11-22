@@ -119,7 +119,7 @@ $g_city = array(
 	),			
 );
 
-$g_language = 'br';
+$g_language = ($_COOKIE['lang'] != '') ? $_COOKIE['lang'] : "br";
 
 $g_linkResource = array(
 	'site' => null,

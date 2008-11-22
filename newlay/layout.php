@@ -26,8 +26,9 @@ else
 		<tr>
 			<td class="logotype">
 				<div id="langSelectUs">
+					<?php /* ?act=set&lang=us&redirect=<? $ex = explode("?", $_SERVER['REQUEST_URI']); echo '?'.str_replace("&", ";", $ex[1]); ?> */ ?>
 					<a href="#"><img src="<? echo "$layoutDir"; ?>/images/general/us.png"></a>
-					<a href="?act=set&lang=br&redirect=<? $ex = explode("?", $_SERVER['REQUEST_URI']); echo '?'.$ex[1]; ?>"><img src="<? echo "$layoutDir"; ?>/images/general/br.png"></a>
+					<a href="?act=set&lang=br&redirect=<? $ex = explode("?", $_SERVER['REQUEST_URI']); echo '?'.str_replace("&", ";", $ex[1]); ?>"><img src="<? echo "$layoutDir"; ?>/images/general/br.png"></a>
 				</div>
 			</td>
 		</tr>

@@ -7,15 +7,15 @@ class mySQL
 		(
 			'host' => 'localhost',
 			'user' => 'root',
-			'database' => 'site_new',
-			'password' => '99491074',
+			'database' => 'web',
+			'password' => 'secret',
 		),
 		'serverI' => array
 		(
 			'host' => 'localhost',
 			'user' => 'root1',
-			'database' => 'newot_new',
-			'password' => '99491074',	
+			'database' => 'gameserver',
+			'password' => 'secret',	
 		),
 		'serverII' => array
 		(
@@ -29,7 +29,7 @@ class mySQL
 			'host' => 'localhost',
 			'user' => 'root3',
 			'database' => 'ot_login',
-			'password' => '99491074'		
+			'password' => 'secret'		
 		)		
 	);
 	

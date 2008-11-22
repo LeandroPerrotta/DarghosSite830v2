@@ -298,6 +298,30 @@ $trans_subTopicPages = array(
 );
 
 $trans_texts = array(
+	'players' => array(
+		'br' => 'Jogadores',
+		'us' => 'Players'
+	),
+	
+	'max' => array(
+		'br' => 'Limite',
+		'us' => 'Limit'
+	),
+	
+	'record' => array(
+		'br' => 'Pico',
+		'us' => 'Peak'
+	),
+	
+	'recordIn' => array(
+		'br' => 'Pico alcançado em',
+		'us' => 'Peak reached in'
+	),
+	
+	'monsters' => array(
+		'br' => 'Monstros no mapa',
+		'us' => 'Monsters in map'
+	),
 
 	'account_create' => array(
 		'br' => 'Criar Conta',
