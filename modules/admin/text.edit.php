@@ -69,7 +69,7 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 			}
 			else
 			{
-				$DB->query("UPDATE news SET description = '".$_POST['textDesc']."', pt = '".$tools->htmlUncrypt($_POST['textPost_pt'])."', us = '".$tools->htmlUncrypt($_POST['textPost_us'])."' WHERE id = '".$_GET['id']."'");
+				$DB->query("UPDATE texts SET description = '".$_POST['textDesc']."', pt = '".$tools->htmlUncrypt($_POST['textPost_pt'])."', us = '".$tools->htmlUncrypt($_POST['textPost_us'])."' WHERE id = '".$_GET['id']."'");
 				
 				$condition = array
 				(
