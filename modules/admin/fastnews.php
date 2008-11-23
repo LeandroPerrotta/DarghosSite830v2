@@ -35,12 +35,14 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 	{
 		// Pequeno módulo feito para mostrar 25% do começo da pergunta
 		// 3 pontos(...) e 25% do final da pergunta, para não extravasar o select box...
-		$len = strlen($fetch->new_br);
+		/*$len = strlen($fetch->new_br);
 		$initMLen = ceil(@($len * 5) / 100);
 		$finalMLen = ceil(@($len * 95) / 100);
 		$fastnew = substr($fetch->new_br, 0, $initMLen).
 						" [...] ".
-				 substr($fetch->new_br, $finalMLen, $len);
+				 substr($fetch->new_br, $finalMLen, $len);*/
+				 
+		$fastnew = substr($fetch->new_br, 0, 75).((strlen($fetch->new_br) > 75) ? "[...]": "");
 		$fnews[] = array('valueName' => $fastnew, 'valueId' => $fetch->id);
 	}
 	
