@@ -359,15 +359,29 @@ class Tools
 		else
 			return true;		
 	}
+	
+	public function htmlUncrypt($string) {
+		$trans_tbl1 = get_html_translation_table(HTML_ENTITIES);
+		foreach($trans_tbl1 as $ascii => $htmlentitie) {
+			$trans_tbl2[$ascii] = '&#'.ord($ascii).';';
+		}
+		$trans_tbl1 = array_flip($trans_tbl1);
+		$trans_tbl2 = array_flip($trans_tbl2);
+		return strtr(strtr($string, $trans_tbl1), $trans_tbl2);
+	}
+	
+	public function htmlCrypt($string) {
+		return htmlentities($string, ENT_QUOTES);
+	}
 
 	public function getText($id) {
 		$db = DB::getInstance();
 		$db->query("SELECT * FROM texts WHERE id = '{$id}'");
 		if($db->num_rows() > 0) {
 			if($GLOBALS['g_language'] == "br" OR $GLOBALS['g_language'] == "pt") {
-				return $db->fetch()->pt;
+				return $this->htmlUncrypt($db->fetch()->pt);
 			} else {
-				return $db->fetch()->us;
+				return $this->htmlUncrypt($db->fetch()->us);
 			}
 		} else {
 			return false;

@@ -56,3 +56,12 @@ function newsTicker(id)
 	}		
 }
 
+function HideTicker(id) {
+	var objct = _g(id);
+	if(objct.style.display == "none") {
+		objct.style.display = "";
+	} else {
+		objct.style.display = "none";
+	}
+}
+

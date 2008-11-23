@@ -16,7 +16,8 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 		else
 		{
 			$DB->query("INSERT INTO texts(description, pt, us) VALUES('".$_POST['textDesc']."',
-												 '".$_POST['textPost_pt']."','".$_POST['textPost_us']."')");
+												 '".$tools->htmlCrypt($_POST['textPost_pt'])."',
+												 '".$tools->htmlCrypt($_POST['textPost_us'])."')");
 			
 			$condition = array
 			(

@@ -14,11 +14,11 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 				include("classes/fckeditor/fckeditor.php") ;				
 				$oFCKeditor = new FCKeditor('textPost_pt') ;
 				$oFCKeditor->BasePath	= "classes/fckeditor/";
-				$oFCKeditor->Value		= $fetch->pt ;
+				$oFCKeditor->Value		= $tools->htmlUncrypt($fetch->pt) ;
 		
 				$oFCKeditor2 = new FCKeditor('textPost_us') ;
 				$oFCKeditor2->BasePath	= "classes/fckeditor/";
-				$oFCKeditor2->Value		= $fetch->us ;
+				$oFCKeditor2->Value		= $tools->htmlUncrypt($fetch->us) ;
 
 				$content .= '
 				'.$eHTML->formStart('?act=admin.editText&id='.$_POST['text_id'].'').'
@@ -69,7 +69,7 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 			}
 			else
 			{
-				$DB->query("UPDATE news SET description = '".$_POST['textDesc']."', pt = '".$_POST['textPost_pt']."', us = '".$_POST['textPost_us']."' WHERE id = '".$_GET['id']."'");
+				$DB->query("UPDATE news SET description = '".$_POST['textDesc']."', pt = '".$tools->htmlUncrypt($_POST['textPost_pt'])."', us = '".$tools->htmlUncrypt($_POST['textPost_us'])."' WHERE id = '".$_GET['id']."'");
 				
 				$condition = array
 				(

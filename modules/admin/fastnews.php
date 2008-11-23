@@ -36,8 +36,8 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 		// Pequeno módulo feito para mostrar 25% do começo da pergunta
 		// 3 pontos(...) e 25% do final da pergunta, para não extravasar o select box...
 		$len = strlen($fetch->new_br);
-		$initMLen = ceil(@($len * 25) / 100);
-		$finalMLen = ceil(@($len * 75) / 100);
+		$initMLen = ceil(@($len * 5) / 100);
+		$finalMLen = ceil(@($len * 95) / 100);
 		$fastnew = substr($fetch->new_br, 0, $initMLen).
 						" [...] ".
 				 substr($fetch->new_br, $finalMLen, $len);
