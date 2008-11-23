@@ -42,7 +42,7 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 						" [...] ".
 				 substr($fetch->new_br, $finalMLen, $len);*/
 				 
-		$fastnew = substr($fetch->new_br, 0, 75).((strlen($fetch->new_br) > 75) ? "[...]": "");
+		$fastnew = substr($fetch->new_br, 0, 50).((strlen($fetch->new_br) > 50) ? "[...]": "");
 		$fnews[] = array('valueName' => $fastnew, 'valueId' => $fetch->id);
 	}
 	
