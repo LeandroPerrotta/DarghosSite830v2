@@ -141,4 +141,52 @@ function task_worldsstatus() {
 		$db->query($queryes[$p]);
 	}
 }
+
+function task_premiumdays() {
+	$db = DB::getInstance();
+	$db->query("SELECT * FROM accounts WHERE premdays > 0");
+	$toUpdate = array();
+	while($account = $db->fetch()) {
+		$lostDaysTime = time() - $account->lastday;
+		$lostInDays = @floor($lostDaysTime / (60 * 60 * 24));
+		if($lostInDays > $account->premdays) {
+			// Cabo premium days
+			$toUpdate[] = array('account' => $account->id, 'premdays' => 0, 'lastday' => time());
+		} else {
+			// Ainda tem
+			$toUpdate[] = array('account' => $account->id, 
+								'premdays' => $account->premdays - $lostInDays, 
+								'lastday' => time());
+		}
+	}
+	
+	foreach($toUpdate as $p => $v) {
+		#Site
+		$db->query("UPDATE 
+						accounts 
+					SET 
+						premdays = '".$toUpdate[$p]['premdays']."',
+						lastday = '".$toUpdate[$p]['lastday']."'
+					WHERE
+						id = '".$toUpdate[$p]['account']."'");
+		
+		#Login
+		$db->query("UPDATE 
+						accounts 
+					SET 
+						premdays = '".$toUpdate[$p]['premdays']."'
+					WHERE
+						id = '".$toUpdate[$p]['account']."'", "loginserver");
+		
+		#Game servers
+		foreach($GLOBALS['g_world'] as $p => $v) {
+			$db->query("UPDATE 
+							accounts 
+						SET 
+							premdays = '".$toUpdate[$p]['premdays']."'
+						WHERE
+							id = '".$toUpdate[$p]['account']."'", $GLOBALS['g_world'][$p]['sqlResource']);
+		}
+	}
+}
 ?>

@@ -175,6 +175,10 @@ $g_tasksMap = array(
 	2 => array(
 		'name' => "worldsstatus",
 		'eachTime' => 60 * 10
+	),
+	3 => array(
+		'name' => "premiumdays",
+		'eachTime' => 60 * 60 * 24
 	)
 );
 
