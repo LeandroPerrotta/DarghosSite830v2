@@ -47,7 +47,7 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 		}
 		else
 		{
-			if(!$_POST['newTitle'] OR !$_POST['newPost'])
+			if(!$_POST['new_br'] OR !$_POST['new_us'])
 			{
 				$warn = $lang->getWarning('geral.camposVazios');
 				$condition = array
