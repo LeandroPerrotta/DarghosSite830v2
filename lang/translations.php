@@ -1301,6 +1301,18 @@ $trans_texts = array(
 		'us' => '',
 	),		
 	
+	'vocations' => array(
+		'Begginer',
+		'Sorcerer',
+		'Druid',
+		'Paladin',
+		'Knight',
+		'Master Sorcerer',
+		'Elder Druid',
+		'Royal Paladin',
+		'Elite Knight'
+	)
+	
 	
 	
 	

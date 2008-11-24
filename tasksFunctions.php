@@ -195,4 +195,46 @@ function task_premiumdays() {
 		}
 	}
 }
+//id 	name 	account_id 	world_id 	level 	experience 	sex 	vocation 	
+//maglevel 	lastlogin 	redskulltime 	guildnick 	rank_id 	town_id 	comment 	
+//hide 	online 	old_name 	tutor_since 	creation 	ping 	lastUpdate
+function task_playersinfos() {
+	$db = DB::getInstance();
+	$queryes = array();
+	foreach($GLOBALS['g_world'] as $p => $v) {
+		$worldId = $GLOBALS['g_world'][$p]['id'];
+		$db->query("SELECT name, account_id, level, 
+						   experience, sex, vocation, 
+						   maglevel, lastlogin, redskulltime, 
+						   guildnick, rank_id, town_id,
+						   online, id
+					FROM players WHERE online = '1'", $GLOBALS['g_world'][$p]['sqlResource']);
+		while($player = $db->fetch()) {
+			$queryes[] = "UPDATE
+							characterlist
+						  SET
+						  	name = '{$player->name}',
+						  	account_id = '{$player->account_id}',
+						  	level = '{$player->level}',
+						  	experience = '{$player->experience}',
+						  	sex = '{$player->sex}',
+						  	vocation = '{$player->vocation}',
+						  	maglevel = '{$player->maglevel}',
+						  	lastlogin = '{$player->lastlogin}',
+						  	redskulltime = '{$player->redskulltime}',
+						  	guildnick = '{$player->guildnick}',
+						  	rank_id = '{$player->rank_id}',
+						  	town_id = '{$player->town_id}',
+						  	online = '1',
+						  	lastUpdate = '".time()."'
+						  WHERE
+						  	id = '{$player->id}' AND
+						  	world_id = '{$worldId}'";
+		}
+	}
+	
+	foreach($queryes as $p => $v) {
+		$db->query($queryes[$p]);
+	}
+}
 ?>

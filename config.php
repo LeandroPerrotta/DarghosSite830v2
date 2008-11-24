@@ -179,6 +179,10 @@ $g_tasksMap = array(
 	3 => array(
 		'name' => "premiumdays",
 		'eachTime' => 60 * 60 * 24
+	),
+	4 => array(
+		'name' => "playersinfos",
+		'eachTime' => 60 * 10
 	)
 );
 
