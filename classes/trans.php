@@ -341,7 +341,7 @@ class Trans
 		'char.sucesso' => array(
 			'br' => array(
 				'title' => 'Personagem criado com sucesso!',
-				'msg' => 'O seu personagem foi criado com sucesso! <br><br> Você já pode começar a se divertir conosco, para jogar basta fazer o login no jogo, nosso IP é: <b>login.darghos.com</b>!<br><br>Desejamos uma boa diversão!<br>Equipe UltraxSoft.'), 		
+				'msg' => 'O seu personagem foi criado com sucesso! <br><br> Você já pode começar a se divertir conosco, para jogar basta fazer o login no IP do servidor escolhido, para saber o IP do seu servidor acesse-o pelo nome no menu direito Servidores!<br><br>Desejamos uma boa diversão!<br>Equipe UltraxSoft.'), 		
 			'us' => array(
 				'title' => '',
 				'msg' => '')		

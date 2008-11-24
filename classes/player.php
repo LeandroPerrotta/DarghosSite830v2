@@ -64,7 +64,20 @@ class Player
 		$serverDB = Tools::getWorldResourceById($this->data['world_id']);
 	
 		//Insere o personagem na DB do mundo escolhido
-		DB::query("INSERT INTO `players`(`name`,`account_id`,`sex`,`vocation`,`experience`,`level`,`health`,`healthmax`,`mana`,`manamax`,`direction`,`lookbody`,`lookfeet`,`lookhead`,`looklegs`,`looktype`,`cap`,`town_id`) VALUES('".$this->data['name']."',".$this->data['account_id'].",".$this->data['sex'].",".$this->data['vocation'].",".$this->data['experience'].",".$this->data['level'].",".$this->data['health'].",".$this->data['healthmax'].",".$this->data['mana'].",".$this->data['manamax'].",".$this->data['direction'].",".$this->data['lookbody'].",".$this->data['lookfeet'].",".$this->data['lookhead'].",".$this->data['looklegs'].",".$this->data['looktype'].",".$this->data['cap'].",".$this->data['town_id'].")", $serverDB);
+		DB::query("INSERT INTO players (
+			`name`,`account_id`,`sex`
+			,`vocation`,`experience`,`level`,
+			`health`,`healthmax`,`mana`,
+			`manamax`,`direction`,`lookbody`,
+			`lookfeet`,`lookhead`,`looklegs`,
+			`looktype`,`cap`,`town_id`) 
+			VALUES(
+			'".$this->data['name']."','".$this->data['account_id']."','".$this->data['sex']."',
+			'".$this->data['vocation']."','".$this->data['experience']."','".$this->data['level']."',
+			'".$this->data['health']."','".$this->data['healthmax']."','".$this->data['mana']."',
+			'".$this->data['manamax']."','".$this->data['direction']."','".$this->data['lookbody']."',
+			'".$this->data['lookfeet']."','".$this->data['lookhead']."','".$this->data['looklegs']."',
+			'".$this->data['looktype']."','".$this->data['cap']."','".$this->data['town_id']."')", $serverDB);
 		
 		//Insere o personagem na DB do login server
 		DB::query("INSERT INTO `characterList` (`name`,`account_id`,`wid`) VALUES ('".$this->data['name']."',".$this->data['account_id'].",".$this->data['world_id'].")", 'loginserver');
@@ -396,7 +409,7 @@ class Player
 	{
 		$serverDB = Tools::getWorldResourceById($this->data['world_id']);
 	
-		DB::query("INSERT INTO `player_items` VALUES ('".$this->data['pid_gs']."', '".$slot_pid."', '".$slot."', '".$itemid."', '".$count."', '', '', '')", $serverDB);
+		DB::query("INSERT INTO `player_items` VALUES ('".$this->data['pid_gs']."', '".$slot_pid."', '".$slot."', '".$itemid."', '".$count."', '', '', '0')", $serverDB);
 	}	
 }
 ?>

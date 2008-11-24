@@ -15,7 +15,7 @@ if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
 		}
 		else
 		{
-			$DB->query("INSERT INTO news (`account_id`,`title`,`post`,`date`) VALUES('".$_SESSION['account_id']."','".$_POST['newTitle']."','".$_POST['newPost']."','".time()."')");
+			$DB->query("INSERT INTO news (`author_account`,`title`,`post`,`date`) VALUES('".$_SESSION['account']."','".$_POST['newTitle']."','".$_POST['newPost']."','".time()."')");
 			
 			$condition = array
 			(

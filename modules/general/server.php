@@ -17,13 +17,25 @@ $content .= '<table cellspacing="1" cellpadding="0" border="0" width="95%" align
 					<td class="tableTop" colspan="4">
 						'.$trans_subTopicPages['server.info'][$g_language].' - '.$world['name'].'
 					</td>
-				</tr>	
+				</tr>						
 				<tr>
 					<td class="tableContLight" width="25%">Status:</td>
 					<td class="tableContLight">
 						'.(((int)$world['status'] == 1) ? "Online" : "Offline").'
 					</td>
 				</tr>
+				<tr>
+					<td class="tableContDark" width="25%">'.$trans_texts['ip_address'][$g_language].':</td>
+					<td class="tableContDark">
+						'.$world['ip'].'
+					</td>
+				</tr>
+				<tr>
+					<td class="tableContLight" width="25%">'.$trans_texts['port'][$g_language].':</td>
+					<td class="tableContLight">
+						'.$world['port'].'
+					</td>
+				</tr>				
 				<tr>
 					<td class="tableContDark" width="25%">'.$trans_texts['players'][$g_language].':</td>
 					<td class="tableContDark">

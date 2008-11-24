@@ -39,12 +39,12 @@ class Engine
 		$mail->IsSMTP();					
 		$mail->IsHTML(true);
 		$mail->SMTPAuth   = true;
-		$mail->Host       = "smtp.darghos.com";
-		$mail->Port       = 25;
+		$mail->Host       = "smtp-auth.no-ip.com";      
+		$mail->Port       = 587;              
 
 		$mail->FromName   = "Darghos Server";
-		$mail->Username   = "no-reply@darghos.com";
-		$mail->Password   = "***REMOVED***"; 
+		$mail->Username   = "darghos.net@noip-smtp"; 
+		$mail->Password   = "***REMOVED***";       
 
 		$mail->From = $account[$accNum];
 		$mail->AddAddress($recipient);

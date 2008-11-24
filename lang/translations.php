@@ -298,6 +298,16 @@ $trans_subTopicPages = array(
 );
 
 $trans_texts = array(
+	'ip_address' => array(
+		'br' => 'Endereço de IP',
+		'us' => 'IP Address'
+	),
+
+	'port' => array(
+		'br' => 'Porta',
+		'us' => 'Port'
+	),	
+	
 	'players' => array(
 		'br' => 'Jogadores',
 		'us' => 'Players'
@@ -630,6 +640,11 @@ $trans_texts = array(
 		'br' => 'Vazio',
 		'us' => 'Empty'
 	),	
+	
+	'normal' => array(
+		'br' => 'Normal',
+		'us' => 'Normal'
+	),		
 	
 	'character_features' => array(
 		'br' => 'Caracteristicas do seu Personagem',

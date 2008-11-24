@@ -54,4 +54,6 @@ define('PGT_STAT_REJECTED', 3);
 define('CHANGE_EMAIL_TIMER', 60 * 60 * 24 * 15);
 
 define('PAGE_ABOUT', 1);
+define('PAGE_CONTACT', 2);
+define('PAGE_DOWNLOADS', 3);
 ?>

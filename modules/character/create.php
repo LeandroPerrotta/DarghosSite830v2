@@ -98,6 +98,8 @@ if($login->logged())
 		{
 				if($world['population'] == 'empty')
 					$population = "<font color='green'><b>".$trans_texts['empty'][$g_language]."</b></font>";
+				if($world['population'] == 'normal')
+					$population = "<b>".$trans_texts['normal'][$g_language]."</b>";					
 				else
 					$population = "<font color='red'><b>".$trans_texts['full'][$g_language]."</b></font>";
 		

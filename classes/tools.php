@@ -343,11 +343,11 @@ class Tools
 	}	
 	
 	public function checkBlackList($string) {
-		$this->DB->query("SELECT * FROM blacklist_string");
+		DB::query("SELECT * FROM blacklist_strings");
 		
 		$isInBlackList = 0;
 		
-		while($fetch = $this->DB->fetch())
+		while($fetch = DB::fetch())
 		{
 			if(eregi($fetch->string, $string))
 				$isInBlackList++;

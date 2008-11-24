@@ -2,6 +2,7 @@
 function task_highscores() {
 	// ações...
 	$db = DB::getInstance();
+	
 	foreach($GLOBALS['g_world'] as $p => $v) {
 		$worldId = $GLOBALS['g_world'][$p]['id'];
 		$resource = $GLOBALS['g_world'][$p]['sqlResource'];
@@ -94,14 +95,19 @@ function task_worldsstatus() {
 	$db->query("SELECT * FROM worlds");
 	$queryes = array();
 	while($world = $db->fetch()) {
-		@$fp = fsockopen($world->ip, (int)$world->port, $errno, $errstr, 10) or die($errstr);
-		if($fp) {
-			fwrite($fp, chr(6).chr(0).chr(255).chr(255).'info');
-			$data = '';
-			do {
-   				$data .= fgets($fp, 2200);
-			} while(!feof($fp));
-			fclose($fp);
+		$fp = @fsockopen($world->ip, (int)$world->port, $errno, $errstr, 2);
+		if($fp) {		
+		
+			stream_set_timeout($fp, 2);
+			
+		    fwrite($fp, chr(6).chr(0).chr(255).chr(255).'info');
+			
+			$data = stream_get_contents($fp);	
+
+			if( empty($data) )
+				$status = 0;
+				
+		    fclose($fp); 	
 			
 			$xml = simplexml_load_string($data);
 			$_record = $xml->players['peak'];
@@ -131,7 +137,7 @@ function task_worldsstatus() {
 						  	status = '0',
 						  	players = '0',
 						  	uptime = '0',
-						  	monsters = '0',
+						  	monsters = '0'
 						  WHERE
 						  	id = '{$world->id}'";
 		}
