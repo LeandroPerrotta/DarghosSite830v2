@@ -144,7 +144,7 @@ function task_worldsstatus() {
 
 function task_premiumdays() {
 	$db = DB::getInstance();
-	$db->query("SELECT * FROM accounts WHERE premdays > 0");
+	$db->query("SELECT id, premdays, lastday FROM accounts WHERE premdays > 0");
 	$toUpdate = array();
 	while($account = $db->fetch()) {
 		$lostDaysTime = time() - $account->lastday;
