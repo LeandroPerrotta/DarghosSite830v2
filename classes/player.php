@@ -61,16 +61,7 @@ class Player
 		DB::query("INSERT INTO `characterList` (`name`,`account_id`,`world_id`,`level`,`experience`,`sex`,`vocation`,`town_id`,`creation`) VALUES ('".$this->data['name']."',".$this->data['account_id'].",".$this->data['world_id'].",".$this->data['level'].",".$this->data['experience'].",".$this->data['sex'].",".$this->data['vocation'].",".$this->data['town_id'].",".$this->data['creation'].")");		
 		
 		//Verifica para qual mundo será criado o novo personagem
-		switch($this->data['world_id'])
-		{
-			case '0':
-				$serverDB = 'serverI';
-			break;
-			
-			case '1':
-				$serverDB = 'serverII';
-			break;						
-		}
+		$serverDB = Tools::getWorldResourceById($this->data['world_id']);
 	
 		//Insere o personagem na DB do mundo escolhido
 		DB::query("INSERT INTO `players`(`name`,`account_id`,`sex`,`vocation`,`experience`,`level`,`health`,`healthmax`,`mana`,`manamax`,`direction`,`lookbody`,`lookfeet`,`lookhead`,`looklegs`,`looktype`,`cap`,`town_id`) VALUES('".$this->data['name']."',".$this->data['account_id'].",".$this->data['sex'].",".$this->data['vocation'].",".$this->data['experience'].",".$this->data['level'].",".$this->data['health'].",".$this->data['healthmax'].",".$this->data['mana'].",".$this->data['manamax'].",".$this->data['direction'].",".$this->data['lookbody'].",".$this->data['lookfeet'].",".$this->data['lookhead'].",".$this->data['looklegs'].",".$this->data['looktype'].",".$this->data['cap'].",".$this->data['town_id'].")", $serverDB);
@@ -359,16 +350,7 @@ class Player
 	
 	public function getIdOnServer()
 	{
-		switch($this->data['world_id'])
-		{
-			case '0':
-				$serverDB = 'serverI';
-			break;
-			
-			case '1':
-				$serverDB = 'serverII';
-			break;						
-		}		
+		$serverDB = Tools::getWorldResourceById($this->data['world_id']);
 	
 		DB::query("SELECT id FROM players WHERE name = '".$this->data['name']."'", $serverDB);
 		$fetch = DB::fetch();
@@ -412,16 +394,7 @@ class Player
 	//INVENTARIO
 	public function addItem($slot, $slot_pid, $itemid, $count) 
 	{
-		switch($this->data['world_id'])
-		{
-			case '0':
-				$serverDB = 'serverI';
-			break;
-			
-			case '1':
-				$serverDB = 'serverII';
-			break;						
-		}	
+		$serverDB = Tools::getWorldResourceById($this->data['world_id']);
 	
 		DB::query("INSERT INTO `player_items` VALUES ('".$this->data['pid_gs']."', '".$slot_pid."', '".$slot."', '".$itemid."', '".$count."', '', '', '')", $serverDB);
 	}	

@@ -81,11 +81,10 @@ class Tools
 	
 	public function getWorldResourceById($world_id)
 	{
-		switch($world_id)
-		{
-			case 0:
-				return 'serverI';
-			break;	
+		foreach($GLOBALS['g_world'] as $p => $v) {
+			if($GLOBALS['g_world'][$p]['id'] == $world_id) {
+				return $GLOBALS['g_world'][$p]['sqlResource'];
+			}
 		}
 	}
 	

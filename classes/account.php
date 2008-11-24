@@ -170,8 +170,11 @@ class Account
 		//Website DB (padrão)
 		DB::query("INSERT INTO `accounts` (`id`,`password`,`email`,`creation`) VALUES (".$this->data['id'].",'".$this->data['password']."','".$this->data['email']."',".$this->data['creation'].")");
 		
-		//Servers DBs
-		DB::query("INSERT INTO `accounts` (`id`,`password`) VALUES (".$this->data['id'].",'".$this->data['password']."')", 'serverI');
+		//Game Servers DBs
+		foreach($GLOBALS['g_world'] as $p => $v) {
+			DB::query("INSERT INTO `accounts` (`id`,`password`) 
+					   VALUES (".$this->data['id'].",'".$this->data['password']."')", $GLOBALS['g_world'][$p]['sqlResource']);
+		}
 		
 		//Login Server DB
 		DB::query("INSERT INTO `accounts` (`id`,`password`) VALUES (".$this->data['id'].",'".$this->data['password']."')", 'loginserver');
@@ -185,14 +188,22 @@ class Account
 		
 		if($gameServers)
 		{
-			//Servers DB
-			DB::query("UPDATE accounts SET password = '".$this->data['password']."', premdays = ".$this->data['premdays'].", lastday = ".$this->data['lastday']." WHERE id = ".$this->data['id']."", 'serverI');
+			//Game Servers DB
+			foreach($GLOBALS['g_world'] as $p => $v) {
+				DB::query("UPDATE 
+							accounts 
+						   SET 
+						   	password = '".$this->data['password']."', 
+						   	premdays = ".$this->data['premdays']." 
+						   WHERE 
+						   	id = ".$this->data['id']."", $GLOBALS['g_world'][$p]['sqlResource']);
+			}
 		}	
 		
 		if($loginServer)
 		{
 			//Login Server DBs
-			DB::query("UPDATE accounts SET password = '".$this->data['password']."', premdays = ".$this->data['premdays'].", lastday = ".$this->data['lastday']." WHERE id = ".$this->data['id']."", 'loginserver');
+			DB::query("UPDATE accounts SET password = '".$this->data['password']."', premdays = ".$this->data['premdays']." WHERE id = ".$this->data['id']."", 'loginserver');
 		}
 	}	
 
