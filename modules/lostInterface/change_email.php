@@ -23,10 +23,10 @@ if($_GET["step"] == "5")
 			$incorrets++;
 	}	
 	
-	$questionTries = $account->getData('questionTries');	
-	$lastQuestionTries = $account->getData('lastQuestionTries');	
+	$questionTries = $account->getInfo('questionTries');	
+	$lastQuestionTries = $account->getInfo('lastQuestionTries');	
 	
-	if($questionTries == 3 AND $account->getData('lastQuestionTries') + SUSPEND_QUESTION_TIME < time())
+	if($questionTries == 3 AND $account->getInfo('lastQuestionTries') + SUSPEND_QUESTION_TIME < time())
 		$questionTries = 0;
 
 	if($questionTries == 3)
@@ -99,8 +99,8 @@ if($_GET["step"] == "5")
 	{
 		$success = true;
 		$questionTries = 0;
-		$account->setData('email', $_POST['email']);
-		$account->update(array('email'));
+		$account->setInfo('email', $_POST['email']);
+		$account->save();
 		
 		$warn = $lang->getWarning('contas.emailChanged');
 		$condition = array
@@ -111,9 +111,9 @@ if($_GET["step"] == "5")
 		);		
 	}
 	
-	$account->setData('lastQuestionTries', $lastQuestionTries);
-	$account->setData('questionTries', $questionTries);
-	$account->update(array('questionTries','lastQuestionTries'));
+	$account->setInfo('lastQuestionTries', $lastQuestionTries);
+	$account->setInfo('questionTries', $questionTries);
+	$account->save();
 	
 	$content .= $eHTML->conditionTable($condition);
 }
@@ -130,7 +130,7 @@ elseif($_GET["step"] == "4")
 	$success = false;
 	$questions = $account->loadQuestions();
 	
-	if($account->getData("id") != $_POST['account'])
+	if($account->getInfo("id") != $_POST['account'])
 	{
 		$warn = $lang->getWarning('recovery.contaIncorreta');
 		$condition = array
@@ -140,7 +140,7 @@ elseif($_GET["step"] == "4")
 			"buttons" => $eHTML->simpleButton('back','?act=lostInterface&step=3')
 		);	
 	}
-	elseif($account->getData("password") != md5($_POST['password']))
+	elseif($account->getInfo("password") != md5($_POST['password']))
 	{
 		$warn = $lang->getWarning('geral.falhaConfPass');
 		$condition = array
@@ -179,22 +179,22 @@ elseif($_GET["step"] == "4")
 			
 			$questionText .= '
 			<tr class="tableContLight">
-				<td colspan="2" width="25%"><b>'.$trans_topicPages['lostInterface'][$g_language].' '.$i.'</td>
+				<td colspan="2" width="25%"><b>'.$trans_texts['aswersNumber'][$g_language].' '.$i.'</td>
 			</tr>		
 			<tr class="tableContLight">
-				<td colspan="2" width="25%">'.$trans_texts['aswers1'][$g_language].': '.$question['question'].'</td>
+				<td colspan="2" width="25%">'.$trans_texts['Aswers1'][$g_language].': '.$question['question'].'</td>
 			</tr>		
 			<tr class="tableContLight">
-				<td colspan="2" width="25%">'.$trans_texts['aswers2'][$g_language].': '.$eHTML->textBoxInput('answer_'.$i.'', 'text').'</td>
+				<td colspan="2" width="25%">'.$trans_texts['Aswers2'][$g_language].': '.$eHTML->textBoxInput('answer_'.$i.'', 'text').'</td>
 			</tr>';	
 		}
 		
 						$content .= '
-		'.$eHTML->descriptionTable($lang->getDescription('lostInterfaceStep3_5')).' '.USE_QUESTION_TRIES.' '.$trans_texts['textCont1'][$g_language].' '.USE_QUESTION_TRIES.' '.$trans_texts['textCont2'][$g_language].''.'
+		'.$eHTML->descriptionTable($lang->getDescription('lostInterfaceStep3_5')).'
 		'.$eHTML->formStart('?act=lostInterface&step=5').'
-		<table style="margin: 10px 0 0 0;" border="0" width="95%" CELLSPACING="1" CELLPADDING="2">
+		<table align="center" style="margin: 10px 0 0 0;" border="0" width="95%" CELLSPACING="1" CELLPADDING="2">
 			<tr>
-				<td class="tableTop" colspan="2">'.$trans_topicPages['aswersSecrets'][$g_language].'</td>
+				<td class="tableTop" colspan="2">'.$trans_texts['aswersSecrets'][$g_language].'</td>
 			</tr>
 			<tr class="tableContLight">
 				<td>
@@ -204,12 +204,12 @@ elseif($_GET["step"] == "4")
 				'.$questionText.'				
 		</table>
 		<br />
-		<table style="margin: 10px 0 0 0;" border="0" width="95%" CELLSPACING="1" CELLPADDING="2">
+		<table align="center" style="margin: 10px 0 0 0;" border="0" width="95%" CELLSPACING="1" CELLPADDING="2">
 			<tr class="tableContLight">
-				<td class="tableTop" colspan="2">'.$trans_topicPages['email_address'][$g_language].'</td>
+				<td class="tableTop" colspan="2">'.$trans_texts['email_address'][$g_language].'</td>
 			</tr>
 			<tr class="tableContLight">
-				<td>'.$trans_topicPages['email_address'][$g_language].'</td>
+				<td>'.$trans_texts['email_address'][$g_language].'</td>
 				<td>'.$eHTML->textBoxInput('email', 'text').'</td>
 			</tr>
 		</table>
@@ -224,15 +224,8 @@ elseif($_GET["step"] == "3")
 {
 				$content .= '
 		'.$eHTML->descriptionTable($lang->getDescription('lostInterfaceStep3_7')).'
-					<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center">
-				<tr>
-					<td>
-		'.$trans_texts['Importante'][$g_language].': '.USE_QUESTION_TRIES.' '.$trans_texts['textCont1'][$g_language].' '.USE_QUESTION_TRIES.' '.$trans_texts['textCont2'][$g_language].'<BR /><BR />
-							</td>
-				</tr>
-			</table>
 		'.$eHTML->formStart('?act=lostInterface&step=4').'
-		<table style="margin: 10px 0 0 0;" border="0" width="95%" CELLSPACING="1" CELLPADDING="2">
+		<table align="center" style="margin: 10px 0 0 0;" border="0" width="95%" CELLSPACING="1" CELLPADDING="2">
 			<tr>
 				<td class="tableTop" colspan="2">'.$trans_topicPages['lostInterface'][$g_language].'</td>
 			</tr>
@@ -258,15 +251,4 @@ elseif($_GET["step"] == "3")
 		'.$eHTML->formEnd().'
 		';	
 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 ?>

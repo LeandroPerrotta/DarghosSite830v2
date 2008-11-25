@@ -175,7 +175,7 @@ class Trans
 		'recovery.contaIncorreta' => array(
 			'br' => array(
 				'title' => 'Conta incorreta',
-				'msg' => 'O numero de conta informado não corresponde ao numero de conta deste personagem.'), 		
+				'msg' => 'O numero de conta informado não consta em nosso banco de dados.'), 		
 			'us' => array(
 				'title' => '',
 				'msg' => '')		
@@ -633,16 +633,19 @@ class Trans
 			'us' => ''),	
 
 		'lostInterfaceStep3_7' => array(
-			'br' => 'Preencha todos os campos do formulario abaixo para continuar o processo de modificação de e-mail registrado em sua conta instantâneamente.<br>
-	<br>',
+			'br' => 'Preencha todos os campos do formulario abaixo para continuar o processo de modificação de e-mail registrado em sua conta instantâneamente.<br>',
 			'us' => ''),	
+			
+		'lostInterfaceStep3_8' => array(
+			'br' => 'Preencha todos os campos do formulario abaixo para continuar o processo de modificação perguntas e respostas secretas configuradas em sua conta.<br>',
+			'us' => ''),				
 			
 		'lostInterfaceStep3_4' => array(
 			'br' => 'Escreva abaixo o e-mail registrado na conta do personagem junto o numero da conta e clique no botão "Submit" e será lhe enviado uma mensagem ao endereço de e-mail contendo as informações do proximo passo para gerar uma nova senha para sua conta.',
 			'us' => ''),	
 			
 		'lostInterfaceStep3_5' => array(
-			'br' => 'Nesta etapa do processo de modificação das perguntas e respostas registradas em sua conta você terá de responder corretamente todas respostas as perguntas secretas na qual você configurou em sua conta.<br>',
+			'br' => 'Nesta etapa do processo de modificação das perguntas e respostas registradas em sua conta você terá de responder corretamente todas respostas as perguntas secretas na qual você configurou em sua conta.<br><br> São permitidas apénas 3 tentativas sem sucesso desta operação por dia, portanto, caso você venha a errar as respostas das perguntas secretas 3 vezes este recurso será desabilitado para sua conta durante 24h por motivos de segurança.',
 			'us' => ''),	
 			
 		'benefictsStep1' => array(
@@ -750,14 +753,14 @@ class Trans
 <html>
 <body>		
 <p>Prezado jogador,</p>
-<p>Este é um email informativo contendo as informações de acesso para sua conta criada no <a href=\"http://ot.darghos.com\"><b>Darghos</b></a>.</p>
+<p>Este é um email informativo contendo as informações de acesso para sua conta criada no <a href=\"http://www.darghos.com\"><b>Darghos</b></a>.</p>
 
 <p>Conta: <b>','</b><br>
 Senha: <b>','</b></p>
 
 <p>Você precisará destes dados para efetuar o login em nosso website e acessar a administração de sua conta e mudar para uma senha de sua preferencia alem de criar seu personagem e começar a se divertir alem de muitas outras ultilidades!</p>
 
-<p>Para efetuar o login em sua conta clique <a href=\"http://ot.darghos.com/index.php?act=account.login\"><b>aqui</b></a>.</p>
+<p>Para efetuar o login em sua conta clique <a href=\"http://www.darghos.com/index.php?act=account.login\"><b>aqui</b></a>.</p>
 
 <p>Lembrando que é altamente recomendavel que você memorize as informações de acesso de sua conta para uma maior segurança.</p>
 
@@ -780,7 +783,7 @@ Equipe UltraxSoft.</p>
 
 <p>Por motivos de segurança está mudança necessita de uma espera de 15 dias para que seja concluida. Você pode cancelar esta mudança a qualquer momento dentro do prazo especificado acessando sua conta no Darghos e seguindo as instruções da pagina principal.</p>
 
-<p>Para acessar sua conta clique <a href=\"http://ot.darghos.com/index.php?act=account.login\"><b>aqui</b></a>.</p>
+<p>Para acessar sua conta clique <a href=\"http://www.darghos.com/index.php?act=account.login\"><b>aqui</b></a>.</p>
 
 <p>Lembrando que é impossivel cancelar esta mudança após o prazo de espera de 15 dias.</p>
 
@@ -804,7 +807,7 @@ Foi solicitado uma nova senha para sua conta pelo sistema de Contas Perdidas no 
 <br>
 Chave de geração de nova senha: <b>','</b>
 <br>
-<a href="http://ot.darghos.com/index.php?act=recovery.newpassword">http://ot.darghos.com/index.php?act=recovery.newpassword</a>
+<a href="http://www.darghos.com/index.php?act=lostInterface&step=confirmKey">http://www.darghos.com/index.php?act=lostInterface&step=confirmKey</a>
 <br>
 <br>
 Caso você não tenha solicitado uma nova senha apenas ignore esta mensagem.
@@ -858,7 +861,7 @@ Para concluir a geração de uma nova senha você deve acessar o endereço abaixo in
 <br>
 Chave de geração de nova senha: <b>','</b>
 <br>
-<a href="http://ot.darghos.com/index.php?act=recovery.newpassword">http://ot.darghos.com/index.php?act=recovery.newpassword</a>
+<a href="http://www.darghos.com/index.php?act=lostInterface&step=confirmKey">http://www.darghos.com/index.php?act=lostInterface&step=confirmKey</a>
 <br>
 <br>
 Procure memorizar o numero de sua conta e senha e por motivos de segurança jamais partilhe sua conta.
@@ -906,7 +909,7 @@ Primeiramente, obrigado por contribuir com o Darghos!</p>
 
 <p>Para você visualizar detalhes deste pagamento ou aceita-lo basta você acessar sua conta em nosso website.</p>
 
-<p>Para acessar sua conta clique <a href=\"http://ot.darghos.com/index.php?act=account.login\"><b>aqui</b></a>.</p>
+<p>Para acessar sua conta clique <a href=\"http://www.darghos.com/index.php?act=account.login\"><b>aqui</b></a>.</p>
 
 <p>Nos vemos no Darghos!<br>
 Equipe UltraxSoft.</p>

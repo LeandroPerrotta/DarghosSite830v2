@@ -200,6 +200,7 @@ function task_premiumdays() {
 //hide 	online 	old_name 	tutor_since 	creation 	ping 	lastUpdate
 function task_playersinfos() {
 	$db = DB::getInstance();
+	$db->query("UPDATE characterlist SET online = '0'");
 	$queryes = array();
 	foreach($GLOBALS['g_world'] as $p => $v) {
 		$worldId = $GLOBALS['g_world'][$p]['id'];
@@ -222,7 +223,7 @@ function task_playersinfos() {
 						  	maglevel = '{$player->maglevel}',
 						  	lastlogin = '{$player->lastlogin}',
 						  	redskulltime = '{$player->redskulltime}',
-						  	guildnick = '{$player->guildnick}',
+						  	guildnick = '".mysql_real_escape_string($player->guildnick)."',
 						  	rank_id = '{$player->rank_id}',
 						  	town_id = '{$player->town_id}',
 						  	online = '1',

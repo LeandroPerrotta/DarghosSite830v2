@@ -16,8 +16,9 @@ if($_GET["step"] == "confirmKey")
 		else
 		{
 			$account = $engine->loadObject('Account');
+			$account->loadByNumber($_POST['account']);
 			
-			if(!$account->loadByNumber($_POST['account']))
+			if(!$account->exists($_POST['account']))
 			{
 				$warn = $lang->getWarning('recovery.contaIncorreta');
 				$condition = array
@@ -64,8 +65,8 @@ if($_GET["step"] == "confirmKey")
 						"buttons" => $eHTML->simpleButton('back','?page=lostInterface')
 					);	
 					
-					$account->setData('password', md5($newpassword));
-					$account->update(array('password'));
+					$account->setInfo('password', md5($newpassword));
+					$account->save($loginServer = true, $gameServers = true);
 					$account->ereaseChangePasswordKeys();
 				}
 			}
@@ -79,9 +80,9 @@ if($_GET["step"] == "confirmKey")
 			$content .= '
 		'.$eHTML->descriptionTable($lang->getDescription('lostInterfaceStep3_3')).'
 		'.$eHTML->formStart('?act=lostInterface&step=confirmKey').'
-		<table style="margin: 10px 0 0 0;" border="0" width="95%" CELLSPACING="1" CELLPADDING="2">
+		<table align="center" style="margin: 10px 0 0 0;" border="0" width="95%" CELLSPACING="1" CELLPADDING="2">
 			<tr>
-				<td class="tableTop" colspan="2">'.$trans_texts['lostInterface'][$g_language].'</td>
+				<td class="tableTop" colspan="2">'.$trans_topicPages['lostInterface'][$g_language].'</td>
 			</tr>
 			<tr class="tableContLight">
 				<td>

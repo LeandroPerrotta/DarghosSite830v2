@@ -85,6 +85,8 @@ class Account
 		$this->data['location'] = $fetch->location;	
 		$this->data['access'] = $fetch->access;	
 		$this->data['url'] = $fetch->url;	
+		$this->data['questionTries'] = $fetch->questionTries;	
+		$this->data['lastQuestionTries'] = $fetch->lastQuestionTries;	
 		
 		if($emailChanges)
 		{
@@ -184,7 +186,7 @@ class Account
 	{		
 		//Os dados da conta serão salvos na DB
 		//Website DB (padrão)
-		DB::query("UPDATE accounts SET password = '".$this->data['password']."', email = '".$this->data['email']."', premdays = ".$this->data['premdays'].", lastday = ".$this->data['lastday'].", location = '".$this->data['location']."', url = '".$this->data['url']."' WHERE id = ".$this->data['id']."");
+		DB::query("UPDATE accounts SET password = '".$this->data['password']."', email = '".$this->data['email']."', premdays = ".$this->data['premdays'].", lastday = ".$this->data['lastday'].", location = '".$this->data['location']."', url = '".$this->data['url']."', realName = '".$this->data['realName']."', lastQuestionTries = '".$this->data['lastQuestionTries']."', questionTries = '".$this->data['questionTries']."' WHERE id = ".$this->data['id']."");
 		
 		if($gameServers)
 		{
@@ -348,7 +350,7 @@ class Account
 	}
 	public function loadChangePasswordKey()
 	{
-		DB::query("SELECT `key` FROM account_changepasswordkeys WHERE account_id = '".$this->data['id']."'");
+		DB::query("SELECT `key` FROM account_changepasswordkeys WHERE account_id = '".$this->data['id']."' ORDER by date DESC");
 		
 		if(DB::num_rows() != 0)
 		{

@@ -955,22 +955,7 @@ $trans_texts = array(
 		'br' => 'vez(es)',
 		'us' => '',
 	),	
-	
-	'Importante' => array(
-		'br' => 'IMPORTANTE',
-		'us' => '',
-	),	
-	
-	'textCont1' => array(
-		'br' => 'tentativas sem sucesso desta operação por dia, portanto, caso você venha a errar as respostas das perguntas secretas',
-		'us' => '',
-	),	
-	
-	'textCont2' => array(
-		'br' => 'vezes este recurso será desabilitado para sua conta durante 24h por motivos de segurança.',
-		'us' => '',
-	),		
-	
+
 	'change_aswers' => array(
 		'br' => 'Eu preciso modificar as perguntas e respostas de minha conta.',
 		'us' => '',

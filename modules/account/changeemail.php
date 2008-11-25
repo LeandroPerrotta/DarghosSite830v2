@@ -25,7 +25,7 @@ if($login->logged())
 		}
 		elseif($checkemail->exists())
 		{
-			$warn = $lang->getWarning('geral.falhaConfPass');
+			$warn = $lang->getWarning('contas.emailExistente');
 			$condition = array
 			(
 				"title" => $warn['title'],
