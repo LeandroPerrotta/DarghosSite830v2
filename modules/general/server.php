@@ -84,7 +84,9 @@ if($DB->num_rows() > 0) {
 		$i++;
 		$content .= '<tr>
 						<td class="'.$tdStyle.'" width="5%">'.$i.'</td>
-						<td class="'.$tdStyle.'" width="50%">'.$player->name.'</td>
+						<td class="'.$tdStyle.'" width="50%">
+							<a href="?act=character.details&name='.$player->name.'">'.$player->name.'</a>
+						</td>
 						<td class="'.$tdStyle.'" width="30%">'.$trans_texts['vocations'][$player->vocation].'</td>
 						<td class="'.$tdStyle.'" width="7%">'.$player->level.'</td>
 						<td class="'.$tdStyle.'">'.$player->ping.'</td>
