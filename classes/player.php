@@ -425,7 +425,9 @@ class Player
 			if($deathTime + 60 * 5 <= time()) {
 				$this->updateDeathsMirror($deathTime);
 			}
-			DB::query("SELECT * FROM deathlist WHERE time > '".$DiasAtras."' ORDER BY time DESC");
+			DB::query("SELECT * FROM deathlist WHERE player_id = '".$this->data['id']."' AND 
+											     world_id = '".$this->data['world_id']."' AND 
+											     time > '".$DiasAtras."' ORDER BY time DESC");
 			$deaths = array();
 			while($death = DB::fetchArray()) {
 				$deaths[] = $death;
@@ -434,7 +436,9 @@ class Player
 		} else {
 			// Primeira vez...
 			if($this->updateDeathsMirror()) {
-				DB::query("SELECT * FROM deathlist WHERE time > '".$DiasAtras."' ORDER BY time DESC");
+				DB::query("SELECT * FROM deathlist WHERE player_id = '".$this->data['id']."' AND 
+											     world_id = '".$this->data['world_id']."' AND 
+											     time > '".$DiasAtras."' ORDER BY time DESC");
 				$deaths = array();
 				while($death = DB::fetchArray()) {
 					$deaths[] = $death;
