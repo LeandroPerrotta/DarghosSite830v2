@@ -408,6 +408,11 @@ class Account
 	{
 		DB::query("INSERT INTO scheduler_changeemails (`account_id`,`email`,`date`) values (".$this->data['id'].", '".$email."', ".$date.")");
 	}
+	
+	public function hasThisChar($name) {
+		DB::query("SELECT id FROM characterlist WHERE name = '".mysql_escape_string($name)."' AND account_id = '".$this->data['id']."'");
+		return (DB::num_rows() > 0) ? true : false;
+	}
 
 }
 ?>

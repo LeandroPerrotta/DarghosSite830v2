@@ -258,4 +258,67 @@ function task_changeemails() {
 		$db->query($queryes[$p]);
 	}
 }
+
+function task_deletechars() {
+	$diasAntes = time() - DELETE_CHAR_TIMER;
+	$db = DB::getInstance();
+	$db->query("SELECT * FROM chardeletions WHERE date > '{$diasAntes}'");
+	$queryes = array();
+	while($deletion = $db->fetch()) {
+		$gameServerDB = Tools::getWorldResourceById($deletion->world_id);
+		$queryes[] = array('query' => "DELETE FROM 
+										characterlist 
+									   WHERE 
+									   	id = '{$deletion->player_id}' AND
+									   	world_id = '{$deletion->world_id}'", 'DB' => "site");
+		$queryes[] = array('query' => "DELETE FROM 
+										chardeletions 
+									   WHERE 
+									   	player_id = '{$deletion->player_id}' AND
+									   	world_id = '{$deletion->world_id}'", 'DB' => "site");
+									   	
+		$queryes[] = array('query' => "DELETE FROM 
+										characterlist 
+									   WHERE 
+									   	id = '{$deletion->player_id}' AND
+									   	wid = '{$deletion->world_id}'", 'DB' => "loginserver");
+									   	
+		$queryes[] = array('query' => "DELETE FROM 
+										players 
+									   WHERE 
+									   	id = '{$deletion->player_id}'", 'DB' => $gameServerDB);
+		$queryes[] = array('query' => "DELETE FROM 
+										player_deaths
+									   WHERE 
+									   	player_id = '{$deletion->player_id}'", 'DB' => $gameServerDB);
+		$queryes[] = array('query' => "DELETE FROM 
+										player_depotitems
+									   WHERE 
+									   	player_id = '{$deletion->player_id}'", 'DB' => $gameServerDB);
+		$queryes[] = array('query' => "DELETE FROM 
+										player_items
+									   WHERE 
+									   	player_id = '{$deletion->player_id}'", 'DB' => $gameServerDB);
+		$queryes[] = array('query' => "DELETE FROM 
+										player_skills
+									   WHERE 
+									   	player_id = '{$deletion->player_id}'", 'DB' => $gameServerDB);
+		$queryes[] = array('query' => "DELETE FROM 
+										player_spells
+									   WHERE 
+									   	player_id = '{$deletion->player_id}'", 'DB' => $gameServerDB);
+		$queryes[] = array('query' => "DELETE FROM 
+										player_storage
+									   WHERE 
+									   	player_id = '{$deletion->player_id}'", 'DB' => $gameServerDB);
+		$queryes[] = array('query' => "DELETE FROM 
+										player_viplist
+									   WHERE 
+									   	player_id = '{$deletion->player_id}'", 'DB' => $gameServerDB);				   	
+	}
+	
+	foreach($queryes as $p => $v) {
+		$db->query($queryes[$p]['query'], $queryes[$p]['DB']);
+	}
+}
 ?>

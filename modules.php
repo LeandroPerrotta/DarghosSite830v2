@@ -114,7 +114,19 @@ if($_REQUEST['act'] != "")
 			$topic = $GLOBALS['trans_topicPages']['account'][$GLOBALS['g_language']];
 			$subtopic = $GLOBALS['trans_subTopicPages']['account.changeemail'][$GLOBALS['g_language']];
 			include "modules/account/changeemail.php";
-		break;		
+		break;	
+
+		case "account.deleteChar";	
+			$topic = $GLOBALS['trans_topicPages']['account'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['account.deleteChar'][$GLOBALS['g_language']];
+			include "modules/account/deletechar.php";
+		break;
+
+		case "account.cancelDeleteChar";	
+			$topic = $GLOBALS['trans_topicPages']['account'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['account.cancelDeleteChar'][$GLOBALS['g_language']];
+			include "modules/account/canceldeletechar.php";
+		break;
 
 		case "account.cancelchangeemail";	
 			$topic = $GLOBALS['trans_topicPages']['account'][$GLOBALS['g_language']];

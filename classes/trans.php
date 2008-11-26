@@ -484,6 +484,42 @@ class Trans
 				'title' => '',
 				'msg' => '')		
 		),	
+		
+		'deletechar.charNaoExiste' => array(
+			'br' => array(
+				'title' => 'Problema ao tentar deletar!',
+				'msg' => 'Não foi encontrado um personagem com o nome especificado!'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),	
+		
+		'deletechar.charNaoPosse' => array(
+			'br' => array(
+				'title' => 'Problema ao tentar deletar!',
+				'msg' => 'O personagem especificado não é de sua posse!'), 		
+			'us' => array(
+				'title' => '',
+				'msg' => '')		
+		),	
+		
+		'deletechar.sucess' => array(
+			'br' => array(
+				'title' => 'Personagem deletado!',
+				'msg' => array('O personagem especificado será deletado daqui a ',' dias!')), 		
+			'us' => array(
+				'title' => '',
+				'msg' => array('',''))		
+		),
+		
+		'canceldeletechar.sucess' => array(
+			'br' => array(
+				'title' => 'O personagem não será mais deletado',
+				'msg' => array('O personagem especificado <b>já não será mais</b> deletado daqui a ',' dias!')), 		
+			'us' => array(
+				'title' => '',
+				'msg' => array('',''))		
+		),
 
 		/*
 		/// AVISOS DE PAGAMENTOS
@@ -540,6 +576,14 @@ class Trans
 			'br' => array('Você pode efetuar uma troca de e-mail registrado em sua conta, isto é importante em casos de perda de acesso a conta de e-mail. Por motivos de segurança esta mudança leva ', ' dias para ser completada. É importante lembrar que você poderá cancelar a mudança a qualquer momento antes dos ', ' dias pela pagina principal de administração de sua conta. Preencha os dados abaixo para solicitar uma mudança de e-mail registrada em sua conta.'),
 			'us' => array('', '', '')),		
 			
+		'account.deletechar' => array(
+			'br' => array('Você pode deletar um personagem que você não usa mais, para que você possa criar outros. Esta exclusão demora ', ' dias para ser completada, por motivos de segurança neste período de ', ' dias, você poderá cancelar a exclusão do mesmo.'),
+			'us' => array('', '', '')),
+	
+		'account.canceldeletechar' => array(
+			'br' => array('Você pode deletar um personagem que você não usa mais, para que você possa criar outros. Esta exclusão demora ', ' dias para ser completada, por motivos de segurança neste período de ', ' dias, você poderá cancelar a exclusão do mesmo.<br> Se deseja cancelar a exclusão, preencha o formulário abaixo:'),
+			'us' => array('', '', '')),
+	
 		'account.cancelchangeemail' => array(
 			'br' => array('Através deste recurso você pode cancelar uma mudança de e-mail em até ', ' dias antes da concretização da mudança. Note este cancelamento só estará disponivel até a concretização da mudança, e após concretizada a mudança é irreversivel.'),
 			'us' => array('', '')),		

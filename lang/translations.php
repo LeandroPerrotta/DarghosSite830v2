@@ -169,7 +169,17 @@ $trans_subTopicPages = array(
 	'account.changeemail' => array(
 		'br' => 'Mudança de E-mail',
 		'us' => 'Change E-mail'
-	),	
+	),
+
+	'account.deleteChar' => array(
+		'br' => 'Deletar Personagem',
+		'us' => 'Character Deletion'
+	),
+	
+	'account.cancelDeleteChar' => array(
+		'br' => 'Cancelar exclusão de personagem',
+		'us' => 'Cancel character exclusion'
+	),
 	
 	'account.cancelchangeemail' => array(
 		'br' => 'Cancelar mudança de E-mail',

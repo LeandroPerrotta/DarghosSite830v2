@@ -187,6 +187,10 @@ $g_tasksMap = array(
 	5 => array( // Processar as mudanças de e-mails solicitadas
 		'name' => "changeemails",
 		'eachTime' => 60 * 60 * 12
+	),
+	6 => array(
+		'name' => "deletechars",
+		'eachTime' => 60 * 60 * 12
 	)
 );
 

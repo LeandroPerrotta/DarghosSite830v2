@@ -56,15 +56,16 @@ class Player
 	
 	public function saveNew()
 	{
+		global $DB;
 		//Os dados do novo personagem serão inseridos no banco de dados do website, servidores e login servers
 		//Insere o personagem na DB do website
-		DB::query("INSERT INTO `characterList` (`name`,`account_id`,`world_id`,`level`,`experience`,`sex`,`vocation`,`town_id`,`creation`) VALUES ('".$this->data['name']."',".$this->data['account_id'].",".$this->data['world_id'].",".$this->data['level'].",".$this->data['experience'].",".$this->data['sex'].",".$this->data['vocation'].",".$this->data['town_id'].",".$this->data['creation'].")");		
+		$DB->query("INSERT INTO `characterList` (`name`,`account_id`,`world_id`,`level`,`experience`,`sex`,`vocation`,`town_id`,`creation`) VALUES ('".$this->data['name']."',".$this->data['account_id'].",".$this->data['world_id'].",".$this->data['level'].",".$this->data['experience'].",".$this->data['sex'].",".$this->data['vocation'].",".$this->data['town_id'].",".$this->data['creation'].")");		
 		
 		//Verifica para qual mundo será criado o novo personagem
 		$serverDB = Tools::getWorldResourceById($this->data['world_id']);
 	
 		//Insere o personagem na DB do mundo escolhido
-		DB::query("INSERT INTO players (
+		$DB->query("INSERT INTO players (
 			`name`,`account_id`,`sex`
 			,`vocation`,`experience`,`level`,
 			`health`,`healthmax`,`mana`,
@@ -80,11 +81,12 @@ class Player
 			'".$this->data['looktype']."','".$this->data['cap']."','".$this->data['town_id']."')", $serverDB);
 		
 		//Insere o personagem na DB do login server
-		DB::query("INSERT INTO `characterList` (`name`,`account_id`,`wid`) VALUES ('".$this->data['name']."',".$this->data['account_id'].",".$this->data['world_id'].")", 'loginserver');
+		$DB->query("INSERT INTO `characterList` (`name`,`account_id`,`wid`) VALUES ('".$this->data['name']."',".$this->data['account_id'].",".$this->data['world_id'].")", 'loginserver');
 	}	
 	
 	public function save()
 	{		
+		global $DB;
 		$query = "UPDATE `characterList` SET ";
 		
 		if($this->data['sex'] != ("" or null))
@@ -97,13 +99,14 @@ class Player
 
 		$query .= " WHERE id = ".$this->data['id']."";		
 	
-		DB::query($query);
+		$DB->query($query);
 	}
 
 	public function exists()
 	{
-		DB::query("SELECT `id` FROM `characterList` WHERE `name` = '".$this->data['name']."'");
-		if(DB::num_rows() != 0)
+		global $DB;
+		$DB->query("SELECT `id` FROM `characterList` WHERE `name` = '".$this->data['name']."'");
+		if($DB->num_rows() != 0)
 			return true;
 		else
 			return false;
@@ -111,9 +114,10 @@ class Player
 	
 	public function loadByAccount($account)
 	{
-		DB::query("SELECT `id` FROM `characterList` WHERE `account_id` = $account");
+		global $DB;
+		$DB->query("SELECT `id` FROM `characterList` WHERE `account_id` = $account");
 		$players = array();
-		while($player = DB::fetch())
+		while($player = $DB->fetch())
 		{
 			$players[] = $player->id;
 		}
@@ -122,13 +126,14 @@ class Player
 	
 	public function load($name)
 	{
+		global $DB;
 		$this->data['name'] = $name;
 	
-		DB::query("SELECT * FROM `characterList` WHERE `name` = '".$this->data['name']."'");
+		$DB->query("SELECT * FROM `characterList` WHERE `name` = '".$this->data['name']."'");
 		
-		if(DB::num_rows() != 0)
+		if($DB->num_rows() != 0)
 		{
-			$player = DB::fetch();	
+			$player = $DB->fetch();	
 			if(time() < $player->lastUpdate + 60 * 5)
 			{	
 				$this->data['id'] = $player->id;
@@ -159,11 +164,13 @@ class Player
 	
 	private function updateMirror()
 	{
+		global $DB;
 		$world_DBresoure = Tools::getWorldResourceById($this->data['world_id']);
 		
-		DB::query("SELECT level, experience, maglevel, lastlogin, redskulltime, guildnick, rank_id, town_id, online, ping FROM `players` WHERE `name` = '".$this->data['name']."'", $world_DBresoure);
-		$player = DB::fetch();			
+		$DB->query("SELECT id, level, experience, maglevel, lastlogin, redskulltime, guildnick, rank_id, town_id, online, ping FROM `players` WHERE `name` = '".$this->data['name']."'", $world_DBresoure);
+		$player = $DB->fetch();			
 		
+		$this->data['id'] = $player->id;
 		$this->data['level'] = $player->level;
 		$this->data['experience'] = $player->experience;
 		$this->data['maglevel'] = $player->maglevel;
@@ -181,24 +188,26 @@ class Player
 	
 	private function saveMirror()
 	{
-		DB::query("UPDATE `characterList` SET level = ".$this->data['level'].", experience = ".$this->data['experience'].", maglevel = ".$this->data['maglevel'].", lastlogin = ".$this->data['lastlogin'].", redskulltime = ".$this->data['redskulltime'].", guildnick = '".$this->data['guildnick']."', rank_id = ".$this->data['rank_id'].", town_id = ".$this->data['town_id'].", online = ".$this->data['online'].", ping = ".$this->data['ping'].", lastUpdate = ".$this->data['lastUpdate']." WHERE `name` = '".$this->data['name']."'");	
+		global $DB;
+		$DB->query("UPDATE `characterList` SET level = ".$this->data['level'].", experience = ".$this->data['experience'].", maglevel = ".$this->data['maglevel'].", lastlogin = ".$this->data['lastlogin'].", redskulltime = ".$this->data['redskulltime'].", guildnick = '".$this->data['guildnick']."', rank_id = ".$this->data['rank_id'].", town_id = ".$this->data['town_id'].", online = ".$this->data['online'].", ping = ".$this->data['ping'].", lastUpdate = ".$this->data['lastUpdate']." WHERE `name` = '".$this->data['name']."'");	
 		$this->load($this->data['name']);
 	}
 	
 	public function loadById($id, $enc = false)
 	{	
+		global $DB;
 		if($enc)
 		{
-			DB::query("SELECT id, name FROM `characterList` WHERE MD5(id) = '".$id."'");	
+			$DB->query("SELECT id, name FROM `characterList` WHERE MD5(id) = '".$id."'");	
 		}	
 		else
 		{
-			DB::query("SELECT id, name FROM `characterList` WHERE `id` = ".$id."");
+			$DB->query("SELECT id, name FROM `characterList` WHERE `id` = ".$id."");
 		}		
 			
-		if(DB::num_rows() != 0)	
+		if($DB->num_rows() != 0)	
 		{
-			$player = DB::fetch();
+			$player = $DB->fetch();
 			
 			$this->data['id'] = $player->id;			
 			$this->load($player->name);
@@ -364,10 +373,11 @@ class Player
 	
 	public function getIdOnServer()
 	{
+		global $DB;
 		$serverDB = Tools::getWorldResourceById($this->data['world_id']);
 	
-		DB::query("SELECT id FROM players WHERE name = '".$this->data['name']."'", $serverDB);
-		$fetch = DB::fetch();
+		$DB->query("SELECT id FROM players WHERE name = '".$this->data['name']."'", $serverDB);
+		$fetch = $DB->fetch();
 		
 		$this->data['pid_gs'] = $fetch->id;
 		return $fetch->id;
@@ -408,39 +418,41 @@ class Player
 	//INVENTARIO
 	public function addItem($slot, $slot_pid, $itemid, $count) 
 	{
+		global $DB;
 		$serverDB = Tools::getWorldResourceById($this->data['world_id']);
 	
-		DB::query("INSERT INTO `player_items` VALUES ('".$this->data['pid_gs']."', '".$slot_pid."', '".$slot."', '".$itemid."', '".$count."', '', '', '0')", $serverDB);
+		$DB->query("INSERT INTO `player_items` VALUES ('".$this->data['pid_gs']."', '".$slot_pid."', '".$slot."', '".$itemid."', '".$count."', '', '', '0')", $serverDB);
 	}	
 	
 	// MORTES
 	//struct: player_id, world_id, time, level, killed_by, is_player
 	public function loadDeaths() {
-		DB::query("SELECT time FROM deathlist WHERE player_id = '".$this->data['id']."' AND 
+		global $DB;
+		$DB->query("SELECT time FROM deathlist WHERE player_id = '".$this->data['id']."' AND 
 											     world_id = '".$this->data['world_id']."' ORDER BY time DESC LIMIT 1");
 		$DiasAtras = (int)(time() - (60 * 60 * 24 * 30));
-		if(DB::num_rows() > 0) {
+		if($DB->num_rows() > 0) {
 			// Ja atualizo ao menos 1 vez
-			$deathTime = DB::fetch()->time;
+			$deathTime = $DB->fetch()->time;
 			if($deathTime + 60 * 5 <= time()) {
 				$this->updateDeathsMirror($deathTime);
 			}
-			DB::query("SELECT * FROM deathlist WHERE player_id = '".$this->data['id']."' AND 
+			$DB->query("SELECT * FROM deathlist WHERE player_id = '".$this->data['id']."' AND 
 											     world_id = '".$this->data['world_id']."' AND 
 											     time > '".$DiasAtras."' ORDER BY time DESC");
 			$deaths = array();
-			while($death = DB::fetchArray()) {
+			while($death = $DB->fetchArray()) {
 				$deaths[] = $death;
 			}
 			return $deaths;
 		} else {
 			// Primeira vez...
 			if($this->updateDeathsMirror()) {
-				DB::query("SELECT * FROM deathlist WHERE player_id = '".$this->data['id']."' AND 
+				$DB->query("SELECT * FROM deathlist WHERE player_id = '".$this->data['id']."' AND 
 											     world_id = '".$this->data['world_id']."' AND 
 											     time > '".$DiasAtras."' ORDER BY time DESC");
 				$deaths = array();
-				while($death = DB::fetchArray()) {
+				while($death = $DB->fetchArray()) {
 					$deaths[] = $death;
 				}
 				return $deaths;
@@ -451,24 +463,55 @@ class Player
 	}
 	
 	private function updateDeathsMirror($lastDeathTime = 0) {
+		global $DB;
 		$serverDB = Tools::getWorldResourceById($this->data['world_id']);
-		DB::query("SELECT * FROM player_deaths WHERE player_id = '".$this->data['id']."'
+		$DB->query("SELECT * FROM player_deaths WHERE player_id = '".$this->data['id']."'
 													 AND time > '{$lastDeathTime}'", $serverDB);
-		if(DB::num_rows() > 0) {
+		if($DB->num_rows() > 0) {
 			$queryes = array();
-			while($death = DB::fetch()) {
+			while($death = $DB->fetch()) {
 				$queryes[] = "INSERT INTO deathlist VALUES(
 								'".$this->data['id']."', '".$this->data['world_id']."', 
 								'{$death->time}', '{$death->level}', 
 								'{$death->killed_by}', '{$death->is_player}')";
 			}
 			foreach($queryes as $p => $v) {
-				DB::query($queryes[$p]);
+				$DB->query($queryes[$p]);
 			}
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	public static function playerExists($name) {
+		global $DB;
+		$DB->query("SELECT id FROM characterlist WHERE name = '".mysql_escape_string($name)."'");
+		return ($DB->num_rows() > 0) ? true : false;
+	}
+	
+	public static function playerDeleted($name) {
+		global $DB;
+		$DB->query("SELECT 
+						player.name 
+					FROM 
+						characterlist as player, 
+						chardeletions as del 
+					WHERE 
+						del.player_id = player.id AND
+						del.world_id = player.world_id AND
+						player.name = '".$name."'");
+		return ($DB->num_rows() > 0) ? true : false;
+	}
+	
+	public function scheduleDeletion() {
+		global $DB;
+		$DB->query("INSERT INTO chardeletions(player_id, world_id, date) VALUES('".$this->data['id']."', '".$this->data['world_id']."', '".time()."')");
+	}
+	
+	public function cancelDeletion() {
+		global $DB;
+		$DB->query("DELETE FROM chardeletions WHERE player_id = '".$this->data['id']."' AND world_id = '".$this->data['world_id']."'");
 	}
 }
 ?>

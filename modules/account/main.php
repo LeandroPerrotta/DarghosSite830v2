@@ -214,9 +214,13 @@ if($login->logged())
 		foreach($playerList as $pid)
 		{
 			$player->loadById($pid);
+			$deleted = (Player::playerDeleted($player->getInfo('name'))) ? "deleted " : "";
 			$content .= '
 			<tr>
-				<td class="tableContLight" width="25%"><a href="?act=character.details&name='.$player->getInfo('name').'">'.$player->getInfo('name').'</a></td><td class="tableContLight" width="15%">'.$g_world[$player->getInfo('world_id')]['name'].'</td><td class="tableContLight" width="35%">'.$trans_texts['stat_'.$player->getStatus()][$g_language].'</td><td class="tableContLight">'.$eHTML->simpleButton("preferences", "?act=character.preferences&id=".md5($player->getInfo('id'))."").'</td>			
+				<td class="tableContLight" width="25%"><a href="?act=character.details&name='.$player->getInfo('name').'">'.$player->getInfo('name').'</a></td>
+				<td class="tableContLight" width="15%">'.$g_world[$player->getInfo('world_id')]['name'].'</td>
+				<td class="tableContLight" width="35%">'.$deleted.$trans_texts['stat_'.$player->getStatus()][$g_language].'</td>
+				<td class="tableContLight">'.$eHTML->simpleButton("preferences", "?act=character.preferences&id=".md5($player->getInfo('id'))."").'</td>			
 			</tr>';		
 		}
 	}
@@ -227,12 +231,24 @@ if($login->logged())
 				<td colspan="2" class="tableContLight" width="25%">'.$trans_texts['no_characters_created'][$g_language].'</td>	
 			</tr>';		
 	}
-	
+	$DB->query("SELECT 
+					player.name 
+				FROM 
+					chardeletions as del, 
+					characterlist as player 
+				WHERE 
+					del.player_id = player.id AND 
+					player.account_id = '".$_SESSION['account']."'");
+	$extraBut = ($DB->num_rows() > 0) ? 
+					$eHTML->simpleButton("undeleteCharacter", "?act=account.cancelDeleteChar") :
+					'';
 	$content .= '
 	</table><br>
-	<table cellspacing="0" cellpadding="0" border="0" width="95%" align="center">
+	<table cellspacing="5" cellpadding="0" border="0" width="95%" align="center">
 		<tr>
-			<td>'.$eHTML->simpleButton("newCharacter", "?act=character.create&step=1").'</td>
+			<td width="5%">'.$eHTML->simpleButton("newCharacter", "?act=character.create&step=1").'</td>
+			<td width="5%">'.$eHTML->simpleButton("deleteCharacter", "?act=account.deleteChar").'</td>
+			<td>'.$extraBut.'</td>
 		</tr>
 	</table>';
 }	

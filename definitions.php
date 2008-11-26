@@ -54,6 +54,9 @@ define('PGT_STAT_REJECTED', 3);
 define('CHANGE_EMAIL_DAYS', 15);
 define('CHANGE_EMAIL_TIMER', 60 * 60 * 24 * CHANGE_EMAIL_DAYS);
 
+define('DELETE_CHAR_DAYS', 15);
+define('DELETE_CHAR_TIMER', 60 * 60 * 24 * DELETE_CHAR_DAYS);
+
 define('PAGE_ABOUT', 1);
 define('PAGE_CONTACT', 2);
 define('PAGE_DOWNLOADS', 3);
