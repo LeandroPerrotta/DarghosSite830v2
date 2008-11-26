@@ -411,5 +411,58 @@ class Player
 	
 		DB::query("INSERT INTO `player_items` VALUES ('".$this->data['pid_gs']."', '".$slot_pid."', '".$slot."', '".$itemid."', '".$count."', '', '', '0')", $serverDB);
 	}	
+	
+	// MORTES
+	//struct: player_id, world_id, time, level, killed_by, is_player
+	public function loadDeaths() {
+		DB::query("SELECT time FROM deathlist WHERE player_id = '".$this->data['id']."' AND 
+											     world_id = '".$this->data['world_id']."' ORDER BY time DESC LIMIT 1");
+		if(DB::num_rows() > 0) {
+			// Ja atualizo ao menos 1 vez
+			$deathTime = DB::fetch()->time;
+			if($deathTime + 60 * 5 <= time()) {
+				$this->updateDeathsMirror($deathTime);
+			}
+			DB::query("SELECT * FROM deathlist ORDER BY time DESC");
+			$deaths = array();
+			while($death = DB::fetchArray()) {
+				$deaths[] = $death;
+			}
+			return $deaths;
+		} else {
+			// Primeira vez...
+			if($this->updateDeathsMirror()) {
+				DB::query("SELECT * FROM deathlist ORDER BY time DESC");
+				$deaths = array();
+				while($death = DB::fetchArray()) {
+					$deaths[] = $death;
+				}
+				return $deaths;
+			} else {
+				return array();
+			}
+		}		
+	}
+	
+	private function updateDeathsMirror($lastDeathTime) {
+		$serverDB = Tools::getWorldResourceById($this->data['world_id']);
+		DB::query("SELECT * FROM player_deaths WHERE player_id = '".$this->data['id']."'
+													 AND time > '{$lastDeathTime}'", $serverDB);
+		if(DB::num_rows() > 0) {
+			$queryes = array();
+			while($death = DB::fetch()) {
+				$queryes[] = "INSERT INTO deathlist VALUES(
+								'".$this->data['id']."', '".$this->data['world_id']."', 
+								'{$death->time}', '{$death->level}', 
+								'{$death->killed_by}', '{$death->is_player}')";
+			}
+			foreach($queryes as $p => $v) {
+				DB::query($queryes[$p]);
+			}
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
 ?>

@@ -101,7 +101,41 @@ if(!empty($name))
 					</tr>											
 				</table>			
 			';	
-	
+					
+			$playerDeaths = $player->loadDeaths();
+			if(count($playerDeaths) > 0) {
+				$content .= '<br><table cellspacing="1" cellpadding="0" border="0" width="95%" align="center">
+							<tr>
+								<td class="tableTop" colspan="2">'.$trans_texts['deathlist'][$g_language].'</td>
+							</tr>';
+				foreach($playerDeaths as $p => $v) {
+					$tdStyle = ($p % 2 == 0) ? "tableContLight" : "tableContDark";
+					$time = $playerDeaths[$p]['time'];
+					if($g_language == "br" OR $g_language == "pt") {
+						$time = $tools->datePt($time, "dd m aaaa")." ".date("H:i", $time);
+					} else {
+						$time = date("d M Y H:i", $time);
+					}
+					if($playerDeaths[$p]['is_player'] > 0) {
+						$killer = '<a href="?act='.$_GET['act'].'&name='.$playerDeaths[$p]['killed_by'].'">'.$playerDeaths[$p]['killed_by'].'</a>';
+					} else {
+						$killer = $playerDeaths[$p]['killed_by'];
+					}
+					$content .= '<tr>
+							<td class="'.$tdStyle.'" width="25%">
+								'.$time.'
+							</td>
+							<td class="'.$tdStyle.'">
+								'.$trans_texts['deathlist.sentence'][0][$g_language].
+								$playerDeaths[$p]['level'].
+								$trans_texts['deathlist.sentence'][1][$g_language].
+								$killer.'
+							</td>
+						</tr>';
+				}
+				$content .= '</table>';
+			}
+			
 			if($player->getInfo('hide') == 0)
 			{
 				$playerList = $player->loadByAccount($player->getInfo('account_id'));

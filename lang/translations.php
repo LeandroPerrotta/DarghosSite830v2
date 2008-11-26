@@ -1296,6 +1296,16 @@ $trans_texts = array(
 		'Elder Druid',
 		'Royal Paladin',
 		'Elite Knight'
+	),
+	
+	'deathlist' => array(
+		'br' => 'Lista de mortes',
+		'us' => "Death List"
+	),
+	
+	'deathlist.sentence' => array(
+		array('br' => "Morto no nível ", 'us' => "Killed at level "),
+		array('br' => " por ", 'us' => " by ")
 	)
 	
 	
