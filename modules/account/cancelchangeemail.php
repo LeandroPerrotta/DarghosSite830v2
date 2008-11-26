@@ -35,8 +35,10 @@ if($login->logged())
 	}
 	else
 	{		
+		$cancelChangeEmail = $lang->getDescription('account.cancelchangeemail');
+		$cancelChangeEmail = $cancelChangeEmail[0].CHANGE_EMAIL_DAYS.$cancelChangeEmail[1];
 		$content .= '
-		'.$eHTML->descriptionTable($lang->getDescription('account.cancelchangeemail')).'
+		'.$eHTML->descriptionTable($cancelChangeEmail).'
 		'.$eHTML->formStart('?act=account.cancelchangeemail').'
 		<table cellspacing="2" cellpadding="0" border="0" width="95%" align="center">
 			<tr>

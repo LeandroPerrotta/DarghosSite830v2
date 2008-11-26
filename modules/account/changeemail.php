@@ -66,7 +66,7 @@ if($login->logged())
 		else
 		{
 			$email = $lang->getEmailCount('account.changeemail');	
-			$emailCont = $email[0].$newemail.$email[1];
+			$emailCont = $email[0].$newemail.$email[1].CHANGE_EMAIL_DAYS.$email[2].CHANGE_EMAIL_DAYS.$email[3];
 			
 			if($engine->sendMail($account->getEmail(), $emailCont, "Mudança de Email"))
 			{			
@@ -85,8 +85,10 @@ if($login->logged())
 	}
 	else
 	{		
+		$changeEmailText = $lang->getDescription('account.changeemail');
+		$changeEmailText = $changeEmailText[0].CHANGE_EMAIL_DAYS.$changeEmailText[1].CHANGE_EMAIL_DAYS.$changeEmailText[2];
 		$content .= '
-		'.$eHTML->descriptionTable($lang->getDescription('account.changeemail')).'
+		'.$eHTML->descriptionTable($changeEmailText).'
 		'.$eHTML->formStart('?act=account.changeemail').'
 		<table cellspacing="2" cellpadding="0" border="0" width="95%" align="center">
 			<tr>

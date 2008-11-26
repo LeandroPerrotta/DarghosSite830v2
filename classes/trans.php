@@ -513,7 +513,6 @@ class Trans
 // Está classe é destinada a exibição de descrições de paginas, como a descrição na pagina de criação de contas
 // Para usar ultilize a função getDescription('nome.descrição')
 */
-	
 	private $descriptions = array
 	(
 		//DESCRIÇÃO DE PAGINAS ACCOUNT
@@ -538,12 +537,12 @@ class Trans
 			'us' => ''),		
 			
 		'account.changeemail' => array(
-			'br' => 'Você pode efetuar uma troca de e-mail registrado em sua conta, isto é importante em casos de perda de acesso a conta de e-mail. Por motivos de segurança esta mudança leva 15 dias para ser completada. É importante lembrar que você poderá cancelar a mudança a qualquer momento antes dos 15 dias pela pagina principal de administração de sua conta. Preencha os dados abaixo para solicitar uma mudança de e-mail registrada em sua conta.',
-			'us' => ''),		
+			'br' => array('Você pode efetuar uma troca de e-mail registrado em sua conta, isto é importante em casos de perda de acesso a conta de e-mail. Por motivos de segurança esta mudança leva ', ' dias para ser completada. É importante lembrar que você poderá cancelar a mudança a qualquer momento antes dos ', ' dias pela pagina principal de administração de sua conta. Preencha os dados abaixo para solicitar uma mudança de e-mail registrada em sua conta.'),
+			'us' => array('', '', '')),		
 			
 		'account.cancelchangeemail' => array(
-			'br' => 'Atravez deste recurso você pode cancelar uma mudança de e-mail em até 15 dias antes da concretização da mudança. Note este cancelamento só estará disponivel até a concretização da mudança, e após concretizada a mudança é irreversivel.',
-			'us' => ''),		
+			'br' => array('Através deste recurso você pode cancelar uma mudança de e-mail em até ', ' dias antes da concretização da mudança. Note este cancelamento só estará disponivel até a concretização da mudança, e após concretizada a mudança é irreversivel.'),
+			'us' => array('', '')),		
 			
 		'account.setQuestions' => array(
 			'br' => 'Para aumentar a segurança de sua conta você pode configurar perguntas e respostas secretas e em sua conta. O modo de recuperação de conta por perguntas pessoais é a forma mais efetiva de recuperação, pois com elas é possivel modificar o e-mail registrado em sua conta de forma instantanea, e assim recuperar os dados de sua conta além de você tambem poder re-configurar novas perguntas em sua conta no futuro.<br>
@@ -781,11 +780,11 @@ Equipe UltraxSoft.</p>
 
 <p>Novo e-mail: <b>','</b></p>
 
-<p>Por motivos de segurança está mudança necessita de uma espera de 15 dias para que seja concluida. Você pode cancelar esta mudança a qualquer momento dentro do prazo especificado acessando sua conta no Darghos e seguindo as instruções da pagina principal.</p>
+<p>Por motivos de segurança está mudança necessita de uma espera de ',' dias para que seja concluida. Você pode cancelar esta mudança a qualquer momento dentro do prazo especificado acessando sua conta no Darghos e seguindo as instruções da pagina principal.</p>
 
 <p>Para acessar sua conta clique <a href=\"http://www.darghos.com/index.php?act=account.login\"><b>aqui</b></a>.</p>
 
-<p>Lembrando que é impossivel cancelar esta mudança após o prazo de espera de 15 dias.</p>
+<p>Lembrando que é impossivel cancelar esta mudança após o prazo de espera de ',' dias.</p>
 
 <p>Nos vemos no Darghos!<br>
 Equipe UltraxSoft.</p>

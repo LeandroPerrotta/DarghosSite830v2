@@ -51,7 +51,8 @@ define('PGT_STAT_ACTIVED', 1);
 define('PGT_STAT_EXPIRED', 2);
 define('PGT_STAT_REJECTED', 3);
 
-define('CHANGE_EMAIL_TIMER', 60 * 60 * 24 * 15);
+define('CHANGE_EMAIL_DAYS', 15);
+define('CHANGE_EMAIL_TIMER', 60 * 60 * 24 * CHANGE_EMAIL_DAYS);
 
 define('PAGE_ABOUT', 1);
 define('PAGE_CONTACT', 2);

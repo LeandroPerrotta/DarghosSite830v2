@@ -168,21 +168,25 @@ $g_pgtStatus = array(
 );
 //Tasks Map
 $g_tasksMap = array(
-	1 => array(
+	1 => array( // Atualização dos Ranks
 		'name' => "highscores",
 		'eachTime' => 60 * 60 * 24
 	), 
-	2 => array(
+	2 => array( // Atualização das infos de status dos worlds
 		'name' => "worldsstatus",
 		'eachTime' => 60 * 10
 	),
-	3 => array(
+	3 => array( // Remoção de dias de premium/atualização do lastDay
 		'name' => "premiumdays",
 		'eachTime' => 60 * 60 * 24
 	),
-	4 => array(
+	4 => array( // Atualização das infos. dos players online
 		'name' => "playersinfos",
 		'eachTime' => 60 * 10
+	),
+	5 => array( // Processar as mudanças de e-mails solicitadas
+		'name' => "changeemails",
+		'eachTime' => 60 * 60 * 12
 	)
 );
 

@@ -238,4 +238,24 @@ function task_playersinfos() {
 		$db->query($queryes[$p]);
 	}
 }
+
+function task_changeemails() {
+	$db = DB::getInstance();
+	$db->query("SELECT * FROM change_emails");
+	$queryes = array();
+	while($changeMail = $db->fetch()) {
+		if($changeMail->changeDate + CHANGE_EMAIL_TIMER <= time()) {
+			//Trocar
+			$queryes[] = "UPDATE accounts SET email = '{$changeMail->newMail}' WHERE id = '{$changeMail->account_id}'";
+			$queryes[] = "DELETE FROM change_emails WHERE account_id = '{$changeMail->account_id}'";
+		} else {
+			//Pular
+			continue;
+		}
+	}
+	
+	foreach($queryes as $p => $v) {
+		$db->query($queryes[$p]);
+	}
+}
 ?>
