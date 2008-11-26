@@ -131,6 +131,7 @@ class Player
 			$player = DB::fetch();	
 			if(time() < $player->lastUpdate + 60 * 5)
 			{	
+				$this->data['id'] = $player->id;
 				$this->data['name'] = $player->name;
 				$this->data['account_id'] = $player->account_id;
 				$this->data['world_id'] = $player->world_id;
@@ -444,7 +445,7 @@ class Player
 		}		
 	}
 	
-	private function updateDeathsMirror($lastDeathTime) {
+	private function updateDeathsMirror($lastDeathTime = 0) {
 		$serverDB = Tools::getWorldResourceById($this->data['world_id']);
 		DB::query("SELECT * FROM player_deaths WHERE player_id = '".$this->data['id']."'
 													 AND time > '{$lastDeathTime}'", $serverDB);
