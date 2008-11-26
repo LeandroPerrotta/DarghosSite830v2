@@ -241,6 +241,11 @@ else
 											<a href="?act=admin.payments"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_paymentsadmin.png"></a>							
 										</td>
 									</tr>	
+									<tr>
+										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
+											<a href="?act=admin.itemshop"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_itemshopadmin.png"></a>							
+										</td>
+									</tr>	
 								<tr class="rightSimpleMenuDown">
 									<td>
 									</td>

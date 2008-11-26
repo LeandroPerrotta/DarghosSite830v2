@@ -138,31 +138,7 @@ if($_REQUEST['act'] != "")
 			$topic = $GLOBALS['trans_topicPages']['lostInterface'][$GLOBALS['g_language']];
 			$subtopic = $GLOBALS['trans_subTopicPages']['account.lost'][$GLOBALS['g_language']];
 			include "modules/lostInterface/main.php";
-		break;		
-
-		case "recovery.password";	
-			$topic = $GLOBALS['trans_topicPages']['account'][$GLOBALS['g_language']];
-			$subtopic = $GLOBALS['trans_subTopicPages']['account.lost'][$GLOBALS['g_language']];
-			include "modules/account/recovery.password.php";
-		break;	
-
-		case "recovery.account";	
-			$topic = $GLOBALS['trans_topicPages']['account'][$GLOBALS['g_language']];
-			$subtopic = $GLOBALS['trans_subTopicPages']['account.lost'][$GLOBALS['g_language']];
-			include "modules/account/recovery.account.php";
-		break;			
-
-		case "recovery.both";	
-			$topic = $GLOBALS['trans_topicPages']['account'][$GLOBALS['g_language']];
-			$subtopic = $GLOBALS['trans_subTopicPages']['account.lost'][$GLOBALS['g_language']];
-			include "modules/account/recovery.both.php";
 		break;					
-		
-		case "recovery.newpassword";	
-			$topic = $GLOBALS['trans_topicPages']['account'][$GLOBALS['g_language']];
-			$subtopic = $GLOBALS['trans_subTopicPages']['account.lost'][$GLOBALS['g_language']];
-			include "modules/account/newpassword.php";
-		break;				
 
 /*
 //// Separação para inicialização de modulos PERSONAGENS ////
@@ -289,6 +265,24 @@ if($_REQUEST['act'] != "")
 			$subtopic = $GLOBALS['trans_subTopicPages']['admin.blacklist'][$GLOBALS['g_language']];
 			include "modules/admin/blacklist.php";
 		break;
+		
+		case "admin.itemshop";
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.itemShop'][$GLOBALS['g_language']];
+			include "modules/admin/itemshop.php";
+		break;	
+
+		case "admin.addItemToShop";
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.itemShop'][$GLOBALS['g_language']];
+			include "modules/admin/itemshop.add.php";
+		break;		
+
+		case "admin.editItemOnShop";
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.itemShop'][$GLOBALS['g_language']];
+			include "modules/admin/itemshop.edit.php";
+		break;			
 
 /*
 //// Separação para inicialização de modulos PAGAMENTOS ////

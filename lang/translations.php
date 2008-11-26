@@ -276,6 +276,11 @@ $trans_subTopicPages = array(
 		'us' => 'Blacklist Management'
 	),
 	
+	'admin.itemShop' => array(
+		'br' => 'Administração de ItemShop',
+		'us' => 'ItemShop Management'
+	),	
+	
 	'payment.details' => array(
 		'br' => 'Detalhes do Pagamento',
 		'us' => 'Payment Details'
