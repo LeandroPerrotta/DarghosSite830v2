@@ -1,5 +1,5 @@
 <?php
-if($login->logged() and $login->getAccess() == ACCESS_ADMIN) {
+if($login->logged() and $login->getAccess() >= ACCESS_ADMIN) {
 	if($_GET['s'] == "new") {
 		if($_POST['word'] != '' && $tools->checkString($_POST['word'])) {
 			$DB->query("INSERT INTO `blacklist_strings`(`string`) VALUES('".$_POST['word']."')");

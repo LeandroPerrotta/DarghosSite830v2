@@ -30,7 +30,11 @@ if($login->logged())
 					else
 						$player->setHidden(false);
 						
-					$player->setComment($comment);
+						
+					if(!$comment)	
+						$player->setComment("");
+					else	
+						$player->setComment($comment);
 					$player->save();	
 					
 					

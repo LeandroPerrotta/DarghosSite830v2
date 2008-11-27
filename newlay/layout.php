@@ -196,7 +196,7 @@ else
 								}								
 	
 				
-							if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
+							if($login->logged() and $login->getAccess() >= ACCESS_ADMIN)
 							{ 
 							?>	
 							<tr class="rightMenuDown">
@@ -236,11 +236,13 @@ else
 											<a href="?act=admin.blacklist"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_blacklist.png"></a>							
 										</td>
 									</tr>	
+									<? if($login->getAccess() == ACCESS_SADMIN) {?>
 									<tr>
 										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
 											<a href="?act=admin.payments"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_paymentsadmin.png"></a>							
 										</td>
 									</tr>	
+									<? } ?>
 									<tr>
 										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
 											<a href="?act=admin.itemshop"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_itemshopadmin.png"></a>							
@@ -286,5 +288,11 @@ var LAYOUT_DIR = "<?php echo $layoutDir; ?>";
 //-->
 </script>
 <script language="JavaScript" type="text/javascript" src="<? echo "$layoutDir"; ?>/functions.js"></script>
+<script src="http://www.google-analytics.com/urchin.js" type="text/javascript">
+</script>
+<script type="text/javascript">
+_uacct = "UA-3541977-1";
+urchinTracker();
+</script>
 </body>
 </html>

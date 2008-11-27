@@ -11,7 +11,7 @@ $i = 0;
 while($fetch = $DB->fetch()) {
 	$new = ($g_language == "br" OR $g_language == "pt") ? $fetch->new_br : $fetch->new_us;
 	$date = ($g_language == "br" OR $g_language == "pt") ? $tools->datePt($fetch->date, "dd m aaaa") : date("d M Y", $fetch->date);
-	$abrev = substr($new, 0, 20).'...';
+	$abrev = substr($new, 0, 45).'...';
 		$content .= '<div id="fn_ab_'.$i.'" style="display:none;">'.$abrev.'</div>';
 		$content .= '<div id="fn_cp_'.$i.'" style="display:none;">'.$new.'</div>';
 		$content .= '<tr onClick="newsTicker(\''.$i.'\')">

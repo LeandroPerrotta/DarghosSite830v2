@@ -6,7 +6,7 @@
  * int date
  * int account_poster
  */
-if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
+if($login->logged() and $login->getAccess() >= ACCESS_ADMIN)
 {	
 	$DB->query("SELECT id FROM fastnews");
 	$rows = $DB->num_rows();

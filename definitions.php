@@ -34,6 +34,7 @@ define('WORLD_UNITERIAN', 1);
 define('WORLD_NORTHERIAN', 2);
 
 define('ACCESS_ADMIN', 1);
+define('ACCESS_SADMIN', 2);
 
 define('PGT_MET_PAGSEGURO', 0);
 define('PGT_MET_PAYPAL', 1);

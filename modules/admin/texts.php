@@ -1,5 +1,5 @@
 <?
-if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
+if($login->logged() and $login->getAccess() >= ACCESS_ADMIN)
 {	
 	$DB->query("SELECT id FROM texts");
 	$rows = $DB->num_rows();

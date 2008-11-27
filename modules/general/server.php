@@ -27,7 +27,7 @@ $content .= '<table cellspacing="1" cellpadding="0" border="0" width="95%" align
 				<tr>
 					<td class="tableContDark" width="25%">'.$trans_texts['ip_address'][$g_language].':</td>
 					<td class="tableContDark">
-						'.$world['ip'].'
+						'.$world['public_ip'].'
 					</td>
 				</tr>
 				<tr>

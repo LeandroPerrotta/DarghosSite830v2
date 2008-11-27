@@ -1,5 +1,5 @@
 <?
-if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
+if($login->logged() and $login->getAccess() >= ACCESS_ADMIN)
 {	
 	if ($_SERVER['REQUEST_METHOD'] == "POST")
 	{	

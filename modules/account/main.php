@@ -179,7 +179,7 @@ if($login->logged())
 			{	
 				$payments->loadById($paymentId);
 				$payment_status = $g_pgtStatus[$payments->getInfo('status')];
-				$payment_identificator = ($payments->getInfo('auth') != 0) ? "?act=payment.details&auth=".md5($payments->getInfo('auth'))."" : "?act=payment.details&id=".md5($paymentId)."";
+				$payment_identificator = ($payments->getInfo('auth') != 0) ? "?act=payment.details&id=".md5($payments->getInfo('auth'))."" : "?act=payment.details&id=".md5($paymentId)."";
 				
 				$content .= '
 				<tr>

@@ -95,7 +95,7 @@ function task_worldsstatus() {
 	$db->query("SELECT * FROM worlds");
 	$queryes = array();
 	while($world = $db->fetch()) {
-		$fp = @fsockopen($world->ip, (int)$world->port, $errno, $errstr, 2);
+		$fp = @fsockopen($world->private_ip, (int)$world->port, $errno, $errstr, 2);
 		if($fp) {		
 		
 			stream_set_timeout($fp, 2);

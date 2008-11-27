@@ -6,7 +6,7 @@
  * text reply_br
  * text reply_us
  */
-if($login->logged() and $login->getAccess() == ACCESS_ADMIN)
+if($login->logged() and $login->getAccess() >= ACCESS_ADMIN)
 {	
 	$DB->query("SELECT id FROM faqs");
 	$rows = $DB->num_rows();
