@@ -59,10 +59,23 @@ if($login->logged()) {
 	} else {
 		$charDeletionText = $lang->getDescription('account.deletechar');
 		$charDeletionText = $charDeletionText[0].DELETE_CHAR_DAYS.$charDeletionText[1].DELETE_CHAR_DAYS.$charDeletionText[2];
+
+		$DB->query("SELECT 
+						player.name
+					FROM 
+						chardeletions as del, 
+						characterlist as player 
+					WHERE
+						del.player_id = player.id AND
+						player.account_id = '".$_SESSION['account']."'");
+		$charsDeleted = array();
+		while($deleted = $DB->fetch()) {
+			$charsDeleted[] = $deleted->name;
+		}
 		$DB->query("SELECT name FROM characterlist WHERE account_id = '".$_SESSION['account']."'");
 		$chars = array();
 		while($playerName = $DB->fetch()->name) {
-			if(!Player::playerDeleted($playerName)) {
+			if(!in_array($playerName, $charsDeleted)) {
 				$chars[] = array('valueName' => $playerName, 'valueId' => $playerName);
 			} else {
 				if($DB->num_rows() > 1) {
