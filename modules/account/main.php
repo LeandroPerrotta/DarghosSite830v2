@@ -214,12 +214,11 @@ if($login->logged())
 		foreach($playerList as $pid)
 		{
 			$player->loadById($pid);
-			$deleted = (Player::playerDeleted($player->getInfo('name'))) ? "deleted " : "";
 			$content .= '
 			<tr>
 				<td class="tableContLight" width="25%"><a href="?act=character.details&name='.$player->getInfo('name').'">'.$player->getInfo('name').'</a></td>
 				<td class="tableContLight" width="15%">'.$g_world[$player->getInfo('world_id')]['name'].'</td>
-				<td class="tableContLight" width="35%">'.$deleted.$trans_texts['stat_'.$player->getStatus()][$g_language].'</td>
+				<td class="tableContLight" width="35%">'.$player->getStatus().'</td>
 				<td class="tableContLight">'.$eHTML->simpleButton("preferences", "?act=character.preferences&id=".md5($player->getInfo('id'))."").'</td>			
 			</tr>';		
 		}

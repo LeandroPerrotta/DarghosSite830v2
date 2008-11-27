@@ -151,7 +151,7 @@ if(!empty($name))
 							$playersOnAcc = true;
 							$players .= '
 							<tr>
-								<td class="tableContLight" width="25%">'.$player->getInfo('name').'</td><td class="tableContLight" width="15%">'.$g_world[$player->getInfo('world_id')]['name'].'</td><td class="tableContLight" width="35%">'.$trans_texts['stat_'.$player->getStatus()][$g_language].'</td><td class="tableContLight" width="35%">'.$eHTML->simpleButton("view", "?act=character.details&name=".$player->getInfo('name')."").'</td>				
+								<td class="tableContLight" width="25%">'.$player->getInfo('name').'</td><td class="tableContLight" width="15%">'.$g_world[$player->getInfo('world_id')]['name'].'</td><td class="tableContLight" width="35%">'.$player->getStatus().'</td><td class="tableContLight" width="35%">'.$eHTML->simpleButton("view", "?act=character.details&name=".$player->getInfo('name')."").'</td>				
 							</tr>';
 						}	
 					}

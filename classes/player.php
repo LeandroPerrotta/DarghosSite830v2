@@ -385,31 +385,35 @@ class Player
 
 	public function getStatus()
 	{
-		$tmp = 0;
+		global $trans_texts;
+		global $g_language;
+	
+		$flags = array();
 		
 		if($this->data['hide'] == 1)
-			$tmp += 1;
+			$flags[] = "hidden";
 		
 		if($this->data['online'] == 1)	
-			$tmp += 2;
+			$flags[] = "online";	
+			
+		if($this->isDeleted())
+			$flags[] = "deleted";
 	
-		switch($tmp)
+		if(count($flags) == 0)
 		{
-			case 0:
-				$string = "none";
-			break;
-
-			case 1:
-				$string = "hidden";
-			break;
-
-			case 2:
-				$string = "online";
-			break;
+			$string .= $trans_texts['stat_none'][$g_language];
+		}	
+		else
+		{
+			foreach($flags as $flag)
+			{
+				$i++;
 				
-			case 3:
-				$string = "hidden_online";
-			break;	
+				$string .= $trans_texts['stat_'.$flag][$g_language];
+				
+				if(count($flags) != $i)
+					$string .= ", ";
+			}			
 		}
 				
 		return $string;
@@ -490,7 +494,7 @@ class Player
 		return ($DB->num_rows() > 0) ? true : false;
 	}
 	
-	public static function playerDeleted($name) {
+	public function isDeleted() {
 		global $DB;
 		$DB->query("SELECT 
 						player.name 
@@ -500,7 +504,7 @@ class Player
 					WHERE 
 						del.player_id = player.id AND
 						del.world_id = player.world_id AND
-						player.name = '".$name."'");
+						player.name = '".mysql_escape_string($this->data['name'])."'");
 		return ($DB->num_rows() > 0) ? true : false;
 	}
 	

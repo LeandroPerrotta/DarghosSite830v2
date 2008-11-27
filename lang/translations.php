@@ -796,9 +796,9 @@ $trans_texts = array(
 		'us' => 'online'
 	),		
 	
-	'stat_hide_online' => array(
-		'br' => 'oculto, online',
-		'us' => 'hidden, online'
+	'stat_deleted' => array(
+		'br' => 'deletado',
+		'us' => 'deleted'
 	),	
 
 	'character_preferences' => array(
