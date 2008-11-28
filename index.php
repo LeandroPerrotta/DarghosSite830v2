@@ -79,7 +79,10 @@ session_start();
 	if($_GET['active'] == 'tasksonly957153654852') {
 		set_time_limit(60*25); 
 		$tasks = $engine->loadObject('tasks');
-		Tasks::PerformTasks($g_tasksMap);
+		if($_GET['task_exec'] != '') {
+			Tasks::PerformTask($_GET['task_exec'], $g_tasksMap);
+		}
+		//Tasks::PerformTasks($g_tasksMap);
 	}
 	
 	
@@ -96,6 +99,6 @@ session_start();
 	if($_GET['active'] != 'tasksonly957153654852') {
 		include "$layoutDir/layout.php";
 	} else {
-		echo "Tasks executadas.";
+		echo "Task executada.";
 	}
 ?>

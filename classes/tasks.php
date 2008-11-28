@@ -94,6 +94,42 @@ class Tasks {
 		return true;
 	}
 	
+	public static function PerformTask($taskName, $tasksMap) {
+		include_once("tasksFunctions.php");
+		$taskArr = array();
+		foreach($tasksMap as $p => $v) {
+			if(md5($tasksMap[$p]['name']) == $taskName) {
+				$taskArr = $tasksMap[$p];
+				break;
+			} else {
+				continue;
+			}
+		}
+		if(count($taskArr) < 1) {
+			return false;
+		}
+		// Executar task
+		if(Tasks::TaskExists($taskArr['name'])) {
+			$task = new Tasks();
+			$task->loadTask($taskArr['name']);
+			if(function_exists("task_".$task->getName())) {
+				call_user_func("task_".$task->getName());
+			}
+			$task->setLastExecution(time());
+			$task->saveTask();
+		} else {
+			$task = new Tasks();
+			$task->setName($taskArr['name']);
+			$task->setEachTime($taskArr['eachTime']);
+			if(function_exists("task_".$task->getName())) {
+				call_user_func("task_".$task->getName());
+			}
+			$task->setLastExecution(time());
+			$task->saveTask();
+		}
+		return true;
+	}
+	
 	/**
 	 * @return integer
 	 */
