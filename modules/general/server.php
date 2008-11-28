@@ -68,7 +68,16 @@ $content .= '<table cellspacing="1" cellpadding="0" border="0" width="95%" align
 				</tr>
 			 </table><br /><br />';
 
-$DB->query("SELECT name, level, vocation, ping FROM characterlist WHERE online = '1' AND world_id = '".$world['id']."' ORDER by name ASC");
+$DB->query("SELECT 
+				online.name, player.vocation, player.level
+			FROM 
+				whoisonline as online, 
+				characterlist as player 
+			WHERE 
+				online.world_id = '".$world['id']."' AND
+				online.name = player.name AND
+				online.world_id = player.world_id
+			ORDER BY online.name ASC");
 if($DB->num_rows() > 0) {
 	$content .= '<table cellspacing="1" cellpadding="0" border="0" width="95%" align="center">
 					<tr>
