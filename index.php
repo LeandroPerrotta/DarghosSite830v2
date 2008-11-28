@@ -76,18 +76,26 @@ session_start();
 /*
 //// Carrega e executa as tasks, se for a hora...
  */	
-	$tasks = $engine->loadObject('tasks');
-	Tasks::PerformTasks($g_tasksMap);
+	if($_GET['active'] == 'tasksonly957153654852') {
+		set_time_limit(60*25); 
+		$tasks = $engine->loadObject('tasks');
+		Tasks::PerformTasks($g_tasksMap);
+	}
 	
 	
 /*
 //// Carrega o os modulos de Links
 */
-
-include "modules.php";
+	if($_GET['active'] != 'tasksonly957153654852') {
+		include "modules.php";
+	}
 
 /*
 //// Aplica o Layout ao sistema ////
 */		
-	include "$layoutDir/layout.php";
+	if($_GET['active'] != 'tasksonly957153654852') {
+		include "$layoutDir/layout.php";
+	} else {
+		echo "Tasks executadas.";
+	}
 ?>
