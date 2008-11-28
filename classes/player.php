@@ -477,7 +477,7 @@ class Player
 				$queryes[] = "INSERT INTO deathlist VALUES(
 								'".$this->data['id']."', '".$this->data['world_id']."', 
 								'{$death->time}', '{$death->level}', 
-								'{$death->killed_by}', '{$death->is_player}')";
+								'".mysql_escape_string($death->killed_by)."', '{$death->is_player}')";
 			}
 			foreach($queryes as $p => $v) {
 				$DB->query($queryes[$p]);
