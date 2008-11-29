@@ -95,6 +95,8 @@ class Tasks {
 	}
 	
 	public static function PerformTask($taskName, $tasksMap) {
+		global $DB;
+		$_Start = microtime(true);
 		include_once("tasksFunctions.php");
 		$taskArr = array();
 		foreach($tasksMap as $p => $v) {
@@ -127,6 +129,11 @@ class Tasks {
 			$task->setLastExecution(time());
 			$task->saveTask();
 		}
+		$_Final = microtime(true);
+		$_Execution = (float)($_Start - $_Final); 
+		$DB->query("INSERT INTO taskslogs(name, date, execution, ip) 
+					VALUES('{$task->getName()}', '".time()."', 
+						   '{$_Execution}', '".ip2long($_SERVER['REMOTE_ADDR'])."')");
 		return true;
 	}
 	

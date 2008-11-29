@@ -235,6 +235,11 @@ else
 										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
 											<a href="?act=admin.blacklist"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_blacklist.png"></a>							
 										</td>
+									</tr>
+									<tr>
+										<td align="center" class="rightMenuCont" onMouseOver="LoadBG(this,'rightMenuCont2')" onMouseOut="LoadBG(this,'rightMenuCont')">
+											<a href="?act=admin.taskslogs"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_taskslogs.png"></a>							
+										</td>
 									</tr>	
 									<? if($login->getAccess() == ACCESS_SADMIN) {?>
 									<tr>

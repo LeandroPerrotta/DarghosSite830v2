@@ -291,6 +291,11 @@ $trans_subTopicPages = array(
 		'us' => 'ItemShop Management'
 	),	
 	
+	'admin.tasks' => array(
+		'br' => 'Log de tasks(tarefas)',
+		'us' => 'Tasks Log'
+	),
+	
 	'payment.details' => array(
 		'br' => 'Detalhes do Pagamento',
 		'us' => 'Payment Details'

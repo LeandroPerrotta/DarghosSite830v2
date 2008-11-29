@@ -294,7 +294,13 @@ if($_REQUEST['act'] != "")
 			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
 			$subtopic = $GLOBALS['trans_subTopicPages']['admin.itemShop'][$GLOBALS['g_language']];
 			include "modules/admin/itemshop.edit.php";
-		break;			
+		break;	
+
+		case "admin.taskslogs";
+			$topic = $GLOBALS['trans_topicPages']['admin'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['admin.tasks'][$GLOBALS['g_language']];
+			include "modules/admin/tasks.php";
+		break;	
 
 /*
 //// Separação para inicialização de modulos PAGAMENTOS ////
