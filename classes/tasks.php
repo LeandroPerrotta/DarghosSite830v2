@@ -130,7 +130,7 @@ class Tasks {
 			$task->saveTask();
 		}
 		$_Final = microtime(true);
-		$_Execution = (float)($_Start - $_Final); 
+		$_Execution = (float)($_Final - $_Start); 
 		$DB->query("INSERT INTO taskslogs(name, date, execution, ip) 
 					VALUES('{$task->getName()}', '".time()."', 
 						   '{$_Execution}', '".ip2long($_SERVER['REMOTE_ADDR'])."')");
