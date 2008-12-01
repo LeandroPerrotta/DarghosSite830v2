@@ -77,6 +77,8 @@ $DB->query("SELECT
 				online.world_id = '".$world['id']."' AND
 				online.name = player.name AND
 				online.world_id = player.world_id
+			GROUP BY
+				online.name
 			ORDER BY online.name ASC");
 if($DB->num_rows() > 0) {
 	$content .= '<table cellspacing="1" cellpadding="0" border="0" width="95%" align="center">
