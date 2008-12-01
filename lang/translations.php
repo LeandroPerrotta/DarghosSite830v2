@@ -314,10 +314,19 @@ $trans_subTopicPages = array(
 	'community.highscores' => array(
 		'br' => 'Maiores Pontuadores',
 		'us' => 'Highscores'
-	),		
+	),	
+	'community.guilds' => array(
+		'br' => 'Guildas',
+		'us' => 'Guilds'
+	)	
 );
 
 $trans_texts = array(
+	'guilds.active' => array(
+		'br' => 'Guildas ativas em ',
+		'us' => 'Active guilds on '
+	),
+
 	'ip_address' => array(
 		'br' => 'Endereço de IP',
 		'us' => 'IP Address'

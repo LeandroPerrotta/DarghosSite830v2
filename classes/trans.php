@@ -777,6 +777,10 @@ class Trans
 			'br' => 'Visualize os maiores pontuadores em qualquer uma das habilidades dos personagens. Selecione abaixo o mundo na qual você deseja visualizar os maiores pontuadores.',
 			'us' => ''),	
 	
+		'community.guilds' => array(
+			'br' => 'Selecione abaixo o mundo do qual você deseja visualizar as guildas. Clique em qualquer botão Ver para saber mais informações sobre a guilda.',
+			'us' => 'Please select the game world of your choice to see the list of all existing guilds on it. Click on any view button to get more information about a guild.')
+	
 	);	
 
 /*

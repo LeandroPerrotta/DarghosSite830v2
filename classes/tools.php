@@ -400,5 +400,17 @@ class Tools
 		$rest = substr($newsText, 4);
 		return '<img src="'.$imgSrc.'" alt="'.$firstChar.'" />'.$rest.'';
 	}
+	
+	function getServerByName($name) {
+		global $g_world;
+		foreach($g_world as $p => $v) {
+			if(strtolower($g_world[$p]['name']) == strtolower($name)) {
+				return $g_world[$p];
+				break;
+			} else {
+				continue;
+			}
+		}
+	}
 }
 ?>

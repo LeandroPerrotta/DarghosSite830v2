@@ -1,16 +1,5 @@
 <?php 
-function searchServer($name) {
-	global $g_world;
-	foreach($g_world as $p => $v) {
-		if(strtolower($g_world[$p]['name']) == strtolower($name)) {
-			return $g_world[$p];
-			break;
-		} else {
-			continue;
-		}
-	}
-}
-$world = searchServer($_GET['name']);
+$world = $tools->getServerByName($_GET['name']);
 
 $content .= '<table cellspacing="1" cellpadding="0" border="0" width="95%" align="center">
 				<tr>

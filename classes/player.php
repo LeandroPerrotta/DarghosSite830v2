@@ -57,10 +57,6 @@ class Player
 	public function saveNew()
 	{
 		global $DB;
-		//Os dados do novo personagem serão inseridos no banco de dados do website, servidores e login servers
-		//Insere o personagem na DB do website
-		$DB->query("INSERT INTO `characterList` (`name`,`account_id`,`world_id`,`level`,`experience`,`sex`,`vocation`,`town_id`,`creation`) VALUES ('".$this->data['name']."',".$this->data['account_id'].",".$this->data['world_id'].",".$this->data['level'].",".$this->data['experience'].",".$this->data['sex'].",".$this->data['vocation'].",".$this->data['town_id'].",".$this->data['creation'].")");		
-		
 		//Verifica para qual mundo será criado o novo personagem
 		$serverDB = Tools::getWorldResourceById($this->data['world_id']);
 	
@@ -81,8 +77,14 @@ class Player
 			'".$this->data['lookfeet']."','".$this->data['lookhead']."','".$this->data['looklegs']."',
 			'".$this->data['looktype']."','".$this->data['cap']."','".$this->data['town_id']."', '".time()."')", $serverDB);
 		
+		$this->data['id'] = $DB->last_insert_id($serverDB);
+		
+		//Os dados do novo personagem serão inseridos no banco de dados do website, servidores e login servers
+		//Insere o personagem na DB do website
+		$DB->query("INSERT INTO `characterList` (`id`, `name`,`account_id`,`world_id`,`level`,`experience`,`sex`,`vocation`,`town_id`,`creation`) VALUES ('".$this->data['id']."','".$this->data['name']."',".$this->data['account_id'].",".$this->data['world_id'].",".$this->data['level'].",".$this->data['experience'].",".$this->data['sex'].",".$this->data['vocation'].",".$this->data['town_id'].",".$this->data['creation'].")");		
+			
 		//Insere o personagem na DB do login server
-		$DB->query("INSERT INTO `characterList` (`name`,`account_id`,`wid`) VALUES ('".$this->data['name']."',".$this->data['account_id'].",".$this->data['world_id'].")", 'loginserver');
+		$DB->query("INSERT INTO `characterList` (`id`, `name`,`account_id`,`wid`) VALUES ('".$this->data['id']."','".$this->data['name']."',".$this->data['account_id'].",".$this->data['world_id'].")", 'loginserver');
 	}	
 	
 	public function save()

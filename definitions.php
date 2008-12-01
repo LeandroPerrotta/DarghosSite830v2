@@ -61,4 +61,8 @@ define('DELETE_CHAR_TIMER', 60 * 60 * 24 * DELETE_CHAR_DAYS);
 define('PAGE_ABOUT', 1);
 define('PAGE_CONTACT', 2);
 define('PAGE_DOWNLOADS', 3);
+
+define('GUILD_IMAGES_DIR', 'guildimages/');
+define('GUILD_IMAGE_MAX_WIDTH', 200);
+define('GUILD_IMAGE_MAX_HEIGHT', 200);
 ?>
