@@ -59,8 +59,18 @@ if($login->logged())
 			}
 			else
 			{
+				if($payments->getInfo('auth') != 0)
+				{
+					$content .= '
+						'.$eHTML->formStart('?act=payment.accept&id='.md5($payments->getInfo('auth')).'').'';
+				}
+				else
+				{
 				$content .= '
-					'.$eHTML->formStart('?act=payment.accept&id='.md5($payments->getInfo('auth')).'').'
+						'.$eHTML->formStart('?act=payment.accept&id='.md5($payments->getInfo('id')).'').'';					
+				}
+				
+				$content .= '	
 					'.$eHTML->descriptionTable($lang->getDescription('payments.accept')).'
 					<table cellspacing="1" cellpadding="0" border="0" width="95%" align="center">
 						<tr>

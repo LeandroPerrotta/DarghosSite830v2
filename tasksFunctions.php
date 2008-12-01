@@ -146,6 +146,8 @@ function task_worldsstatus() {
 	foreach($queryes as $p => $v) {
 		$db->query($queryes[$p]);
 	}
+	
+	echo "World Status atualizado.";
 }
 
 function task_premiumdays() {
@@ -199,6 +201,7 @@ function task_premiumdays() {
 //maglevel 	lastlogin 	redskulltime 	guildnick 	rank_id 	town_id 	comment 	
 //hide 	online 	old_name 	tutor_since 	creation 	ping 	lastUpdate
 function task_playersinfos() {
+	echo "Atualizando Lista de jogadores online...<br>";
 	$db = DB::getInstance();
 	$db->query("TRUNCATE whoisonline");
 	$queryes = array();
@@ -207,14 +210,17 @@ function task_playersinfos() {
 		$db->query("SELECT name
 					FROM players WHERE online = '1'", $GLOBALS['g_world'][$p]['sqlResource']);
 		while($player = $db->fetch()) {
-			$queryes[] = "INSERT INTO whoisonline VALUES('".mysql_escape_string($player->name)."', 
-														 '{$worldId}')";
+			$players[] = mysql_escape_string($player->name);
+		}
+		
+		foreach($players as $p)
+		{
+			$db->query("INSERT INTO whoisonline VALUES('".$p."', '{$worldId}')");
 		}
 	}
 	
-	foreach($queryes as $p => $v) {
-		$db->query($queryes[$p]);
-	}
+	echo "Lista de jogadores online atualizada com sucesso!<br>
+	".count($players)." jogadores estão conectados neste instante.<br>";
 }
 
 function task_changeemails() {

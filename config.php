@@ -191,7 +191,11 @@ $g_tasksMap = array(
 	6 => array(
 		'name' => "deletechars",
 		'eachTime' => 60 * 60 * 12
-	)
+	),
+	7 => array(
+		'name' => "backup_dbs",
+		'eachTime' => 60 * 60 * 24
+	)	
 );
 
 ?>

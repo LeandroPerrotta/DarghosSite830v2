@@ -71,14 +71,15 @@ class Player
 			`health`,`healthmax`,`mana`,
 			`manamax`,`direction`,`lookbody`,
 			`lookfeet`,`lookhead`,`looklegs`,
-			`looktype`,`cap`,`town_id`) 
+			`looktype`,`cap`,`town_id`,
+			`created`) 
 			VALUES(
 			'".$this->data['name']."','".$this->data['account_id']."','".$this->data['sex']."',
 			'".$this->data['vocation']."','".$this->data['experience']."','".$this->data['level']."',
 			'".$this->data['health']."','".$this->data['healthmax']."','".$this->data['mana']."',
 			'".$this->data['manamax']."','".$this->data['direction']."','".$this->data['lookbody']."',
 			'".$this->data['lookfeet']."','".$this->data['lookhead']."','".$this->data['looklegs']."',
-			'".$this->data['looktype']."','".$this->data['cap']."','".$this->data['town_id']."')", $serverDB);
+			'".$this->data['looktype']."','".$this->data['cap']."','".$this->data['town_id']."', '".time()."')", $serverDB);
 		
 		//Insere o personagem na DB do login server
 		$DB->query("INSERT INTO `characterList` (`name`,`account_id`,`wid`) VALUES ('".$this->data['name']."',".$this->data['account_id'].",".$this->data['world_id'].")", 'loginserver');
@@ -89,11 +90,10 @@ class Player
 		global $DB;
 		$query = "UPDATE `characterList` SET ";
 		
-		if($this->data['sex'] != ("" or null))
+		if(!$this->data['sex'])
 			$query .= "sex = ".$this->data['sex'].", ";
 			
-		if($this->data['comment'] != ("" or null))
-			$query .= "comment = '".$this->data['comment']."', ";	
+		$query .= "comment = '".$this->data['comment']."', ";	
 
 		$query .= "hide = ".$this->data['hide']."";
 

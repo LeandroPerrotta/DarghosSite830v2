@@ -63,12 +63,12 @@ class Tasks {
 				$task->loadTask($tasksMap[$p]['name']);
 				if($task->getLastExecution() <= time() - $task->getEachTime()) {
 					if(function_exists("task_".$task->getName())) {
-						call_user_func("task_".$task->getName());
 						if($tasksMap[$p]['eachTime'] != $task->getEachTime()) {
 							$task->setEachTime($tasksMap[$p]['eachTime']);
 						}
 						$task->setLastExecution(time());
 						$task->saveTask();
+						call_user_func("task_".$task->getName());
 						continue;
 					} else {
 						continue;

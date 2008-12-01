@@ -22,7 +22,7 @@ if(!empty($name))
 			$account = $engine->loadObject('Account');
 			$account->loadByNumber($player->getInfo('account_id'));
 
-			$account->load();		
+			$account->load($emailChanges = false, $payments = true, $registrarion = false);			
 		
 			if($account->getInfo('realName') == (null or ""))
 				$rlname = $trans_texts['not_informed'][$g_language];
@@ -78,15 +78,71 @@ if(!empty($name))
 			if($player->getInfo('comment') != null or $player->getInfo('comment') != "")
 			{
 					$content .= '<tr>
-						<td class="tableContLight" width="20%">'.$trans_texts['comment'][$g_language].'</td><td class="tableContLight">'.$player->getInfo('comment').'</td>
+						<td class="tableContLight" width="20%">'.$trans_texts['comment'][$g_language].'</td><td class="tableContLight">'.strip_tags(nl2br($player->getInfo('comment')), "<br><br />").'</td>
 					</tr>';
 			}
-					$content .= '<tr>
+					$content .= '
+					<tr>
 						<td class="tableContLight" width="20%">'.$trans_texts['account_type'][$g_language].'</td><td class="tableContLight">'.$premiumType.'</td>
-					</tr>					
-				</table>
-				<br>
+					</tr>';
+					
+			if($login->logged() and $login->getAccess() >= ACCESS_ADMIN)
+			{
+				$content .= '
+				<tr>
+					<td class="tableContLight" width="20%">Premium Days</td><td class="tableContLight">'.$account->getInfo('premdays').'</td>
+				</tr>
+				<tr>
+					<td class="tableContLight" width="20%">Numero da Conta</td><td class="tableContLight">'.$account->getInfo('id').'</td>
+				</tr>	
+				<tr>
+					<td class="tableContLight" width="20%">Criação (personagem)</td><td class="tableContLight">'.$tools->datePt($player->getInfo('created')).'</td>
+				</tr>	
+				<tr>
+					<td class="tableContLight" width="20%">Criação (conta)</td><td class="tableContLight">'.$tools->datePt($account->getInfo('creation')).'</td>
+				</tr>				
+				';		
+			}			
+				$content .= '</table>
+				<br>';
+				
+			if($login->logged() and $login->getAccess() == ACCESS_SADMIN)
+			{
+				$content .= '
 				<table cellspacing="1" cellpadding="0" border="0" width="95%" align="center">
+					<tr>
+						<td class="tableTop" colspan="2">'.$trans_texts['contributions'][$g_language].'</td>
+					</tr>';			
+			
+				if(count($account->getPayments()) == 0)
+				{
+					$content .= '
+						<tr>
+							<td class="tableContLight">'.$trans_texts['no_contributions'][$g_language].'</td>
+						</tr>';
+				}	
+				else
+				{		
+					$payments = $engine->loadObject('Payments');
+					
+					foreach($account->getPayments() as $paymentId)
+					{	
+						$payments->loadById($paymentId);
+						$payment_status = $g_pgtStatus[$payments->getInfo('status')];
+						$payment_identificator = ($payments->getInfo('auth') != 0) ? "?act=payment.details&id=".md5($payments->getInfo('auth'))."" : "?act=payment.details&id=".md5($paymentId)."";
+						
+						$content .= '
+						<tr>
+							<td class="tableContLight">'.$trans_texts['contribution_info'][$g_language][0].''.$payments->getInfo('period').''.$trans_texts['contribution_info'][$g_language][1].''.$tools->datePt($payments->getInfo('activation'), "dd, mes, aa").''.$trans_texts['contribution_info'][$g_language][2].''.$trans_texts[$payment_status][$g_language].'.</td><td class="tableContLight"><center>'.$eHTML->simpleButton("details", $payment_identificator).'</td>
+						</tr>';	
+					}	
+				}
+
+				$content .= '</table><br>';	
+			}		
+				
+				
+				$content .= '<table cellspacing="1" cellpadding="0" border="0" width="95%" align="center">
 					<tr>
 						<td class="tableTop" colspan="4">'.$trans_texts['personal_informations'][$g_language].'</td>
 					</tr>	
@@ -136,7 +192,7 @@ if(!empty($name))
 				$content .= '</table>';
 			}
 			
-			if($player->getInfo('hide') == 0)
+			if($player->getInfo('hide') == 0 OR ($login->logged() and $login->getAccess() >= ACCESS_ADMIN))
 			{
 				$playerList = $player->loadByAccount($player->getInfo('account_id'));
 				$playersOnAcc = false;
@@ -146,7 +202,7 @@ if(!empty($name))
 					{
 						$player->loadById($pid);
 					
-						if($player->getInfo('hide') == 0)
+						if($player->getInfo('hide') == 0 OR ($login->logged() and $login->getAccess() >= ACCESS_ADMIN))
 						{
 							$playersOnAcc = true;
 							$players .= '

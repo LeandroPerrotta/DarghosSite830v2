@@ -149,33 +149,32 @@ class Payments
 			$query .= "`period` = '" .$this->data['period']. "', ";
 			
 		if($this->data['activation'] != (null or ""))
-			$query .= "`activation` = " .$this->data['activation']. ", ";	
+			$query .= "`activation` = '" .$this->data['activation']. "', ";	
 			
 		if($this->data['cost'] != (null or ""))
 			$query .= "`cost` = '" .$this->data['cost']. "', ";		
 			
 		if($this->data['coin'] != (null or ""))
-			$query .= "`coin` = " .$this->data['coin']. ", ";			
+			$query .= "`coin` = '" .$this->data['coin']. "', ";			
 			
 		if($this->data['account_id'] != (null or ""))
-			$query .= "`account_id` = " .$this->data['account_id']. ", ";	
+			$query .= "`account_id` = '" .$this->data['account_id']. "', ";	
 			
 		if($this->data['status'] != (null or ""))
-			$query .= "`status` = " .$this->data['status']. ", ";		
+			$query .= "`status` = '" .$this->data['status']. "', ";		
 
 		if($this->data['acceptedIn'] != (null or ""))
-			$query .= "`acceptedIn` = " .$this->data['acceptedIn']. ", ";					
+			$query .= "`acceptedIn` = '" .$this->data['acceptedIn']. "', ";					
 			
 		if($this->data['type'] != (null or ""))
-			$query .= "`type` = " .$this->data['type']. ", ";	
+			$query .= "`type` = '" .$this->data['type']. "', ";	
 			
 		if($this->data['method'] != (null or ""))
-			$query .= "`method` = " .$this->data['method']. ", ";	
+			$query .= "`method` = '" .$this->data['method']. "', ";	
 			
-		if($this->data['auth'] != (null or ""))
-			$query .= "`auth` = '" .$this->data['auth']. "' ";		
+		$query .= "`auth` = '" .$this->data['auth']. "' ";		
 
-		$query .= "WHERE `id` = ".$this->data['id']."";	
+		$query .= "WHERE `id` = '".$this->data['id']."'";	
 		
 		$this->DB->query($query);
 	}

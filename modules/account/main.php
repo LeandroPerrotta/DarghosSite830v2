@@ -245,9 +245,9 @@ if($login->logged())
 	</table><br>
 	<table cellspacing="5" cellpadding="0" border="0" width="95%" align="center">
 		<tr>
-			<td width="5%">'.$eHTML->simpleButton("newCharacter", "?act=character.create&step=1").'</td>
-			<td width="5%">'.$eHTML->simpleButton("deleteCharacter", "?act=account.deleteChar").'</td>
-			<td>'.$extraBut.'</td>
+			<td width="5%">'.$eHTML->simpleButton("newCharacter", "?act=character.create&step=1").'
+			'.$eHTML->simpleButton("deleteCharacter", "?act=account.deleteChar").'
+			'.$extraBut.'</td>
 		</tr>
 	</table>';
 }	

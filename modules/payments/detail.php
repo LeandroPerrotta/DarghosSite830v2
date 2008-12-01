@@ -5,7 +5,7 @@ if($login->logged())
 	
 	$payments = $engine->loadObject('Payments');
 	
-	if($payments->loadByIdEnc($idEnc) and $payments->getInfo('account_id') == $_SESSION['account'])
+	if($payments->loadByIdEnc($idEnc) and (($payments->getInfo('account_id') == $_SESSION['account']) OR ($login->logged() and $login->getAccess() == ACCESS_SADMIN)))
 	{
 		if($payments->needActive())
 		{
@@ -40,8 +40,14 @@ if($login->logged())
 				<tr>
 					<td><center>
 						'.$eHTML->simpleButton('back','?act=account.main').'';
-		if($payments->needActive())				
-			$content .= ' '.$eHTML->simpleButton('accept','?act=payment.accept&id='.md5($payments->getInfo('auth')).'').'';
+		if($payments->needActive())
+		{	
+			if($payments->getInfo('auth') != 0)
+				$content .= ' '.$eHTML->simpleButton('accept','?act=payment.accept&id='.md5($payments->getInfo('auth')).'').'';
+			else
+				$content .= ' '.$eHTML->simpleButton('accept','?act=payment.accept&id='.md5($payments->getInfo('id')).'').'';
+		}
+		
 					$content .= '</td>
 				</tr>
 			</table>
