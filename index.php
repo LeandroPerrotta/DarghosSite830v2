@@ -63,7 +63,7 @@ session_start();
 	$DB->query("SELECT * FROM worlds");
 	
 	while($_world_ = $DB->fetchArray()) {
-		$g_world[] = $_world_;
+		$g_world[$_world['id']] = $_world_;
 	}	
 	
 /*

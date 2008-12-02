@@ -183,6 +183,18 @@ if($_REQUEST['act'] != "")
 			$subtopic = $GLOBALS['trans_subTopicPages']['community.highscores'][$GLOBALS['g_language']];
 			include "modules/community/highscores.php";
 		break;	
+		
+		case "guilds";
+			$topic = $GLOBALS['trans_topicPages']['community'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['community.guilds'][$GLOBALS['g_language']];
+			include "modules/community/guilds.php";
+		break;
+		
+		case "guilds.found";
+			$topic = $GLOBALS['trans_topicPages']['community'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['community.guilds.found'][$GLOBALS['g_language']];
+			include "modules/community/guild.found.php";
+		break;
 
 /*
 //// Separação para inicialização de modulos ADMINISTRAÇÂO ////

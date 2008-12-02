@@ -151,6 +151,11 @@ else
 									<a href="?act=highscores"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_highscores.png"></a>
 									</td>
 								</tr>
+								<tr>
+									<td class="leftMenuCont" onMouseOver="LoadBG(this,'leftMenuCont2')" onMouseOut="LoadBG(this,'leftMenuCont')">
+									<a href="?act=guilds"><img src="<? echo "$layoutDir"; ?>/images/menu/<? echo $g_language; ?>/label_guilds.png"></a>
+									</td>
+								</tr>
 								<tr class="leftSimpleMenuDown">
 									<td>
 									</td>

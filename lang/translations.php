@@ -318,13 +318,47 @@ $trans_subTopicPages = array(
 	'community.guilds' => array(
 		'br' => 'Guildas',
 		'us' => 'Guilds'
-	)	
+	),
+	'community.guilds.found' => array(
+		'br' => 'Criar Guilda',
+		'us' => 'Found Guild'
+	)
 );
 
 $trans_texts = array(
 	'guilds.active' => array(
 		'br' => 'Guildas ativas em ',
 		'us' => 'Active guilds on '
+	),
+	
+	'guilds.logo' => array(
+		'br' => 'Imagem',
+		'us' => 'Logo'
+	),
+	
+	'guilds.desc' => array(
+		'br' => 'Descrição',
+		'us' => 'Description'
+	),
+	
+	'guilds.noguild' => array(
+		'br' => 'Não há guild registrada',
+		'us' => 'Not have registered guild'
+	),
+	
+	'guilds.found' => array(
+		'br' => 'Criar Guilda',
+		'us' => 'New Guild'
+	),
+	
+	'guilds.name' => array(
+		'br' => 'Nome da Guilda',
+		'us' => 'Guild Name'
+	),
+	
+	'guilds.leader' => array(
+		'br' => 'Líder',
+		'us' => 'Leader'
 	),
 
 	'ip_address' => array(
