@@ -14,6 +14,21 @@
 session_start();
 
 /*
+//// Manutenção
+*/
+
+	$manutention = true; //true, false
+	
+	if($manutention)
+	{
+		$manuText['title'] = "Website em Manutenção.";
+		$manuText['details'] = "O nosso website está em menutenção para modificações tecnicas. Entretanto o servidor continua normalmente online. Previsão para website voltar ao ar: 15:30 (Brasilia).";
+	
+		include "manutention.php";
+		die();	
+	}	
+
+/*
 //// Inicia as Configurações padrões do sistema ////
 */
 
