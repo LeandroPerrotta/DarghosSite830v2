@@ -541,7 +541,52 @@ class Trans
 			'us' => array(
 				'title' => '',
 				'msg' => '')		
-		),		
+		),	
+
+		'guilds.cantUseName' => array(
+			'br' => array(
+				'title' => 'Nome inválido',
+				'msg' => 'Já existe uma guild com o nome especificado.'), 		
+			'us' => array(
+				'title' => 'Invalid name',
+				'msg' => 'A guild with that name already exists.')		
+		),
+		
+		'guilds.charNaoPosse' => array(
+			'br' => array(
+				'title' => 'Erro',
+				'msg' => 'Personagem não encontrado em sua conta.'), 		
+			'us' => array(
+				'title' => 'Error',
+				'msg' => 'Character not founded in your account.')		
+		),
+		
+		'guilds.lowerLevel' => array(
+			'br' => array(
+				'title' => 'Erro',
+				'msg' => array('O personagem selecionado não tem o level mínimo de ', ' necessário para iniciar uma guild.')), 		
+			'us' => array(
+				'title' => 'Error',
+				'msg' => array('The selected character does not have the necessary level(', ') to found a guild.'))		
+		),
+		
+		'guilds.wrongPassword' => array(
+			'br' => array(
+				'title' => 'Erro',
+				'msg' => 'Password não confere.'), 		
+			'us' => array(
+				'title' => 'Error',
+				'msg' => 'Password does not match.')		
+		),
+		
+		'guilds.success' => array(
+			'br' => array(
+				'title' => 'Sucesso!',
+				'msg' => 'Guild criada com sucesso!'), 		
+			'us' => array(
+				'title' => 'Success',
+				'msg' => 'Guild created sucessfully')		
+		)
 	);		
 
 /*

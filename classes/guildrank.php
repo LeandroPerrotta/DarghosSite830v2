@@ -6,6 +6,8 @@ class GuildRank {
 	protected $name;
 	protected $level;
 	
+	protected $players;
+	
 	protected $db;
 	
 	public function __construct($id = null, $guild_id = null, $world_id = null) {
@@ -142,6 +144,21 @@ class GuildRank {
 	 */
 	public function setWorld_id($world_id) {
 		$this->world_id = $world_id;
+	}
+	
+	public function loadPlayers($complementWhere = '') {
+		$this->db->query("SELECT id, name, guildnick, rank_id, joining_date FROM characterlist WHERE rank_id = '{$this->id}' {$complementWhere}");
+		while($playerInfos = $this->db->fetchArray()) {
+			$this->players[$playerInfos['id']] = $playerInfos;
+		}
+	}
+	
+	public function getPlayers() {
+		return $this->players;
+	}
+	
+	public function getPlayer($id) {
+		return $this->players[$id];
 	}
 
 }

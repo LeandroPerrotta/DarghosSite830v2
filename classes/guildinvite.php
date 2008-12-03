@@ -3,6 +3,7 @@ class GuildInvite {
 	protected $player_id;
 	protected $guild_id;
 	protected $world_id;
+	protected $date;
 	
 	protected $db;
 	
@@ -15,7 +16,7 @@ class GuildInvite {
 	
 	public function load($player_id, $guild_id, $world_id) {
 		$this->db->query("SELECT 
-							player_id, guild_id, world_id 
+							player_id, guild_id, world_id, date
 						  FROM 
 						  	guild_invites 
 						  WHERE
@@ -29,13 +30,14 @@ class GuildInvite {
 		$this->player_id = $guildInvite->player_id;
 		$this->guild_id  = $guildInvite->guild_id;
 		$this->world_id  = $guildInvite->world_id;
+		$this->date      = $guildInvite->date;
 		
 		return true;
 	}
 	
 	public function save() {
 		$this->db->query("INSERT INTO guild_invites VALUES(
-							'{$this->player_id}', '{$this->guild_id}', '{$this->world_id}')");
+							'{$this->player_id}', '{$this->guild_id}', '{$this->world_id}', '{$this->date}')");
 	}
 	
 	public function delete() {
@@ -56,6 +58,11 @@ class GuildInvite {
 						guild_id  = '{$guild_id}' AND 
 						world_id  = '{$world_id}'");
 		return ($DB->num_rows() < 1) ? false : true;
+	}
+	
+	public function getPlayerName() {
+		$this->db->query("SELECT name FROM characterlist WHERE id = '{$this->player_id}'");
+		return $this->db->fetch()->name;
 	}
 	
 	/**
@@ -99,6 +106,21 @@ class GuildInvite {
 	public function setWorld_id($world_id) {
 		$this->world_id = $world_id;
 	}
+	
+	/**
+	 * @return integer
+	 */
+	public function getDate() {
+		return $this->date;
+	}
+	
+	/**
+	 * @param integer $date
+	 */
+	public function setDate($date) {
+		$this->date = $date;
+	}
+
 
 }
 ?>

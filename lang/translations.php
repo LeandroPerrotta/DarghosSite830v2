@@ -331,6 +331,31 @@ $trans_texts = array(
 		'us' => 'Active guilds on '
 	),
 	
+	'guilds.members' => array(
+		'br' => 'Membros da Guilda',
+		'us' => 'Guild members'
+	),
+	
+	'guilds.funded' => array(
+		'br' => array('A guilda foi criada em ', ' em '),
+		'us' => array('The guild was founded on ', ' on ')
+	),
+	
+	'guilds.inFormation' => array(
+		1 => array('br' => 'A guilda encontra-se atualmente em formação.', 'us' => 'The guild is currently in formation.'),
+		0 => array('br' => 'A guilda encontra-se formada e ativa.', 'us' => 'The guild is currently formed and active.')
+	),
+	
+	'guilds.rank' => array('br' => 'Rank', 'us' => 'Rank'),
+	
+	'guilds.nameAndTitle' => array('br' => 'Nome e titulo', 'us' => 'Name and title'),
+	
+	'guilds.joining' => array('br' => 'Data de recrutamento', 'us' => 'Joining date'),
+	
+	'guilds.invites' => array('br' => 'Personagens Convidados', 'us' => 'Invited Characters'),
+	
+	'guilds.invitationDate' => array('br' => 'Data do convite', 'us' => 'Invitation Date'),
+	
 	'guilds.logo' => array(
 		'br' => 'Imagem',
 		'us' => 'Logo'

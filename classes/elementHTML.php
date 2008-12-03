@@ -38,12 +38,12 @@ class elementHTML
 		if(!$preSelect)	
 			$select .= '<option disabled="disabled"></option>';
 		
-		for($i = 0; $i != count($value); $i++)	
-		{
-			if($value[$i]['select'])
-				$select .= '<option value="'.$value[$i]['valueId'].'" selected>'.$value[$i]['valueName'].'</option>';
-			else
-				$select .= '<option value="'.$value[$i]['valueId'].'">'.$value[$i]['valueName'].'</option>';
+		foreach($value as $p => $v) {
+			if($value[$p]['select']) {
+				$select .= '<option value="'.$value[$p]['valueId'].'" selected>'.$value[$p]['valueName'].'</option>';
+			} else {
+				$select .= '<option value="'.$value[$p]['valueId'].'">'.$value[$p]['valueName'].'</option>';
+			}
 		}
 
 		$select .= '</select>';

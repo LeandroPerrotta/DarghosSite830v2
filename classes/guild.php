@@ -93,9 +93,21 @@ class Guild {
 		return ($DB->num_rows() > 0) ? true : false;
 	}
 	
-	public function loadRanks($loadObject = false) {
+	public static function GetGuildByName($name) {
+		global $DB;
+		$name = mysql_escape_string($name);
+		$DB->query("SELECT id, world_id FROM guilds WHERE name = '{$name}'");
+		if($DB->num_rows() > 0) {
+			$fetch = $DB->fetch();
+			return new Guild($fetch->world_id, $fetch->id);
+		} else {
+			return null;
+		}
+	}
+	
+	public function loadRanks($loadObject = false, $complementWhere = null) {
 		$this->db->query("SELECT id FROM guild_ranks 
-						  WHERE world_id = '{$this->world_id}' AND guild_id = '{$this->id}'");
+						  WHERE world_id = '{$this->world_id}' AND guild_id = '{$this->id}' {$complementWhere}");
 		while($rankId = $this->db->fetch()->id) {
 			$this->ranks[$rankId] = ($loadObject) ? new GuildRank($rankId, $this->id, $this->world_id) :
 												$rankId;
@@ -103,9 +115,9 @@ class Guild {
 		return true;
 	}
 	
-	public function loadInvites($loadObject = false) {
+	public function loadInvites($loadObject = false, $complementWhere = null) {
 		$this->db->query("SELECT player_id FROM guild_invites
-						  WHERE guild_id = '{$this->id}' AND world_id = '{$this->world_id}'");
+						  WHERE guild_id = '{$this->id}' AND world_id = '{$this->world_id}' {$complementWhere}");
 		while($playerId = $this->db->fetch()->player_id) {
 			$this->invites[] = ($loadObject) ? new GuildInvite($playerId, $this->id, $this->world_id) :
 												$playerId;

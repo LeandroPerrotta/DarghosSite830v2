@@ -9,7 +9,7 @@ if($login->logged()) {
 	$account->loadByNumber($_SESSION['account']);
 	$account->load();
 	if($account->getPremDays() > 0) {
-		$DB->query("SELECT DISTINCT 
+		$DB->query("SELECT
 						world_id 
 					FROM 
 						characterlist 
@@ -17,8 +17,8 @@ if($login->logged()) {
 						account_id = '{$account->getNumber()}' AND
 						level >= '".GUILD_MIN_LEVEL."'");
 		while($worldId = $DB->fetch()->world_id) {
-			$worlds[] = array('valueName' => $g_world[$worldId]['name'], 
-							  'valueId' => $g_world[$worldId]['name']);
+			$worlds[$worldId] = array('valueName' => $g_world[$worldId]['name'], 
+							  		  'valueId'   => $g_world[$worldId]['name']);
 		}
 		$content .= '
 				'.$eHTML->formStart('?act=guilds.found').'
@@ -115,33 +115,106 @@ if($login->logged()) {
 		$selectedWorld = $tools->getServerByName($_REQUEST['world']);
 		$selectedPlayer = $engine->loadObject('Player');
 		$selectedPlayer->load($_REQUEST['guild_owner']);
-		$guildName = $_REQUEST['guild_name'];
+		$guildName = ucfirst(strtolower($_REQUEST['guild_name']));
 		$password = $_REQUEST['password'];
+		
+		$_Error = false;
 		
 		if($account->getPassword() != md5($password)) {
 			//Senha errada
+			$_Error = true;
+			$warn = $lang->getWarning('guilds.wrongPassword');
+			$condition = array(
+				'title' => $warn['title'],
+				'msg' => $warn['msg'],
+				'buttons' => $eHTML->simpleButton('back', '?act=guilds.found')
+			);
 		}
 		if($player->getInfo('level') < GUILD_MIN_LEVEL) {
 			//Player level baixo
+			$_Error = true;
+			$warn = $lang->getWarning('guilds.lowerLevel');
+			$condition = array(
+				'title' => $warn['title'],
+				'msg' => $warn['msg'][0].GUILD_MIN_LEVEL.$warn['msg'][1],
+				'buttons' => $eHTML->simpleButton('back', '?act=guilds.found')
+			);
 		}
 		if(!$account->hasThisChar($selectedPlayer->getInfo('name'))) {
 			//Player não é da conta
+			$_Error = true;
+			$warn = $lang->getWarning('guilds.charNaoPosse');
+			$condition = array(
+				'title' => $warn['title'],
+				'msg' => $warn['msg'],
+				'buttons' => $eHTML->simpleButton('back', '?act=guilds.found')
+			);
 		}
 		if(!Guild::canUseName($guildName)) {
 			//Não pode usar esse nome da guild
+			$_Error = true;
+			$warn = $lang->getWarning('guilds.cantUseName');
+			$condition = array(
+				'title' => $warn['title'],
+				'msg' => $warn['msg'],
+				'buttons' => $eHTML->simpleButton('back', '?act=guilds.found')
+			);
 		}
-		$guild = new Guild();
-		$guild->setCreation(time());
-		$guild->setFormation(1);
-		$guild->setName($guildName);
-		$guild->setMotd(null);
-		$guild->setOwner_id($selectedPlayer->getInfo('id'));
-		$guild->setWorld_id($selectedWorld['id']);
-		$guild->save();
-		
-		//Guild criada com sucesso!
+		if(!$_Error) {
+			$guild = new Guild();
+			$guild->setCreation(time());
+			$guild->setFormation(1);
+			$guild->setName($guildName);
+			$guild->setMotd(null);
+			$guild->setOwner_id($selectedPlayer->getInfo('id'));
+			$guild->setWorld_id($selectedWorld['id']);
+			$guild->save();
+			
+			$L_guildRank = new GuildRank();
+			$L_guildRank->setGuild_id($guild->getId());
+			$L_guildRank->setWorld_id($selectedWorld['id']);
+			$L_guildRank->setName("Leader");
+			$L_guildRank->setLevel(1);
+			$L_guildRank->save();
+			
+			$V_guildRank = new GuildRank();
+			$V_guildRank->setGuild_id($guild->getId());
+			$V_guildRank->setWorld_id($selectedWorld['id']);
+			$V_guildRank->setName("Vice-Leader");
+			$V_guildRank->setLevel(2);
+			$V_guildRank->save();
+			
+			$M_guildRank = new GuildRank();
+			$M_guildRank->setGuild_id($guild->getId());
+			$M_guildRank->setWorld_id($selectedWorld['id']);
+			$M_guildRank->setName("Member");
+			$M_guildRank->setLevel(3);
+			$M_guildRank->save();
+			
+			$DB->query("UPDATE 
+							characterlist 
+						SET 
+							rank_id = '{$L_guildRank->getId()}',
+							joining_date = '".time()."'
+						WHERE 
+							id = '{$guild->getOwner_id()}' AND 
+							world_id = '{$guild->getWorld_id()}'");
+			$DB->query("UPDATE
+							players
+						SET
+							rank_id = '{$L_guildRank->getId()}'
+						WHERE
+							id = '{$guild->getOwner_id()}'", $selectedWorld['sqlResource']);
+			
+			
+			$warn = $lang->getWarning('guilds.success');
+			$condition = array(
+				'title' => $warn['title'],
+				'msg' => $warn['msg'],
+				'buttons' => $eHTML->simpleButton('back', '?act=guilds&world='.$selectedWorld['name'])
+			);
+		}
+		$content .= $eHTML->conditionTable($condition);
 	}
-} else {
-	// NO LOGGED
 }
 ?>

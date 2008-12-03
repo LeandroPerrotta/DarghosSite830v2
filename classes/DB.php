@@ -46,9 +46,15 @@ class DB
 		return ($this->query_temp) ? @mysql_num_rows($this->query_temp) : false;
 	}		
 	
-	public function last_insert_id($link = 'site')
+	public function last_insert_id($tabela, $link = 'site')
 	{
-		return ($this->query->temp) ? @mysql_insert_id($GLOBALS['g_linkResource'][$link]) : false;
+		$query = mysql_query("SELECT LAST_INSERT_ID() as id FROM {$tabela}", $GLOBALS['g_linkResource'][$link]);
+		$fetch = mysql_fetch_object($query);
+		if($fetch->id != null) {
+			return $fetch->id;
+		} else {
+			return false;
+		}
 	}
 }
 ?>
