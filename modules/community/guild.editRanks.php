@@ -17,10 +17,17 @@ if(isset($_REQUEST['name']) && $tools->checkString($_REQUEST['name']) && $login-
 			if(isset($_REQUEST['type'])) {
 				if($_REQUEST['type'] == '1' && isset($_POST['ranksNumber']) && $tools->checkString($_POST['ranksNumber'])) {
 					//alterar numero de membros
+					//TODO - Fazer com que todos os membros que eram de um rank que foi deletado, passar pro rank "de cima"
 					$ranksN = (int)$_POST['ranksNumber'];
 					$worldResource = $g_world[$guild->getWorld_id()]['sqlResource'];
-					$DB->query("DELETE FROM guild_ranks WHERE guild_id = '{$guild->getId()}' AND world_id = '{$guild->getWorld_id()}' AND level > '3'");
-					$DB->query("DELETE FROM guild_ranks WHERE guild_id = '{$guild->getId()}' AND level > '3'", $worldResource);
+					$DB->query("SELECT name FROM guild_ranks WHERE guild_id = '{$guild->getId()}' AND world_id = '{$guild->getWorld_id()}'");
+					$ranksNow = $DB->num_rows();
+					if($ranksNow > $ranksN) {
+						$DB->query("DELETE FROM guild_ranks WHERE guild_id = '{$guild->getId()}' AND world_id = '{$guild->getWorld_id()}' AND level > '{$ranksN}'");
+						$DB->query("DELETE FROM guild_ranks WHERE guild_id = '{$guild->getId()}' AND level > '{$ranksN}'", $worldResource);
+					} else {
+						// ...
+					}
 					if($ranksN > 3 && $ranksN <= 20) {
 						for($i = 4; $i <= $ranksN; $i++) {
 							$DB->query("INSERT INTO guild_ranks(guild_id, name, level) 
