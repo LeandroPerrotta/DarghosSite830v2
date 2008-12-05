@@ -67,15 +67,14 @@ class Player
 			`health`,`healthmax`,`mana`,
 			`manamax`,`direction`,`lookbody`,
 			`lookfeet`,`lookhead`,`looklegs`,
-			`looktype`,`cap`,`town_id`,
-			`created`) 
+			`looktype`,`cap`,`town_id`) 
 			VALUES(
 			'".$this->data['name']."','".$this->data['account_id']."','".$this->data['sex']."',
 			'".$this->data['vocation']."','".$this->data['experience']."','".$this->data['level']."',
 			'".$this->data['health']."','".$this->data['healthmax']."','".$this->data['mana']."',
 			'".$this->data['manamax']."','".$this->data['direction']."','".$this->data['lookbody']."',
 			'".$this->data['lookfeet']."','".$this->data['lookhead']."','".$this->data['looklegs']."',
-			'".$this->data['looktype']."','".$this->data['cap']."','".$this->data['town_id']."', '".time()."')", $serverDB);
+			'".$this->data['looktype']."','".$this->data['cap']."','".$this->data['town_id']."')", $serverDB);
 		
 		$this->data['id'] = $DB->last_insert_id($serverDB);
 		

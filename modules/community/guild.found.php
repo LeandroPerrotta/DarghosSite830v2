@@ -16,9 +16,9 @@ if($login->logged()) {
 					WHERE 
 						account_id = '{$account->getNumber()}' AND
 						level >= '".GUILD_MIN_LEVEL."'");
-		while($worldId = $DB->fetch()->world_id) {
-			$worlds[$worldId] = array('valueName' => $g_world[$worldId]['name'], 
-							  		  'valueId'   => $g_world[$worldId]['name']);
+		while($world = $DB->fetch()) {
+			$worlds[$world->world_id] = array('valueName' => $g_world[$world->world_id]['name'], 
+							  		  		  'valueId'   => $g_world[$world->world_id]['name']);
 		}
 		$content .= '
 				'.$eHTML->formStart('?act=guilds.found').'
@@ -130,13 +130,23 @@ if($login->logged()) {
 				'buttons' => $eHTML->simpleButton('back', '?act=guilds.found')
 			);
 		}
-		if($player->getInfo('level') < GUILD_MIN_LEVEL) {
+		if($selectedPlayer->getInfo('level') < GUILD_MIN_LEVEL) {
 			//Player level baixo
 			$_Error = true;
 			$warn = $lang->getWarning('guilds.lowerLevel');
 			$condition = array(
 				'title' => $warn['title'],
 				'msg' => $warn['msg'][0].GUILD_MIN_LEVEL.$warn['msg'][1],
+				'buttons' => $eHTML->simpleButton('back', '?act=guilds.found')
+			);
+		}
+		if($selectedPlayer->getInfo('rank_id') > 0) {
+			//Ja está numa guild
+			$_Error = true;
+			$warn = $lang->getWarning('guilds.alreadyHaveGuild');
+			$condition = array(
+				'title' => $warn['title'],
+				'msg' => $warn['msg'],
 				'buttons' => $eHTML->simpleButton('back', '?act=guilds.found')
 			);
 		}

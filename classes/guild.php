@@ -65,10 +65,10 @@ class Guild {
 				$this->db->query("UPDATE
 									guilds
 							  	  SET
-							  		name 	 = '{$this->name}',
-							  		owner_id = '{$this->owner_id}',
-							  		creation = '{$this->creation}',
-							  		motd 	 = '{$this->motd}'
+							  		name 	     = '{$this->name}',
+							  		ownerid      = '{$this->owner_id}',
+							  		creationdata = '{$this->creation}',
+							  		motd 	     = '{$this->motd}'
 							  	  WHERE
 							  		id 		 = '{$this->id}'", 
 							  	 $GLOBALS['g_world'][$this->world_id]['sqlResource']);
@@ -106,9 +106,10 @@ class Guild {
 	}
 	
 	public function loadRanks($loadObject = false, $complementWhere = null) {
-		$this->db->query("SELECT id FROM guild_ranks 
+		$db = DB::getInstance();
+		$db->query("SELECT id FROM guild_ranks 
 						  WHERE world_id = '{$this->world_id}' AND guild_id = '{$this->id}' {$complementWhere}");
-		while($rankId = $this->db->fetch()->id) {
+		while($rankId = $db->fetch()->id) {
 			$this->ranks[$rankId] = ($loadObject) ? new GuildRank($rankId, $this->id, $this->world_id) :
 												$rankId;
 		}
@@ -116,9 +117,10 @@ class Guild {
 	}
 	
 	public function loadInvites($loadObject = false, $complementWhere = null) {
-		$this->db->query("SELECT player_id FROM guild_invites
+		$db = DB::getInstance();
+		$db->query("SELECT player_id FROM guild_invites
 						  WHERE guild_id = '{$this->id}' AND world_id = '{$this->world_id}' {$complementWhere}");
-		while($playerId = $this->db->fetch()->player_id) {
+		while($playerId = $db->fetch()->player_id) {
 			$this->invites[] = ($loadObject) ? new GuildInvite($playerId, $this->id, $this->world_id) :
 												$playerId;
 		}

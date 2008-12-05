@@ -1,6 +1,5 @@
 <?
 $name = $_REQUEST['name'];
-
 if(!empty($name))
 {
 	$playerLoad = false;

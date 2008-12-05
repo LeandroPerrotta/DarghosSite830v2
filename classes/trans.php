@@ -564,10 +564,10 @@ class Trans
 		'guilds.lowerLevel' => array(
 			'br' => array(
 				'title' => 'Erro',
-				'msg' => array('O personagem selecionado não tem o level mínimo de ', ' necessário para iniciar uma guild.')), 		
+				'msg' => array('O personagem selecionado não tem o level mínimo de ', ' necessário.')), 		
 			'us' => array(
 				'title' => 'Error',
-				'msg' => array('The selected character does not have the necessary level(', ') to found a guild.'))		
+				'msg' => array('The selected character does not have the necessary level(', ').'))		
 		),
 		
 		'guilds.wrongPassword' => array(
@@ -579,6 +579,15 @@ class Trans
 				'msg' => 'Password does not match.')		
 		),
 		
+		'guilds.alreadyHaveGuild' => array(
+			'br' => array(
+				'title' => 'Erro',
+				'msg' => 'Você já tem ou faz parte de uma guilda.'), 		
+			'us' => array(
+				'title' => 'Error',
+				'msg' => 'You already have or is a member of a guild.')		
+		),
+		
 		'guilds.success' => array(
 			'br' => array(
 				'title' => 'Sucesso!',
@@ -586,6 +595,87 @@ class Trans
 			'us' => array(
 				'title' => 'Success',
 				'msg' => 'Guild created sucessfully')		
+		),
+		
+		'guilds.disbanded' => array(
+			'br' => array(
+				'title' => 'Guilda debandada',
+				'msg' => 'A guilda foi debandada com sucesso!'), 		
+			'us' => array(
+				'title' => 'Debanded guild',
+				'msg' => 'Guild disbanded sucessfully')		
+		),
+		
+		'guilds.notPremium' => array(
+			'br' => array(
+				'title' => 'Erro',
+				'msg' => 'É necessário que o player selecionado seja premium account.'), 		
+			'us' => array(
+				'title' => 'Error',
+				'msg' => 'Is necessary that the selected player be a premium account.')		
+		),
+		
+		'guilds.disbandConf' => array(
+			'br' => array(
+				'title' => 'Tem certeza disso?',
+				'msg' => 'Tem certeza de que você deseja debandar sua guilda? Confirme esta ação escrevendo sua senha abaixo:'),
+			'us' => array(
+				'title' => 'Area you sure?',
+				'msg' => 'Area you sure if you want disband your guild? Please, confirm this action writing your password down:')
+		),
+		
+		'guilds.passLeadership' => array(
+			'br' => array(
+				'title' => 'Tem certeza disso?',
+				'msg' => 'Tem certeza de que você deseja passar a liderança de sua guilda? Confirme esta ação escolhendo o novo líder e escrevendo sua senha abaixo:'),
+			'us' => array(
+				'title' => 'Area you sure?',
+				'msg' => 'Area you sure if you want pass the leadership of your guild? Please, confirm this action selecting a new leader and writing your password down:')
+		),
+		
+		'guilds.passLeadershipSuccess' => array(
+			'br' => array(
+				'title' => 'Liderança transferida!',
+				'msg' => 'A liderança de sua guilda foi transferida com sucesso!'),
+			'us' => array(
+				'title' => 'Leadership Transfered',
+				'msg' => 'The Leadership of your guild was sucessfully transfered.')
+		),
+		
+		'guilds.invalidRankName' => array(
+			'br' => array(
+				'title' => 'Erro',
+				'msg' => 'O nome digitado para o rank contém caracteres/palavras invalidas!'),
+			'us' => array(
+				'title' => 'Error',
+				'msg' => 'The name writed to the rank has invalid characters/words!')
+		),
+		
+		'guilds.rankNameChanged' => array(
+			'br' => array(
+				'title' => 'Nome do Rank alterado',
+				'msg' => 'O nome do rank foi alterado com sucesso!'),
+			'us' => array(
+				'title' => 'Rank name changed',
+				'msg' => 'The name of the rank was sucessfully changed!')
+		),
+		
+		'guilds.ranksNumbers' => array(
+			'br' => array(
+				'title' => 'Número de ranks redefinido',
+				'msg' => 'O número de ranks foi redefinido com sucesso!'),
+			'us' => array(
+				'title' => 'Number of ranks redefined',
+				'msg' => 'The number of ranks was sucessfully redefined!')
+		),
+		
+		'guilds.playerNotThisGuild' => array(
+			'br' => array(
+				'title' => 'Erro',
+				'msg' => 'O personagem selecionado não foi encontrado em sua guilda.'),
+			'us' => array(
+				'title' => 'Error',
+				'msg' => 'The selected character not was founded in your guild.')
 		)
 	);		
 

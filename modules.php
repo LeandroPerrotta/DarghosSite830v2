@@ -195,6 +195,36 @@ if($_REQUEST['act'] != "")
 			$subtopic = $GLOBALS['trans_subTopicPages']['community.guilds.found'][$GLOBALS['g_language']];
 			include "modules/community/guild.found.php";
 		break;
+		
+		case "guilds.view";
+			$topic = $GLOBALS['trans_topicPages']['community'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['community.guilds.view'][$GLOBALS['g_language']];
+			include "modules/community/guild.view.php";
+		break;
+		
+		case "guilds.disband";
+			$topic = $GLOBALS['trans_topicPages']['community'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['community.guilds.disband'][$GLOBALS['g_language']];
+			include "modules/community/guild.disband.php";
+		break;
+		
+		case "guilds.passLeadership";
+			$topic = $GLOBALS['trans_topicPages']['community'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['community.guilds.passLeadership'][$GLOBALS['g_language']];
+			include "modules/community/guild.passLeadership.php";
+		break;
+		
+		case "guilds.editRanks";
+			$topic = $GLOBALS['trans_topicPages']['community'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['community.guilds.editRanks'][$GLOBALS['g_language']];
+			include "modules/community/guild.editRanks.php";
+		break;
+		
+		case "guilds.editMembers";
+			$topic = $GLOBALS['trans_topicPages']['community'][$GLOBALS['g_language']];
+			$subtopic = $GLOBALS['trans_subTopicPages']['community.guilds.editMembers'][$GLOBALS['g_language']];
+			include "modules/community/guild.editMembers.php";
+		break;
 
 /*
 //// Separação para inicialização de modulos ADMINISTRAÇÂO ////

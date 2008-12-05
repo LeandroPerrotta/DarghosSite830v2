@@ -147,8 +147,9 @@ class GuildRank {
 	}
 	
 	public function loadPlayers($complementWhere = '') {
-		$this->db->query("SELECT id, name, guildnick, rank_id, joining_date FROM characterlist WHERE rank_id = '{$this->id}' {$complementWhere}");
-		while($playerInfos = $this->db->fetchArray()) {
+		$db = DB::getInstance();
+		$db->query("SELECT id, name, guildnick, rank_id, joining_date FROM characterlist WHERE rank_id = '{$this->id}' {$complementWhere}");
+		while($playerInfos = $db->fetchArray()) {
 			$this->players[$playerInfos['id']] = $playerInfos;
 		}
 	}

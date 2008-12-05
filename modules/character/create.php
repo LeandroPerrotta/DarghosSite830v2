@@ -142,20 +142,30 @@ if($login->logged())
 				<td class="tableTop" colspan="4">'.$trans_texts['worldToCharacter'][$g_language].'</td>
 			</tr>
 			<tr>
-				<td class="tableContLight" width="25%"><b>'.$trans_texts['name'][$g_language].'</td><td class="tableContLight"><b>'.$trans_texts['online_since'][$g_language].'</td><td class="tableContLight"><b>'.$trans_texts['population'][$g_language].'</td><td class="tableContLight"><b>'.$trans_texts['server_location'][$g_language].'</td>		
+				<td class="tableContDark" width="25%"><b>'.$trans_texts['name'][$g_language].'</td>
+				<td class="tableContDark"><b>'.$trans_texts['online_since'][$g_language].'</td>
+				<td class="tableContDark"><b>'.$trans_texts['population'][$g_language].'</td>
+				<td class="tableContDark"><b>'.$trans_texts['server_location'][$g_language].'</td>		
 			</tr>';				
 			
-		$first = true;	
+		$first = true;
+		$handler = 0;	
 		foreach($worlds as $world)	
-		{			
+		{		
+			$tdStyle = ($handler == 0) ? 'tableContLight' : 'tableContDark';	
 			$radio = $eHTML->radioInput('world_id', $world['valueId'], $first);
-		
+			$date = ($g_language == "br") ? $tools->datePt($world['onSince'], "dd m aaaa") : 
+											date("d M Y", $world['onSince']);
 			$content .= '
-			<tr class="tableContLight">	
-				<td>'.$radio.' '.$world['valueName'].'</td><td>'.$world['onSince'].'</td><td>'.$world['population'].'</td><td>'.$world['location'].'</td>
+			<tr>	
+				<td class="'.$tdStyle.'">'.$radio.'&nbsp;'.$world['valueName'].'</td>
+				<td class="'.$tdStyle.'">'.$date.'</td>
+				<td class="'.$tdStyle.'">'.$world['population'].'</td>
+				<td class="'.$tdStyle.'">'.$world['location'].'</td>
 			</tr>';		
 				
 			$first = false;	
+			$handler = ($handler == 0) ? 1 : 0;
 		}
 					
 		$content .= '</table>		

@@ -322,6 +322,26 @@ $trans_subTopicPages = array(
 	'community.guilds.found' => array(
 		'br' => 'Criar Guilda',
 		'us' => 'Found Guild'
+	),
+	'community.guilds.view' => array(
+		'br' => 'Ver Guilda',
+		'us' => 'View Guild'
+	),
+	'community.guilds.disband' => array(
+		'br' => 'Debandar Guilda',
+		'us' => 'Disband Guild'
+	),
+	'community.guilds.passLeadership' => array(
+		'br' => 'Transferir Liderança',
+		'us' => 'Pass Leadership'
+	),
+	'community.guilds.editRanks' => array(
+		'br' => 'Editar ranks',
+		'us' => 'Edit ranks'
+	),
+	'community.guilds.editMembers' => array(
+		'br' => 'Editar membros',
+		'us' => 'Edit members'
 	)
 );
 
@@ -329,6 +349,36 @@ $trans_texts = array(
 	'guilds.active' => array(
 		'br' => 'Guildas ativas em ',
 		'us' => 'Active guilds on '
+	),
+	
+	'guilds.noInvites' => array(
+		'br' => 'Não há novos convites.',
+		'us' => 'Theres not new invites.'
+	),
+	
+	'guilds.newLeader' => array(
+		'br' => 'Novo Líder',
+		'us' => 'New Leader'
+	),
+	
+	'guilds.formation' => array(
+		'br' => 'Guildas em formação em ',
+		'us' => 'Guilds under formation on '
+	),
+	
+	'guilds.ranksNumber' => array(
+		'br' => 'Número de ranks: ',
+		'us' => 'Number of ranks: '
+	),
+	
+	'guilds.ranksNumberLimit' => array(
+		'br' => '(mínimo 3, máximo 20)',
+		'us' => '(minimum 3, maximum 20)'
+	),
+	
+	'guilds.setRank' => array(
+		'br' => array('Mudar nome do rank ', ' para: '),
+		'us' => array('Set rank name ', ' to: ')
 	),
 	
 	'guilds.members' => array(
@@ -344,6 +394,11 @@ $trans_texts = array(
 	'guilds.inFormation' => array(
 		1 => array('br' => 'A guilda encontra-se atualmente em formação.', 'us' => 'The guild is currently in formation.'),
 		0 => array('br' => 'A guilda encontra-se formada e ativa.', 'us' => 'The guild is currently formed and active.')
+	),
+	
+	'guilds.warnFormation' => array(
+		'br' => array('Se a guilda não tiver quatro vice lideres até ', ' ela será debandada automaticamente.'),
+		'us' => array('It will be disbanded on ', ' if there are still less than four vice leaders then.')
 	),
 	
 	'guilds.rank' => array('br' => 'Rank', 'us' => 'Rank'),

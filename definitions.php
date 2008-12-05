@@ -67,7 +67,7 @@ define('GUILD_IMAGE_MAX_WIDTH', 300); // Largura máxima permitida para uma image
 define('GUILD_IMAGE_MAX_HEIGHT', 300); // Altura máxima permitida para uma imagem de guild
 define('GUILD_IMAGE_IDEAL_WIDTH', 64); // Largura da imagem de guild no site
 define('GUILD_IMAGE_IDEAL_HEIGHT', 64); // Altura da imagem de guild no site
-define('GUILD_DEFAULT_NOIMG', 'guildsimages/no.gif'); // Imagem padrão para uma guild sem imagem
+define('GUILD_DEFAULT_NOIMG', 'guildimages/no.gif'); // Imagem padrão para uma guild sem imagem
 define('GUILD_MIN_LEVEL', 25); // Level minimo do char para poder criar uma guild?
 define('GUILD_ONLY_PREMIUM', 1); // Apenas premium pode criar guilds?
 ?>

@@ -17,7 +17,7 @@ if(isset($_REQUEST['name']) && $tools->checkString($_REQUEST['name'])) {
 						WHERE 
 							id = '{$guild->getOwner_id()}' AND 
 							world_id = '{$guild->getWorld_id()}'");
-			$playerName = $DB->fetch();
+			$playerName = $DB->fetch()->name;
 			if($account->hasThisChar($playerName)) {
 				$_guildLevel = 1;
 			} else {
@@ -42,19 +42,19 @@ if(isset($_REQUEST['name']) && $tools->checkString($_REQUEST['name'])) {
 			}
 		}
 		$image = ($guild->getImage() == 1) ? GUILD_IMAGES_DIR.md5($guild->getName()).'.jpg' : GUILD_DEFAULT_NOIMG;
-		$content .= '<table>	
+		$content .= '<table align="center" width="100%">	
 						<tr>
-							<td>
+							<td align="left">
 								<center><img src="'.$image.'" alt="" /></center>
 							</td>
-							<td>
+							<td align="center">
 								<center><h1>'.$guild->getName().'</h1></center>
 							</td>
-							<td>
+							<td align="right">
 								<center><img src="'.$image.'" alt="" /></center>
 							</td>
 						</tr>
-					 </table><br>';
+					 </table><br><br>';
 		$date = ($g_language == "br") ? $tools->datePt($guild->getCreation(), "dd m aaaa") : date("d M Y", $guild->getCreation());
 		
 		$content .= $trans_texts['guilds.funded'][$g_language][0];
@@ -64,33 +64,53 @@ if(isset($_REQUEST['name']) && $tools->checkString($_REQUEST['name'])) {
 		$content .= '<br>';
 		$content .= $trans_texts['guilds.inFormation'][$guild->getFormation()][$g_language];
 		$content .= '<br>';
+		if($guild->getFormation()) {
+			$tempo = 3 * 24 * 60 * 60; // 3 Dias
+			$dateT = ($g_language == "br") ? $tools->datePt($guild->getCreation() + $tempo, "dd m aaaa") : 
+										 	 date("d M Y", $guild->getCreation() + $tempo);
+			$content .= '<b>';
+			$content .= $trans_texts['guilds.warnFormation'][$g_language][0];
+			$content .= $dateT;
+			$content .= $trans_texts['guilds.warnFormation'][$g_language][1];
+			$content .= '</b>';
+			$content .= '<br>';
+		}
+		$content .= '<br>';
 		if($_guildLevel == 1) {
+			$content .= '<p align="right">';
 			$content .= $eHTML->simpleButton('disbandGuild', '?act=guilds.disband&name='.urlencode($guild->getName()));
+			$content .= ' ';
+			$content .= $eHTML->simpleButton('passLeadership', '?act=guilds.passLeadership&name='.urlencode($guild->getName()));
+			$content .= '</p>';
 		}
 		
-		$guild->loadRanks(true, "ORDER BY level DESC");
+		$guild->loadRanks(true, "ORDER BY level ASC");
 		$content .= '<table cellspacing="1" cellpadding="0" border="0" width="95%" align="center">
 						<tr>
 							<td class="tableTop" colspan="3">
-								'.$trans_texts['guilds.members'][$g_language].'
+								<b>'.$trans_texts['guilds.members'][$g_language].'</b>
 							</td>
 						</tr>';
 		$content .= '<tr>
-						<td class="tableContDark">
+						<td class="tableContDark" width="30%">
 							<b>'.$trans_texts['guilds.rank'][$g_language].'</b>
 						</td>
-						<td class="tableContDark">
+						<td class="tableContDark" width="30%">
 							<b>'.$trans_texts['guilds.nameAndTitle'][$g_language].'</b>
 						</td>
-						<td class="tableContDark">
+						<td class="tableContDark" width="40%">
 							<b>'.$trans_texts['guilds.joining'][$g_language].'</b>
 						</td>
 					 </tr>';
 		$handler = 0;
+		$ranks = array();
 		foreach($guild->getRanks() as $rank) {
+			$tdStyle = ($handler == 0) ? 'tableContLight' : 'tableContDark';
 			$rank->loadPlayers('ORDER BY name ASC');
+			if(count($rank->getPlayers()) < 1) {
+				continue;
+			}
 			foreach($rank->getPlayers() as $player) {
-				$tdStyle = ($handler == 0) ? 'tableContLight' : 'tableContDark';
 				$title = ($player['guildnick'] != '') ? '('.$player['guildnick'].')' : '';
 				$date = ($g_language == "br") ? $tools->datePt($player['joining_date'], "dd m aaaa") : 
 												date("d M Y", $player['joining_date']);
@@ -105,33 +125,36 @@ if(isset($_REQUEST['name']) && $tools->checkString($_REQUEST['name'])) {
 									'.$rankName.'
 								</td>
 								<td class="'.$tdStyle.'">
-									'.$player['name'].' '.$title.'
+									<a href="?act=character.details&name='.urlencode($player['name']).'">'.$player['name'].'</a>
+									'.$title.'
 								</td>
 								<td class="'.$tdStyle.'">
 									'.$date.'
 								</td>
 							</tr>';
-				$handler = ($handler == 0) ? 1 : 0;
 			}
+			$handler = ($handler == 0) ? 1 : 0;
 		}
 		$content .= '</table><br>';
-		
+		$content .= '<p align="right">';
 		if($_guildLevel == 1) {
 			$content .= $eHTML->simpleButton('editRanks', '?act=guilds.editRanks&name='.urlencode($guild->getName()));
+			$content .= ' ';
 		}
 		if($_guildLevel == 1 or $_guildLevel == 2) {
 			$content .= $eHTML->simpleButton('editMembers', '?act=guilds.editMembers&name='.urlencode($guild->getName()));
 		}
+		$content .= '</p>';
 		$content .= '<br>';
 		
 		$guild->loadInvites(true);
+		$content .= '<table cellspacing="1" cellpadding="0" border="0" width="95%" align="center">
+						<tr>
+							<td class="tableTop" colspan="2">
+								<b>'.$trans_texts['guilds.invites'][$g_language].'</b>
+							</td>
+						</tr>';
 		if(count($guild->getInvites()) > 0) {
-			$content .= '<table cellspacing="1" cellpadding="0" border="0" width="95%" align="center">
-							<tr>
-								<td class="tableTop" colspan="2">
-									'.$trans_texts['guilds.invites'][$g_language].'
-								</td>
-							</tr>';
 			$content .= '<tr>
 							<td class="tableContDark">
 								<b>'.$trans_texts['name'][$g_language].'</b>
@@ -152,11 +175,23 @@ if(isset($_REQUEST['name']) && $tools->checkString($_REQUEST['name'])) {
 								</td>
 							</tr>';
 			}
-			$content .= '</table>';
+		} else {
+			$content .= '<tr>
+							<td class="tableContLight">
+								'.$trans_texts['guilds.noInvites'][$g_language].'
+							</td>
+					 	</tr>';
 		}
+		$content .= '</table>';
 		if($_guildLevel == 1 or $_guildLevel == 2) {
+			$content .= '<p align="right">';
 			$content .= $eHTML->simpleButton('inviteMember', '?act=guilds.inviteMember&name='.urlencode($guild->getName()));
+			$content .= '</p>';
 		}
+		
+		$content .= '<center>';
+		$content .= $eHTML->simpleButton('back', '?act=guilds');
+		$content .= '</center>';
 		
 	} else {
 		//Guild not founded :D
