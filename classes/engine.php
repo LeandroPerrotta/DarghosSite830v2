@@ -40,13 +40,13 @@ class Engine
 				"host" => "smtp-auth.no-ip.com",
 				"port" => 587,
 				"username" => "darghos.net@noip-smtp",
-				"password" => "***REMOVED***"
+				"password" => "SECRETPASS"
 			),
 			array(
 				"host" => "smtp.darghos.com",
 				"port" => 25,
 				"username" => "no-reply@darghos.com",
-				"password" => "***REMOVED***"
+				"password" => "SECRETPASS"
 			),			
 		);	
 		

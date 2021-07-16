@@ -3,19 +3,19 @@ $_TIME = time();
 set_time_limit(60*25); 
 include("config.php");
 
-$otNew = mysql_pconnect("localhost:3309", "root", "987***REMOVED****");
+$otNew = mysql_pconnect("localhost:3309", "root", "SECRETPASS");
 mysql_select_db("newot_new", $otNew);
 
 $otOld = mysql_pconnect("localhost:3309", "newot", "secret");
 mysql_select_db("newot", $otOld);
 
-$webNew = mysql_pconnect("localhost:3309", "wbst", "789***REMOVED***qwe");
+$webNew = mysql_pconnect("localhost:3309", "wbst", "SECRETPASS");
 mysql_select_db("site_new", $webNew);
 
 $webOld = mysql_pconnect("localhost:3309", "wbst_old", "secret");
 mysql_select_db("site", $webOld);
 
-$loginServer = mysql_pconnect("localhost:3309", "login_sv", "789***REMOVED***qwe");
+$loginServer = mysql_pconnect("localhost:3309", "login_sv", "SECRETPASS");
 mysql_select_db("ot_login", $loginServer);
 
 // Accounts
@@ -151,5 +151,5 @@ while($premium = mysql_fetch_object($queryPremium)) {
 					'".md5($premium->id)."')", $webNew) or die (mysql_error($webNew));
 }
 echo "[feito]<br>";
-echo "Importaï¿½ï¿½o do banco concluida com exito.";
+echo "Importação do banco concluida com exito.";
 ?>
