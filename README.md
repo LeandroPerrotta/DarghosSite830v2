@@ -8,5 +8,5 @@ Esta versão tinha proposito de substituir o site original do Darghos na versão
 - Multiplas linguagens (EN e PT)
 - Varias melhorias ao site anteior
 
-Entretanto, o site não se mostrou estavel e devido a varios bugs ele foi desontinuado.
+Entretanto, o site não se mostrou estavel e devido a varios bugs ele foi descontinuado.
 Não recomendo seu uso.
